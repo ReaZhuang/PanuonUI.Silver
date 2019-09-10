@@ -31,7 +31,7 @@
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
         <Setter Property="Padding"
-                Value="5,0,0,0"></Setter>
+                Value="5,0,25,0"></Setter>
         <Setter Property="local:ComboBoxHelper.ShadowColor"
                 Value="#888888" />
         <Setter Property="local:ComboBoxHelper.ItemHeight"

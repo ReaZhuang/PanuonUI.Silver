@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Linq;
+using System.Collections;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Threading;
 
 namespace Panuon.UI.Silver
 {
@@ -265,19 +264,43 @@ namespace Panuon.UI.Silver
         {
             var comboBox = d as ComboBox;
             var obj = e.NewValue as object;
-            var en = obj.GetType();
-            if (!en.IsEnum)
-                throw new Exception($"\"{en.Name}\" is not enum type.");
+            var type = obj.GetType();
+            if (!type.IsEnum)
+                throw new Exception($"\"{type.Name}\" is not enum type.");
 
-            if (en == null)
+            if (type == null)
             {
                 comboBox.ItemsSource = null;
                 comboBox.SelectedItem = null;
             }
             else
             {
-                comboBox.ItemsSource = Enum.GetValues(en).Cast<Enum>();
-                comboBox.SelectedItem = obj;
+                var enumList = new ArrayList();
+                foreach (Enum item in Enum.GetValues(type))
+                {
+                    var field = type.GetField(item.ToString());
+                    if (null != field)
+                    {
+                        var descriptions = field.GetCustomAttributes(typeof(DescriptionAttribute), true) as DescriptionAttribute[];
+                        if (descriptions.Length > 0)
+                        {
+                            enumList.Add(new {
+                                Name = descriptions[0].Description,
+                                Enum = item,
+                            });
+                        }
+                        else
+                            enumList.Add(new
+                            {
+                                Name = item.ToString(),
+                                Enum = item,
+                            });
+                    }
+                }
+                comboBox.ItemsSource = enumList;
+                comboBox.DisplayMemberPath = "Name";
+                comboBox.SelectedValuePath = "Enum";
+                comboBox.SelectedValue = obj;
             }
         }
         #endregion
