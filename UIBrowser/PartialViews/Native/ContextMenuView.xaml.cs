@@ -7,12 +7,12 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using UIBrowser.Helpers;
 
-namespace UIBrowser.PartialViews.Custom
+namespace UIBrowser.PartialViews.Native
 {
     /// <summary>
     /// ComboBoxView.xaml 的交互逻辑
     /// </summary>
-    public partial class CarouselView : UserControl
+    public partial class ContextMenuView : UserControl
     {
         #region Identity
         private bool _isCodeViewing;
@@ -20,30 +20,18 @@ namespace UIBrowser.PartialViews.Custom
         private LinearGradientBrush _linearGradientBrush;
         #endregion
 
-        public CarouselView()
+        public ContextMenuView()
         {
             InitializeComponent();
-            Loaded += CarouselView_Loaded;
+            Loaded += ContextMenuView_Loaded;
             UpdateVisualEffect();
             _linearGradientBrush = FindResource("ColorSelectorBrush") as LinearGradientBrush;
         }
 
-        #region Event Handler
-        private void CarouselView_Loaded(object sender, RoutedEventArgs e)
-        {
-            UpdateTemplate();
-            UpdateCode();
-        }
+        #region Event
 
-        private void BtnInc_Click(object sender, RoutedEventArgs e)
+        private void ContextMenuView_Loaded(object sender, RoutedEventArgs e)
         {
-            CrlCustom.Index++;
-            UpdateCode();
-        }
-
-        private void BtnDec_Click(object sender, RoutedEventArgs e)
-        {
-            CrlCustom.Index--;
             UpdateCode();
         }
 
@@ -88,19 +76,7 @@ namespace UIBrowser.PartialViews.Custom
         {
             Clipboard.SetText(TbCode.Text);
         }
-
-        private void ChbRecyclable_CheckChanged(object sender, RoutedEventArgs e)
-        {
-            CrlCustom.Recyclable = ChbRecyclable.IsChecked == true;
-            UpdateCode();
-        }
-
-        private void ChbAutoPlay_CheckChanged(object sender, RoutedEventArgs e)
-        {
-            ChbRecyclable.IsChecked = true;
-            CrlCustom.AutoPlayInterval = TimeSpan.FromSeconds(1);
-            UpdateCode();
-        }
+       
         #endregion
 
         #region Function
@@ -117,29 +93,37 @@ namespace UIBrowser.PartialViews.Custom
                     break;
             }
         }
-        private void UpdateTemplate()
-        {
-        }
 
         private void UpdateCode()
         {
-            var recyclable = CrlCustom.Recyclable;
-            var autoPlay = CrlCustom.AutoPlayInterval;
-            var index = CrlCustom.Index;
-
-            TbCode.Text = $"<pu:Carousel  Width=\"{CrlCustom.ActualWidth}\"" +
-                        $"\nHeight=\"{CrlCustom.ActualHeight}\"" +
-                        (recyclable ? $"\nRecyclable=\"{recyclable}\"" : "") +
-                        (autoPlay.TotalSeconds == 0 ? "" : $"\nAutoPlayInterval=\"0:0:{autoPlay.TotalSeconds}\"") +
-                        $"\nIndex=\"{CrlCustom.Index}\"" +
-                        " >" +
-                        "\n<Grid Background=\"#F15D26\" />" +
-                        "\n<Grid Background=\"#EED225\" />" +
-                        "\n<Grid Background=\"#47BBC7\" />" +
-                        "\n<Grid Background=\"#306ACF\" />" +
-                        "\n</pu:Carousel>";
+            TbCode.Text = "<ContextMenu pu:ContextMenuHelper.ItemIconWidth=\"45\"" +
+                                       "\npu:ContextMenuHelper.CornerRadius=\"1\"" +
+                                       "\nPadding=\"0,3\"" +
+                                       "\nMinWidth=\"250\">" +
+                            "\n<MenuItem Header=\"Copy\">" +
+                                            "\n<MenuItem.Icon>" +
+                                                "\n<TextBlock Text=\"&#xf0c5;\"" +
+                                                           "\nForeground=\"Gray\"" +
+                                                           "\nFontFamily=\"{StaticResource FontAwesome}\"/>" +
+                                            "\n</MenuItem.Icon>" +
+                                        "\n</MenuItem>" +
+                                        "\n<MenuItem Header=\"Cut\" />" +
+                                        "\n<MenuItem Header=\"Paste\" />" +
+                                        "\n<Separator />" +
+                                        "\n<MenuItem Header=\"More Settings\">" +
+                                            "\n<MenuItem.Icon>" +
+                                                "\n<TextBlock Text=\"&#xf013;\"" +
+                                                           "\nFontSize=\"16\"" +
+                                                           "\nForeground=\"Gray\"" +
+                                                           "\nFontFamily=\"{StaticResource FontAwesome}\" />" +
+                                            "\n</MenuItem.Icon>" +
+                                            "\n<MenuItem Header=\"Nothing Here\"/>" +
+                                            "\n<MenuItem Header=\"Nothing Here\" />" +
+                                            "\n<MenuItem Header=\"Nothing Here\" />" +
+                                        "\n</MenuItem>" +
+                                    "\n</ContextMenu>";
         }
-
         #endregion
+
     }
 }

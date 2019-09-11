@@ -79,6 +79,15 @@ namespace UIBrowser.Properties {
         }
         
         /// <summary>
+        ///   查找类似 AutoPlay 的本地化字符串。
+        /// </summary>
+        public static string AutoPlay {
+            get {
+                return ResourceManager.GetString("AutoPlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Badge 的本地化字符串。
         /// </summary>
         public static string Badge {
@@ -228,6 +237,15 @@ namespace UIBrowser.Properties {
         public static string ComboBox {
             get {
                 return ResourceManager.GetString("ComboBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ContextMenu 的本地化字符串。
+        /// </summary>
+        public static string ContextMenu {
+            get {
+                return ResourceManager.GetString("ContextMenu", resourceCulture);
             }
         }
         

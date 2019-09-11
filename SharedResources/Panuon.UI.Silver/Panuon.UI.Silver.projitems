@@ -50,9 +50,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Internal\NotTopMostPopup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Internal\ResizeContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Internal\ResizeThumb.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\Internal\ScreenshotWindow.xaml.cs">
-      <DependentUpon>ScreenshotWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Internal\WaterfallPanel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Loading.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\MessageBoxX.cs" />
@@ -118,7 +115,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Others\AnimationHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Others\LayoutHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Others\MouseEventHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Others\ScreenshotHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Cache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\DelegateCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\GridLengthUtil.cs" />
@@ -161,10 +157,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\Internal\NoticeWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Controls\Internal\ScreenshotWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
