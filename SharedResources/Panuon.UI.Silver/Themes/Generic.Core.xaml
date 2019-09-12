@@ -47,7 +47,7 @@
                                       Foreground="{TemplateBinding Foreground}"
                                       FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=local:Pagination},Converter={StaticResource Add5Converter}}"
                                       FontWeight="{TemplateBinding FontWeight}"
-                                      FontFamily="{DynamicResource FontAwesome}"
+                                      FontFamily="{StaticResource FontAwesome}"
                                       FontStyle="{TemplateBinding FontStyle}"
                                       local:RepeatButtonHelper.HoverBrush="{TemplateBinding HoverBrush}"
                                       local:RepeatButtonHelper.CornerRadius="{TemplateBinding CornerRadius}"
@@ -68,7 +68,7 @@
                                                    Visibility="Collapsed"
                                                    Text="&#xf111; &#xf111; &#xf111;"
                                                    FontSize="3"
-                                                   FontFamily="{DynamicResource FontAwesome}"
+                                                   FontFamily="{StaticResource FontAwesome}"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"
                                                    Foreground="{Binding Background,RelativeSource={RelativeSource AncestorType=local:Pagination}}"
@@ -173,7 +173,7 @@
                                       Foreground="{TemplateBinding Foreground}"
                                       FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=local:Pagination},Converter={StaticResource Add5Converter}}"
                                       FontWeight="{TemplateBinding FontWeight}"
-                                      FontFamily="{DynamicResource FontAwesome}"
+                                      FontFamily="{StaticResource FontAwesome}"
                                       FontStyle="{TemplateBinding FontStyle}"
                                       local:RepeatButtonHelper.HoverBrush="{TemplateBinding HoverBrush}"
                                       local:RepeatButtonHelper.CornerRadius="{TemplateBinding CornerRadius}"
@@ -1420,11 +1420,11 @@
                         <internal:NotTopMostPopup Placement="Bottom"
                                                   x:Name="Popup"
                                                   Focusable="False"
-                                                  StaysOpen="True"
                                                   Tag="{Binding ElementName=ToggleButton}"
                                                   AllowsTransparency="True"
-                                                  PopupAnimation="Slide">
-                            <Grid MaxHeight="180"
+                                                  PopupAnimation="Slide"
+                                                  StaysOpen="{Binding StaysOpen,RelativeSource={RelativeSource AncestorType=local:MultiSelector}}">
+                            <Grid MaxHeight="180" 
                                   MinWidth="{TemplateBinding ActualWidth}"
                                   x:Name="DropDown">
                                 <Border x:Name="DropDownBorder"
@@ -1662,7 +1662,8 @@
                                                   Focusable="False"
                                                   Tag="{Binding ElementName=ToggleButton}"
                                                   AllowsTransparency="True"
-                                                  PopupAnimation="Slide">
+                                                  PopupAnimation="Slide"
+                                                  StaysOpen="{Binding StaysOpen,RelativeSource={RelativeSource AncestorType=local:DateTimePicker}}">
                             <Grid x:Name="DropDown">
                                 <Border x:Name="DropDownBorder"
                                         Margin="0,0,0,10"
@@ -1890,7 +1891,8 @@
                                                           Focusable="False"
                                                           Tag="{Binding ElementName=ToggleButton}"
                                                           AllowsTransparency="True"
-                                                          PopupAnimation="Slide">
+                                                          PopupAnimation="Slide"
+                                                          StaysOpen="{Binding StaysOpen,RelativeSource={RelativeSource AncestorType=local:DropDown},Mode=OneWay}">
                                     <Grid x:Name="DropDown"
                                           Margin="1,1,1,10">
                                         <Path x:Name="Path"

@@ -50,6 +50,36 @@ namespace Panuon.UI.Silver
             DependencyProperty.RegisterAttached("HoverBackground", typeof(Brush), typeof(ContextMenuHelper));
         #endregion
 
+        #region CheckedIconBrush
+        public static Brush GetCheckedIconBrush(DependencyObject obj)
+        {
+            return (Brush)obj.GetValue(CheckedIconBrushProperty);
+        }
+
+        public static void SetCheckedIconBrush(DependencyObject obj, Brush value)
+        {
+            obj.SetValue(CheckedIconBrushProperty, value);
+        }
+
+        public static readonly DependencyProperty CheckedIconBrushProperty =
+            DependencyProperty.RegisterAttached("CheckedIconBrush", typeof(Brush), typeof(ContextMenuHelper));
+        #endregion
+
+        #region CheckedIcon
+        public static object GetCheckedIcon(DependencyObject obj)
+        {
+            return (object)obj.GetValue(CheckedIconProperty);
+        }
+
+        public static void SetCheckedIcon(DependencyObject obj, object value)
+        {
+            obj.SetValue(CheckedIconProperty, value);
+        }
+
+        public static readonly DependencyProperty CheckedIconProperty =
+            DependencyProperty.RegisterAttached("CheckedIcon", typeof(object), typeof(ContextMenuHelper));
+        #endregion
+
         #region ShadowColor
         public static Color GetShadowColor(DependencyObject obj)
         {
@@ -66,18 +96,18 @@ namespace Panuon.UI.Silver
         #endregion
 
         #region ItemIconWidth
-        public static double GetItemIconWidth(DependencyObject obj)
+        public static string GetItemIconWidth(DependencyObject obj)
         {
-            return (double)obj.GetValue(ItemIconWidthProperty);
+            return (string)obj.GetValue(ItemIconWidthProperty);
         }
 
-        public static void SetItemIconWidth(DependencyObject obj, double value)
+        public static void SetItemIconWidth(DependencyObject obj, string value)
         {
             obj.SetValue(ItemIconWidthProperty, value);
         }
 
         public static readonly DependencyProperty ItemIconWidthProperty =
-            DependencyProperty.RegisterAttached("ItemIconWidth", typeof(double), typeof(ContextMenuHelper));
+            DependencyProperty.RegisterAttached("ItemIconWidth", typeof(string), typeof(ContextMenuHelper));
         #endregion
 
         #region ItemHeight
@@ -93,21 +123,6 @@ namespace Panuon.UI.Silver
 
         public static readonly DependencyProperty ItemHeightProperty =
             DependencyProperty.RegisterAttached("ItemHeight", typeof(double), typeof(ContextMenuHelper));
-        #endregion
-
-        #region ItemIcon
-        public static object GetItemIcon(DependencyObject obj)
-        {
-            return (object)obj.GetValue(ItemIconProperty);
-        }
-
-        public static void SetItemIcon(DependencyObject obj, object value)
-        {
-            obj.SetValue(ItemIconProperty, value);
-        }
-
-        public static readonly DependencyProperty ItemIconProperty =
-            DependencyProperty.RegisterAttached("ItemIcon", typeof(object), typeof(ContextMenuHelper));
         #endregion
 
         #region ItemPadding

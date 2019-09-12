@@ -208,7 +208,7 @@ namespace UIBrowser.PartialViews.Native
                         (BtnCustom.Width < 60 ? $"\npu:ButtonHelper.WaitingContent=\"{{x:Null}}\"" : "")+
                         (isSink == ClickStyle.Sink ? $"\npu:ButtonHelper.ClickStyle=\"Sink\"" : "") +
                         (isWaiting ? $"\npu:ButtonHelper.IsWaiting=\"True\"" : "")+
-                        "\nFontFamily=\"{DynamicResource FontAwesome}\"" +
+                        "\nFontFamily=\"{StaticResource FontAwesome}\"" +
                         (buttonStyle == ButtonStyle.Standard ? "" : $"\npu:ButtonHelper.ButtonStyle=\"{buttonStyle}\"") +
                         (buttonStyle == ButtonStyle.Standard ? $"\nBackground=\"{BtnCustom.Background.ToColor().ToHexString()}\"" : "") +
                         (buttonStyle == ButtonStyle.Standard ? "" : $"\nBorderBrush=\"{BtnCustom.BorderBrush.ToColor().ToHexString()}\"") +

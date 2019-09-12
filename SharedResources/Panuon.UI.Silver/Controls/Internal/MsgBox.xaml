@@ -473,7 +473,7 @@
                         <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
                     <Grid VerticalAlignment="Center"
-                          Margin="0,30,0,10">
+                          Margin="0,30,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="{Binding MessageBoxIcon,ElementName=Msb, Converter={StaticResource MsbCheckIconWidthConverter}}" />
                             <ColumnDefinition />

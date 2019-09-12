@@ -78,6 +78,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DropDownMenuConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\LoadingConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MemberPathConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\MenuConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MsbConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MultiSelectorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ObjectConvert.cs" />

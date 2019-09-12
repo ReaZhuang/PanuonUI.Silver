@@ -96,7 +96,7 @@ namespace UIBrowser.PartialViews.Native
 
         private void UpdateCode()
         {
-            TbCode.Text = "<ContextMenu pu:ContextMenuHelper.ItemIconWidth=\"45\"" +
+            TbCode.Text = "<ContextMenu IconWidth=\"45\"" +
                                        "\npu:ContextMenuHelper.CornerRadius=\"1\"" +
                                        "\nPadding=\"0,3\"" +
                                        "\nMinWidth=\"250\">" +

@@ -51,6 +51,9 @@ namespace Panuon.UI.Silver
         #endregion
 
         #region Property
+        /// <summary>
+        /// Gets or sets text.
+        /// </summary>
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
@@ -60,6 +63,9 @@ namespace Panuon.UI.Silver
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(ColorPicker));
 
+        /// <summary>
+        /// Gets or sets shadow color.
+        /// </summary>
         public Color ShadowColor
         {
             get { return (Color)GetValue(ShadowColorProperty); }
@@ -69,6 +75,9 @@ namespace Panuon.UI.Silver
         public static readonly DependencyProperty ShadowColorProperty =
             DependencyProperty.Register("ShadowColor", typeof(Color), typeof(ColorPicker));
 
+        /// <summary>
+        /// Gets or sets selected brush.
+        /// </summary>
         public SolidColorBrush SelectedBrush
         {
             get { return (SolidColorBrush)GetValue(SelectedBrushProperty); }
@@ -85,6 +94,9 @@ namespace Panuon.UI.Silver
             picker.RaiseSelectedBrushChanged();
         }
 
+        /// <summary>
+        /// Gets or sets is opacity enabled.
+        /// </summary>
         public bool IsOpacityEnabled
         {
             get { return (bool)GetValue(IsOpacityEnabledProperty); }
@@ -94,7 +106,9 @@ namespace Panuon.UI.Silver
         public static readonly DependencyProperty IsOpacityEnabledProperty =
             DependencyProperty.Register("IsOpacityEnabled", typeof(bool), typeof(ColorPicker), new PropertyMetadata(true));
 
-
+        /// <summary>
+        /// Gets or sets corner radius.
+        /// </summary>
         public CornerRadius CornerRadius
         {
             get { return (CornerRadius)GetValue(CornerRadiusProperty); }
@@ -104,6 +118,9 @@ namespace Panuon.UI.Silver
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register("CornerRadius", typeof(CornerRadius), typeof(ColorPicker));
 
+        /// <summary>
+        /// Gets or sets is text visible.
+        /// </summary>
         public bool IsTextVisible
         {
             get { return (bool)GetValue(IsTextVisibleProperty); }
@@ -113,7 +130,9 @@ namespace Panuon.UI.Silver
         public static readonly DependencyProperty IsTextVisibleProperty =
             DependencyProperty.Register("IsTextVisible", typeof(bool), typeof(ColorPicker), new PropertyMetadata(true));
 
-
+        /// <summary>
+        /// Gets or sets header.
+        /// </summary>
         public object Header
         {
             get { return (object)GetValue(HeaderProperty); }
@@ -123,6 +142,9 @@ namespace Panuon.UI.Silver
         public static readonly DependencyProperty HeaderProperty =
             DependencyProperty.Register("Header", typeof(object), typeof(ColorPicker));
 
+        /// <summary>
+        /// Gets or sets is measured value visible.
+        /// </summary>
         public bool IsMeasuredValueVisible
         {
             get { return (bool)GetValue(IsMeasuredValueVisibleProperty); }
@@ -138,6 +160,9 @@ namespace Panuon.UI.Silver
             picker.ColorSelector.Height = 340 - (picker.IsMeasuredValueVisible ? 0 : 50) - (picker.IsDefaultColorPanelVisible ? 0 : 70);
         }
 
+        /// <summary>
+        /// Gets or sets is default color panel visible.
+        /// </summary>
         public bool IsDefaultColorPanelVisible
         {
             get { return (bool)GetValue(IsDefaultColorPanelVisibleProperty); }
@@ -152,6 +177,18 @@ namespace Panuon.UI.Silver
             var picker = d as ColorPicker;
             picker.ColorSelector.Height = 340 - (picker.IsMeasuredValueVisible ? 0 : 50) - (picker.IsDefaultColorPanelVisible ? 0 : 70);
         }
+
+        /// <summary>
+        /// Gets or sets stays open.
+        /// </summary>
+        public bool StaysOpen
+        {
+            get { return (bool)GetValue(StaysOpenProperty); }
+            set { SetValue(StaysOpenProperty, value); }
+        }
+
+        public static readonly DependencyProperty StaysOpenProperty =
+            DependencyProperty.Register("StaysOpen", typeof(bool), typeof(MultiSelector));
         #endregion
 
         #region Function

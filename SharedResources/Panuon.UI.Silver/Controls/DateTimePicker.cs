@@ -34,8 +34,18 @@ namespace Panuon.UI.Silver
             var arg = new RoutedPropertyChangedEventArgs<DateTime>(oldValue, newValue, SelectedDateTimeChangedEvent);
             RaiseEvent(arg);
         }
-        
 
+        public static readonly RoutedEvent SelectedEvent = EventManager.RegisterRoutedEvent("Selected", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(DateTimePicker));
+        public event RoutedEventHandler Selected
+        {
+            add { AddHandler(SelectedEvent, value); }
+            remove { RemoveHandler(SelectedEvent, value); }
+        }
+        void RaiseSelectedEvent()
+        {
+            var arg = new RoutedEventArgs(SelectedEvent);
+            RaiseEvent(arg);
+        }
         #endregion
 
         #region Property

@@ -15,8 +15,7 @@
             <GroupBox x:Name="GrpCode"
                       HorizontalAlignment="Center"
                       Width="{Binding ActualWidth,ElementName=GrpPalette}"
-                      VerticalAlignment="Bottom"
-                      >
+                      VerticalAlignment="Bottom">
                 <Grid>
                     <TextBox x:Name="TbCode"
                              Height="100"
@@ -29,8 +28,8 @@
                         <TextBox.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="{x:Static localized:Resource.CopyCode}"
-                                          pu:ContextMenuHelper.ItemIcon="&#xf0c5;"
-                                          Click="MenuItem_CopyCode"/>
+                                          Icon="&#xf0c5;"
+                                          Click="MenuItem_CopyCode" />
                             </ContextMenu>
                         </TextBox.ContextMenu>
                     </TextBox>
@@ -49,26 +48,29 @@
                                        Margin="20,0,0,0"
                                        Background="Transparent">
                                 <TextBlock.ContextMenu>
-                                    <ContextMenu pu:ContextMenuHelper.ItemIconWidth="45"
-                                                 pu:ContextMenuHelper.CornerRadius="1"
-                                                 Padding="0,3"
-                                                 MinWidth="250">
-                                        <MenuItem Header="Copy">
-                                            <MenuItem.Icon>
-                                                <TextBlock Text="&#xf0c5;"
-                                                           FontFamily="{StaticResource FontAwesome}"/>
-                                            </MenuItem.Icon>
+                                    <ContextMenu pu:ContextMenuHelper.ItemIconWidth="40"
+                                                 pu:ContextMenuHelper.CornerRadius="5"
+                                                 Padding="0,5"
+                                                 MinWidth="200">
+                                        <MenuItem Header="Link"
+                                                  Icon="&#xf0c1;">
                                         </MenuItem>
-                                        <MenuItem Header="Cut" />
-                                        <MenuItem Header="Paste" />
+                                        <MenuItem Header="Rename"
+                                                  Icon="&#xf044;"/>
+                                        <MenuItem Header="Delete"
+                                                  Icon="&#xf1f8;"/>
                                         <Separator />
-                                        <MenuItem Header="More Settings">
-                                            <MenuItem.Icon>
-                                                <TextBlock Text="&#xf013;"
-                                                           FontSize="16"
-                                                           FontFamily="{StaticResource FontAwesome}" />
-                                            </MenuItem.Icon>
-                                            <MenuItem Header="Nothing Here"/>
+                                        <MenuItem Header="Option1"
+                                                  IsCheckable="True"
+                                                  IsChecked="True"/>
+                                        <MenuItem Header="Option2"
+                                                  IsCheckable="True"/>
+                                        <MenuItem Header="Option3"
+                                                  IsCheckable="True"/>
+                                        <Separator />
+                                        <MenuItem Header="More Settings"
+                                                  Icon="&#xf013;">
+                                            <MenuItem Header="Nothing Here" />
                                             <MenuItem Header="Nothing Here" />
                                             <MenuItem Header="Nothing Here" />
                                         </MenuItem>
@@ -88,7 +90,7 @@
                             Click="BtnViewCode_Click" />
                 </Grid>
             </GroupBox>
-            
+
 
         </Grid>
     </Grid>

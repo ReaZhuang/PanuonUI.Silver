@@ -116,7 +116,7 @@ namespace UIBrowser.PartialViews.Native
         private void UpdateTemplate()
         {
             var color = Helper.GetColorByOffset(_linearGradientBrush.GradientStops, SldTheme.Value / 7);
-            MenuHelper.SetHoverBrush(MenuCustom, color.ToBrush());
+            MenuHelper.SetHoverBackground(MenuCustom, color.ToBrush());
         }
 
         private void UpdateCode()
