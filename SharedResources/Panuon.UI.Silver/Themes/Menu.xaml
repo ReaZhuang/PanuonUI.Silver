@@ -28,20 +28,27 @@
                 Value="#EEEEEE" />
         <Setter Property="local:MenuHelper.ShadowColor"
                 Value="#DDDDDD" />
-        <Setter Property="local:MenuHelper.SubmentItemHeight"
-                Value="35" />
-        <Setter Property="local:MenuHelper.IsSubMenuGlyphVisible"
-                Value="True" />
-        
+        <Setter Property="local:MenuHelper.SubmenuItemHeight"
+                Value="{Binding Height,RelativeSource={RelativeSource Self},Mode=OneWay}" />
+        <Setter Property="local:MenuHelper.SubmenuItemIconWidth"
+                Value="{Binding Path=(local:MenuHelper.SubmenuItemHeight),RelativeSource={RelativeSource Self},Mode=OneWay}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Menu}">
                     <Grid>
-                        <Border x:Name="Border"
+                        <Border x:Name="BdrMain"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{Binding Path=(local:MenuHelper.CornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}" />
+                                CornerRadius="{Binding Path=(local:MenuHelper.CornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0"
+                                                  BlurRadius="10"
+                                                  Opacity="1"
+                                                  Color="{Binding Path=(local:MenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay, Converter={StaticResource NullableColorToColoConverter}}" />
+                            </Border.Effect>
+                        </Border>
+                        
                         <ScrollViewer local:ScrollViewerHelper.ScrollBarThickness="6"
                                       local:ScrollViewerHelper.ScrollBarCornerRadius="3"
                                       CanContentScroll="True"
@@ -51,16 +58,18 @@
                                         KeyboardNavigation.DirectionalNavigation="Cycle" />
                         </ScrollViewer>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=(local:MenuHelper.ShadowColor),RelativeSource={RelativeSource Self}}"
+                                     Value="{x:Null}">
+                            <Setter TargetName="BdrMain"
+                                    Property="Effect"
+                                    Value="{x:Null}" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Path=(local:MenuHelper.Orientation),RelativeSource={RelativeSource Self}}"
-                         Value="Vertical">
-                <Setter Property="local:MenuHelper.ItemIconWidth"
-                        Value="{Binding Path=(local:MenuHelper.SubmentItemHeight),RelativeSource={RelativeSource Self},Mode=OneWay}" />
-            </DataTrigger>
-        </Style.Triggers>
+       
     </Style>
 
     <Style TargetType="{x:Type MenuItem}">
@@ -104,7 +113,7 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition x:Name="ColumnIcon"
-                                                          Width="{Binding Path=(local:MenuHelper.ItemIconWidth),Converter={StaticResource GridLengthConverter},RelativeSource={RelativeSource AncestorType=Menu}}" />
+                                                          Width="{Binding Path=(local:MenuHelper.SubmenuItemIconWidth),Converter={StaticResource GridLengthConverter},RelativeSource={RelativeSource AncestorType=Menu}}" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
@@ -124,7 +133,7 @@
                                           Width="5"
                                           Height="10"
                                           Data="M0,0 L5,5 L0,10"
-                                          Margin="0,0,10,0"
+                                          Margin="10,0,10,0"
                                           RenderTransformOrigin="0.5,0.5"
                                           HorizontalAlignment="Right"
                                           Stroke="{TemplateBinding Foreground}"
@@ -139,12 +148,19 @@
                                        PopupAnimation="Fade">
                                     <Grid Width="{Binding Width,RelativeSource={RelativeSource AncestorType=Menu}}"
                                           >
-                                        <Border x:Name="SubmenuBorder"
+                                        <Border x:Name="BdrSubmenu"
                                                 SnapsToDevicePixels="True"
                                                 BorderThickness="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Menu}}"
                                                 BorderBrush="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Menu}}"
                                                 Background="{Binding Background,RelativeSource={RelativeSource AncestorType=Menu}}"
-                                                CornerRadius="{Binding Path=(local:MenuHelper.CornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}" />
+                                                CornerRadius="{Binding Path=(local:MenuHelper.CornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}">
+                                            <Border.Effect>
+                                                <DropShadowEffect ShadowDepth="0"
+                                                                  BlurRadius="10"
+                                                                  Opacity="1"
+                                                                  Color="{Binding Path=(local:MenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay, Converter={StaticResource NullableColorToColoConverter}}" />
+                                            </Border.Effect>
+                                        </Border>
                                         <ScrollViewer CanContentScroll="True"
                                                       local:ScrollViewerHelper.ScrollBarCornerRadius="3"
                                                       local:ScrollViewerHelper.ScrollBarThickness="6"
@@ -202,18 +218,102 @@
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
                                 </Trigger>
+                                <DataTrigger Binding="{Binding Path=(local:MenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=Menu}}"
+                                             Value="{x:Null}">
+                                    <Setter TargetName="BdrSubmenu"
+                                            Property="Effect"
+                                            Value="{x:Null}" />
+                                </DataTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </MultiDataTrigger>
+            <!--Horizontal / Standard / TopLevelItem-->
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(local:MenuHelper.Orientation),RelativeSource={RelativeSource AncestorType=Menu}}"
+                               Value="Horizontal" />
+                    <Condition Binding="{Binding Path=(local:MenuHelper.MenuStyle),RelativeSource={RelativeSource AncestorType=Menu}}"
+                               Value="Standard" />
+                    <Condition Binding="{Binding Role,RelativeSource={RelativeSource Self}}"
+                               Value="TopLevelItem" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type MenuItem}">
+                            <Grid>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}" />
+                                <Border x:Name="BdrHover"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{Binding Path=(local:MenuHelper.HoverBackground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}"
+                                        Opacity="0" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="LblIcon"
+                                           Content="{TemplateBinding Icon}"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+                                    <ContentPresenter x:Name="Presenter"
+                                                      ContentSource="Header"
+                                                      Grid.Column="1"
+                                                      VerticalAlignment="Center"
+                                                      Margin="{TemplateBinding Padding}" />
+                                </Grid>
+                            </Grid>
+                            <ControlTemplate.Triggers>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding Path=(local:MenuHelper.IsSubMenuGlyphVisible),RelativeSource={RelativeSource AncestorType=Menu}}"
+                                        <Condition Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}"
                                                    Value="True" />
-                                        <Condition Binding="{Binding HasItems,RelativeSource={RelativeSource Self}}"
-                                                   Value="True" />
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.HoverForeground), RelativeSource={RelativeSource AncestorType=Menu},Converter={StaticResource IsNullConverter}}"
+                                                   Value="False" />
                                     </MultiDataTrigger.Conditions>
-                                    <Setter TargetName="Path"
-                                            Property="Visibility"
-                                            Value="Visible" />
+                                    <Setter TargetName="LblIcon"
+                                            Property="TextBlock.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource  AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="LblIcon"
+                                            Property="TextElement.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="Presenter"
+                                            Property="TextBlock.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="Presenter"
+                                            Property="TextElement.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
                                 </MultiDataTrigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="BdrHover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0:0:0.3" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="BdrHover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0:0:0.3" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
                             </ControlTemplate.Triggers>
+
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -242,8 +342,7 @@
                                         Opacity="0" />
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition x:Name="ColumnIcon"
-                                                          Width="{Binding Path=(local:MenuHelper.ItemIconWidth),Converter={StaticResource GridLengthConverter},RelativeSource={RelativeSource AncestorType=Menu}}" />
+                                        <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
@@ -262,27 +361,34 @@
                                           Grid.Column="2"
                                           Width="10"
                                           Height="10"
-                                          Data="M0,8 L5,3 L10,8"
-                                          Margin="0,0,10,0"
+                                          Data="M0,3 L5,8 L10,3"
+                                          Margin="10,0,10,0"
                                           RenderTransformOrigin="0.5,0.5"
                                           HorizontalAlignment="Right"
-                                          Stroke="{TemplateBinding Foreground}"
-                                          Visibility="Collapsed">
+                                          Stroke="{TemplateBinding Foreground}">
                                     </Path>
                                 </Grid>
                                 <Popup x:Name="Popup"
-                                       Placement="Right"
+                                       Placement="Bottom"
                                        IsOpen="{TemplateBinding IsSubmenuOpen}"
                                        AllowsTransparency="True"
                                        Focusable="False"
                                        PopupAnimation="Fade">
-                                    <Grid Width="{Binding Width,RelativeSource={RelativeSource AncestorType=Menu}}">
-                                        <Border x:Name="SubmenuBorder"
+                                    <Grid>
+                                        <Border x:Name="BdrSubmenu"
                                                 SnapsToDevicePixels="True"
                                                 BorderThickness="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Menu}}"
                                                 BorderBrush="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Menu}}"
+                                                Width="{Binding Width,RelativeSource={RelativeSource AncestorType=Menu}}"
                                                 Background="{Binding Background,RelativeSource={RelativeSource AncestorType=Menu}}"
-                                                CornerRadius="{Binding Path=(local:MenuHelper.CornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}" />
+                                                CornerRadius="{Binding Path=(local:MenuHelper.CornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}">
+                                            <Border.Effect>
+                                                <DropShadowEffect ShadowDepth="0"
+                                                                  BlurRadius="10"
+                                                                  Opacity="1"
+                                                                  Color="{Binding Path=(local:MenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay, Converter={StaticResource NullableColorToColoConverter}}" />
+                                            </Border.Effect>
+                                        </Border>
                                         <ScrollViewer CanContentScroll="True"
                                                       local:ScrollViewerHelper.ScrollBarCornerRadius="3"
                                                       local:ScrollViewerHelper.ScrollBarThickness="6"
@@ -340,19 +446,256 @@
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
                                 </Trigger>
+                                <DataTrigger Binding="{Binding Path=(local:MenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=Menu}}"
+                                             Value="{x:Null}">
+                                    <Setter TargetName="BdrSubmenu"
+                                            Property="Effect"
+                                            Value="{x:Null}" />
+                                </DataTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </MultiDataTrigger>
+            <!--Horizontal / Standard / SubmenuItem-->
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(local:MenuHelper.Orientation),RelativeSource={RelativeSource AncestorType=Menu}}"
+                               Value="Horizontal" />
+                    <Condition Binding="{Binding Path=(local:MenuHelper.MenuStyle),RelativeSource={RelativeSource AncestorType=Menu}}"
+                               Value="Standard" />
+                    <Condition Binding="{Binding Role,RelativeSource={RelativeSource Self}}"
+                               Value="SubmenuItem" />
+                </MultiDataTrigger.Conditions>
+                <Setter  Property="Height"
+                         Value="{Binding Path=(local:MenuHelper.SubmenuItemHeight),RelativeSource={RelativeSource AncestorType=Menu}}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type MenuItem}">
+                            <Grid>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}" />
+                                <Border x:Name="BdrHover"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{Binding Path=(local:MenuHelper.HoverBackground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}"
+                                        Opacity="0" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition x:Name="ColumnIcon"
+                                                          Width="{Binding Path=(local:MenuHelper.SubmenuItemIconWidth),Converter={StaticResource GridLengthConverter},RelativeSource={RelativeSource AncestorType=Menu}}" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="LblIcon"
+                                           Content="{TemplateBinding Icon}"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=MenuItem},Converter={StaticResource Add3Converter}}"
+                                           FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+                                    <ContentPresenter x:Name="Presenter"
+                                                      ContentSource="Header"
+                                                      Grid.Column="1"
+                                                      VerticalAlignment="Center"
+                                                      Margin="{TemplateBinding Padding}" />
+                                </Grid>
+                            </Grid>
+                            <ControlTemplate.Triggers>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding Path=(local:MenuHelper.IsSubMenuGlyphVisible),RelativeSource={RelativeSource AncestorType=Menu}}"
+                                        <Condition Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}"
                                                    Value="True" />
-                                        <Condition Binding="{Binding HasItems,RelativeSource={RelativeSource Self}}"
-                                                   Value="True" />
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.HoverForeground), RelativeSource={RelativeSource AncestorType=Menu},Converter={StaticResource IsNullConverter}}"
+                                                   Value="False" />
                                     </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="LblIcon"
+                                            Property="TextBlock.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="LblIcon"
+                                            Property="TextElement.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="Presenter"
+                                            Property="TextBlock.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="Presenter"
+                                            Property="TextElement.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                </MultiDataTrigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="BdrHover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0:0:0.3" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="BdrHover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0:0:0.3" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </MultiDataTrigger>
+            <!--Horizontal / Standard / SubmenuHeader-->
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(local:MenuHelper.Orientation),RelativeSource={RelativeSource AncestorType=Menu}}"
+                               Value="Horizontal" />
+                    <Condition Binding="{Binding Path=(local:MenuHelper.MenuStyle),RelativeSource={RelativeSource AncestorType=Menu}}"
+                               Value="Standard" />
+                    <Condition Binding="{Binding Role,RelativeSource={RelativeSource Self}}"
+                               Value="SubmenuHeader" />
+                </MultiDataTrigger.Conditions>
+                <Setter  Property="Height"
+                         Value="{Binding Path=(local:MenuHelper.SubmenuItemHeight),RelativeSource={RelativeSource AncestorType=Menu}}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type MenuItem}">
+                            <Grid>
+                                <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}" />
+                                <Border x:Name="BdrHover"
+                                        BorderBrush="Transparent"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{Binding Path=(local:MenuHelper.HoverBackground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}"
+                                        Opacity="0" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition x:Name="ColumnIcon"
+                                                          Width="{Binding Path=(local:MenuHelper.SubmenuItemIconWidth),Converter={StaticResource GridLengthConverter},RelativeSource={RelativeSource AncestorType=Menu}}" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="LblIcon"
+                                           Content="{TemplateBinding Icon}"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=MenuItem},Converter={StaticResource Add3Converter}}"
+                                           FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+                                    <ContentPresenter x:Name="Presenter"
+                                                      ContentSource="Header"
+                                                      Grid.Column="1"
+                                                      VerticalAlignment="Center"
+                                                      Margin="{TemplateBinding Padding}" />
+                                    <Path x:Name="Path"
+                                          Grid.Column="3"
+                                          Width="5"
+                                          Height="10"
+                                          Data="M0,0 L5,5 L0,10"
+                                          Margin="0,0,15,0"
+                                          RenderTransformOrigin="0.5,0.5"
+                                          HorizontalAlignment="Right"
+                                          Stroke="{TemplateBinding Foreground}"
+                                          Visibility="Collapsed">
+                                    </Path>
+                                </Grid>
+                                <Popup x:Name="Popup"
+                                       Placement="Right"
+                                       IsOpen="{TemplateBinding IsSubmenuOpen}"
+                                       AllowsTransparency="True"
+                                       Focusable="False"
+                                       PopupAnimation="Fade">
+                                    <Grid>
+                                        <Border x:Name="BdrSubmenu"
+                                                SnapsToDevicePixels="True"
+                                                BorderThickness="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Menu}}"
+                                                BorderBrush="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Menu}}"
+                                                Background="{Binding Background,RelativeSource={RelativeSource AncestorType=Menu}}"
+                                                Width="{Binding Width,RelativeSource={RelativeSource AncestorType=Menu}}"
+                                                CornerRadius="{Binding Path=(local:MenuHelper.CornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}">
+                                            <Border.Effect>
+                                                <DropShadowEffect ShadowDepth="0"
+                                                                  BlurRadius="10"
+                                                                  Opacity="1"
+                                                                  Color="{Binding Path=(local:MenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay, Converter={StaticResource NullableColorToColoConverter}}" />
+                                            </Border.Effect>
+                                        </Border>
+                                        <ScrollViewer CanContentScroll="True"
+                                                      local:ScrollViewerHelper.ScrollBarCornerRadius="3"
+                                                      local:ScrollViewerHelper.ScrollBarThickness="6"
+                                                      Margin="{Binding Padding,RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}">
+                                            <StackPanel IsItemsHost="True"
+                                                        KeyboardNavigation.DirectionalNavigation="Cycle" />
+                                        </ScrollViewer>
+                                    </Grid>
+
+                                </Popup>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.HoverForeground), RelativeSource={RelativeSource AncestorType=Menu},Converter={StaticResource IsNullConverter}}"
+                                                   Value="False" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="LblIcon"
+                                            Property="TextBlock.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="LblIcon"
+                                            Property="TextElement.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="Presenter"
+                                            Property="TextBlock.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="Presenter"
+                                            Property="TextElement.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="Path"
+                                            Property="Stroke"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                </MultiDataTrigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="BdrHover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0:0:0.3" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="BdrHover"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 Duration="0:0:0.3" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="HasItems"
+                                         Value="True">
                                     <Setter TargetName="Path"
                                             Property="Visibility"
                                             Value="Visible" />
-                                </MultiDataTrigger>
+                                </Trigger>
+                                <DataTrigger Binding="{Binding Path=(local:MenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=Menu}}"
+                                             Value="{x:Null}">
+                                    <Setter TargetName="BdrSubmenu"
+                                            Property="Effect"
+                                            Value="{x:Null}" />
+                                </DataTrigger>
                             </ControlTemplate.Triggers>
-
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -382,5 +725,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>

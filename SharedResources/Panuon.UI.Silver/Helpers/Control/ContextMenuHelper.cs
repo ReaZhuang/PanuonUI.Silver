@@ -81,18 +81,18 @@ namespace Panuon.UI.Silver
         #endregion
 
         #region ShadowColor
-        public static Color GetShadowColor(DependencyObject obj)
+        public static Color? GetShadowColor(DependencyObject obj)
         {
-            return (Color)obj.GetValue(ShadowColorProperty);
+            return (Color?)obj.GetValue(ShadowColorProperty);
         }
 
-        public static void SetShadowColor(DependencyObject obj, Color value)
+        public static void SetShadowColor(DependencyObject obj, Color? value)
         {
             obj.SetValue(ShadowColorProperty, value);
         }
 
         public static readonly DependencyProperty ShadowColorProperty =
-            DependencyProperty.RegisterAttached("ShadowColor", typeof(Color), typeof(ContextMenuHelper));
+            DependencyProperty.RegisterAttached("ShadowColor", typeof(Color?), typeof(ContextMenuHelper));
         #endregion
 
         #region ItemIconWidth

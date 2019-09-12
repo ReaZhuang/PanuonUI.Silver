@@ -59,7 +59,7 @@
                                 <DropShadowEffect x:Name="effect"
                                                   ShadowDepth="0"
                                                   BlurRadius="5"
-                                                  Color="{Binding Path=(local:TextBoxHelper.FocusedShadowColor),RelativeSource={RelativeSource AncestorType=TextBox}, Mode=OneWay}"
+                                                  Color="{Binding Path=(local:TextBoxHelper.FocusedShadowColor),RelativeSource={RelativeSource AncestorType=TextBox}, Mode=OneWay,Converter={StaticResource NullableColorToColoConverter}}"
                                                   Opacity="0" />
                             </Border.Effect>
                         </Border>
@@ -177,7 +177,12 @@
                                 </BeginStoryboard>
                             </MultiDataTrigger.ExitActions>
                         </MultiDataTrigger>
-
+                        <DataTrigger Binding="{Binding Path=(local:TextBoxHelper.FocusedShadowColor),RelativeSource={RelativeSource Self}}"
+                                     Value="{x:Null}">
+                            <Setter TargetName="BdrOuter"
+                                    Property="Effect"
+                                    Value="{x:Null}" />
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

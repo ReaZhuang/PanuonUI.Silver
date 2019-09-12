@@ -15,8 +15,7 @@
             <GroupBox x:Name="GrpCode"
                       HorizontalAlignment="Center"
                       Width="{Binding ActualWidth,ElementName=GrpPalette}"
-                      VerticalAlignment="Bottom"
-                      >
+                      VerticalAlignment="Bottom">
                 <Grid>
                     <TextBox x:Name="TbCode"
                              Height="100"
@@ -30,7 +29,7 @@
                             <ContextMenu>
                                 <MenuItem Header="{x:Static localized:Resource.CopyCode}"
                                           Icon="&#xf0c5;"
-                                          Click="MenuItem_CopyCode"/>
+                                          Click="MenuItem_CopyCode" />
                             </ContextMenu>
                         </TextBox.ContextMenu>
                     </TextBox>
@@ -46,7 +45,7 @@
                             <Menu x:Name="MenuCustom"
                                   VerticalAlignment="Center"
                                   HorizontalAlignment="Center"
-                                  >
+                                  Height="35">
                                 <MenuItem Header="Item1">
                                     <MenuItem Header="Item1-1">
                                         <MenuItem Header="Item1-1-1" />
@@ -75,8 +74,7 @@
                                 <RowDefinition Height="40" />
                                 <RowDefinition Height="40" />
                             </Grid.RowDefinitions>
-                            <TextBlock 
-                                       Text="{x:Static localized:Resource.ThemeBrush}"
+                            <TextBlock Text="{x:Static localized:Resource.ThemeBrush}"
                                        VerticalAlignment="Center" />
                             <Slider x:Name="SldTheme"
                                     pu:SliderHelper.IsTickValueVisible="False"
@@ -89,7 +87,7 @@
                                     Width="200"
                                     Minimum="0"
                                     Maximum="7"
-                                    Value="6"
+                                    Value="5.7"
                                     IsSnapToTickEnabled="True"
                                     TickFrequency="0.01"
                                     Margin="5,0"
@@ -108,7 +106,6 @@
                             <TextBlock Grid.Row="4"
                                        Text="{x:Static localized:Resource.ShowSearchBox}"
                                        VerticalAlignment="Center" />
-
                         </Grid>
                     </StackPanel>
                     <Button x:Name="BtnViewCode"
@@ -122,7 +119,7 @@
                             Click="BtnViewCode_Click" />
                 </Grid>
             </GroupBox>
-            
+
 
         </Grid>
     </Grid>

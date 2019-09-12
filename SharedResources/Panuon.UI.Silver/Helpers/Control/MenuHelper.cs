@@ -68,18 +68,18 @@ namespace Panuon.UI.Silver
         #endregion
 
         #region ShadowColor
-        public static Color GetShadowColor(DependencyObject obj)
+        public static Color? GetShadowColor(DependencyObject obj)
         {
-            return (Color)obj.GetValue(ShadowColorProperty);
+            return (Color?)obj.GetValue(ShadowColorProperty);
         }
 
-        public static void SetShadowColor(DependencyObject obj, Color value)
+        public static void SetShadowColor(DependencyObject obj, Color? value)
         {
             obj.SetValue(ShadowColorProperty, value);
         }
 
         public static readonly DependencyProperty ShadowColorProperty =
-            DependencyProperty.RegisterAttached("ShadowColor", typeof(Color), typeof(MenuHelper));
+            DependencyProperty.RegisterAttached("ShadowColor", typeof(Color?), typeof(MenuHelper));
         #endregion
 
         #region MenuStyle
@@ -97,49 +97,34 @@ namespace Panuon.UI.Silver
             DependencyProperty.RegisterAttached("MenuStyle", typeof(MenuStyle), typeof(MenuHelper), new PropertyMetadata(MenuStyle.Standard));
         #endregion
 
-        #region SubmentItemHeight
-        public static double GetSubmentItemHeight(DependencyObject obj)
+        #region SubmenuItemHeight
+        public static double GetSubmenuItemHeight(DependencyObject obj)
         {
-            return (double)obj.GetValue(SubmentItemHeightProperty);
+            return (double)obj.GetValue(SubmenuItemHeightProperty);
         }
 
-        public static void SetSubmentItemHeight(DependencyObject obj, double value)
+        public static void SetSubmenuItemHeight(DependencyObject obj, double value)
         {
-            obj.SetValue(SubmentItemHeightProperty, value);
+            obj.SetValue(SubmenuItemHeightProperty, value);
         }
 
-        public static readonly DependencyProperty SubmentItemHeightProperty =
-            DependencyProperty.RegisterAttached("SubmentItemHeight", typeof(double), typeof(MenuHelper));
+        public static readonly DependencyProperty SubmenuItemHeightProperty =
+            DependencyProperty.RegisterAttached("SubmenuItemHeight", typeof(double), typeof(MenuHelper));
         #endregion
 
-        #region ItemIconWidth
-        public static string GetItemIconWidth(DependencyObject obj)
+        #region SubmenuItemIconWidth
+        public static string GetSubmenuItemIconWidth(DependencyObject obj)
         {
-            return (string)obj.GetValue(ItemIconWidthProperty);
+            return (string)obj.GetValue(SubmenuItemIconWidthProperty);
         }
 
-        public static void SetItemIconWidth(DependencyObject obj, string value)
+        public static void SetSubmenuItemIconWidth(DependencyObject obj, string value)
         {
-            obj.SetValue(ItemIconWidthProperty, value);
+            obj.SetValue(SubmenuItemIconWidthProperty, value);
         }
 
-        public static readonly DependencyProperty ItemIconWidthProperty =
-            DependencyProperty.RegisterAttached("ItemIconWidth", typeof(string), typeof(MenuHelper));
-        #endregion
-
-        #region IsSubMenuGlyphVisible
-        public static bool GetIsSubMenuGlyphVisible(DependencyObject obj)
-        {
-            return (bool)obj.GetValue(IsSubMenuGlyphVisibleProperty);
-        }
-
-        public static void SetIsSubMenuGlyphVisible(DependencyObject obj, bool value)
-        {
-            obj.SetValue(IsSubMenuGlyphVisibleProperty, value);
-        }
-
-        public static readonly DependencyProperty IsSubMenuGlyphVisibleProperty =
-            DependencyProperty.RegisterAttached("IsSubMenuGlyphVisible", typeof(bool), typeof(MenuHelper));
+        public static readonly DependencyProperty SubmenuItemIconWidthProperty =
+            DependencyProperty.RegisterAttached("SubmenuItemIconWidth", typeof(string), typeof(MenuHelper));
         #endregion
 
         #region ItemPadding

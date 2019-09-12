@@ -41,8 +41,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ContextMenu}">
-                    <Grid  Margin="10">
-                        <Border x:Name="Border"
+                    <Grid x:Name="GrdMain" Margin="10">
+                        <Border x:Name="BdrMain"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -51,7 +51,7 @@
                                 <DropShadowEffect ShadowDepth="0"
                                                   BlurRadius="10"
                                                   Opacity="1"
-                                                  Color="{Binding Path=(local:ContextMenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=ContextMenu}, Mode=OneWay}" />
+                                                  Color="{Binding Path=(local:ContextMenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=ContextMenu}, Mode=OneWay, Converter={StaticResource NullableColorToColoConverter}}" />
                             </Border.Effect>
 
                         </Border>
@@ -63,6 +63,17 @@
                                         KeyboardNavigation.DirectionalNavigation="Cycle" />
                         </ScrollViewer>
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=(local:ContextMenuHelper.ShadowColor),RelativeSource={RelativeSource Self}}"
+                                     Value="{x:Null}">
+                            <Setter TargetName="GrdMain"
+                                    Property="Margin"
+                                    Value="0" />
+                            <Setter TargetName="BdrMain"
+                                    Property="Effect"
+                                    Value="{x:Null}" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -129,8 +140,9 @@
                                        AllowsTransparency="True"
                                        Focusable="False"
                                        PopupAnimation="Fade">
-                                    <Grid Margin="10">
-                                        <Border x:Name="SubmenuBorder"
+                                    <Grid x:Name="GrdSubmenu"
+                                          Margin="10">
+                                        <Border x:Name="BdrSubmenu"
                                                 SnapsToDevicePixels="True"
                                                 BorderThickness="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                                 BorderBrush="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=ContextMenu}}"
@@ -141,7 +153,7 @@
                                                 <DropShadowEffect ShadowDepth="0"
                                                                   BlurRadius="10"
                                                                   Opacity="1"
-                                                                  Color="{Binding Path=(local:ContextMenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=ContextMenu}, Mode=OneWay}" />
+                                                                  Color="{Binding Path=(local:ContextMenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=ContextMenu}, Mode=OneWay, Converter={StaticResource NullableColorToColoConverter}}" />
                                             </Border.Effect>
                                         </Border>
                                         <ScrollViewer CanContentScroll="True"
@@ -216,6 +228,15 @@
                                             Property="Visibility"
                                             Value="Visible" />
                                 </Trigger>
+                                <DataTrigger Binding="{Binding Path=(local:ContextMenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=Menu}}"
+                                             Value="{x:Null}">
+                                    <Setter TargetName="GrdSubmenu"
+                                            Property="Margin"
+                                            Value="0" />
+                                    <Setter TargetName="BdrSubmenu"
+                                            Property="Effect"
+                                            Value="{x:Null}" />
+                                </DataTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>

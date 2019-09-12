@@ -100,6 +100,18 @@ namespace Panuon.UI.Silver
                 return string.Format("#{0:X2}{1:X2}{2:X2}", color.R, color.G, color.B);
         }
 
+        public static string ToHexString(this Color? color, bool withAlpha = true)
+        {
+            if (color == null)
+                return "";
+
+            var realColor = (Color)color;
+            if (withAlpha)
+                return string.Format("#{0:X2}{1:X2}{2:X2}{3:X2}", realColor.A, realColor.R, realColor.G, realColor.B);
+            else
+                return string.Format("#{0:X2}{1:X2}{2:X2}", realColor.R, realColor.G, realColor.B);
+        }
+
         public static LinearGradientBrush ToBrush(this Color[] colors)
         {
             var lcb = new LinearGradientBrush();
