@@ -21,18 +21,18 @@ namespace Panuon.UI.Silver
         #endregion
 
         #region FocusedShadowColor
-        public static Color GetFocusedShadowColor(DependencyObject obj)
+        public static Color? GetFocusedShadowColor(DependencyObject obj)
         {
-            return (Color)obj.GetValue(FocusedShadowColorProperty);
+            return (Color?)obj.GetValue(FocusedShadowColorProperty);
         }
 
-        public static void SetFocusedShadowColor(DependencyObject obj, Color value)
+        public static void SetFocusedShadowColor(DependencyObject obj, Color? value)
         {
             obj.SetValue(FocusedShadowColorProperty, value);
         }
 
         public static readonly DependencyProperty FocusedShadowColorProperty =
-            DependencyProperty.RegisterAttached("FocusedShadowColor", typeof(Color), typeof(TextBoxHelper));
+            DependencyProperty.RegisterAttached("FocusedShadowColor", typeof(Color?), typeof(TextBoxHelper));
 
         #endregion
 
