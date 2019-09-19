@@ -53,7 +53,6 @@
                                                   Opacity="1"
                                                   Color="{Binding Path=(local:ContextMenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=ContextMenu}, Mode=OneWay, Converter={StaticResource NullableColorToColoConverter}}" />
                             </Border.Effect>
-
                         </Border>
                         <ScrollViewer local:ScrollViewerHelper.ScrollBarThickness="6"
                                       local:ScrollViewerHelper.ScrollBarCornerRadius="3"
@@ -228,7 +227,7 @@
                                             Property="Visibility"
                                             Value="Visible" />
                                 </Trigger>
-                                <DataTrigger Binding="{Binding Path=(local:ContextMenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=Menu}}"
+                                <DataTrigger Binding="{Binding Path=(local:ContextMenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                              Value="{x:Null}">
                                     <Setter TargetName="GrdSubmenu"
                                             Property="Margin"

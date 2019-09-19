@@ -79,15 +79,6 @@
                 <Setter Property="local:TreeViewHelper.SelectedBrush"
                         Value="#DDDDDD" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding Path=(local:TreeViewHelper.TreeViewStyle),RelativeSource={RelativeSource Self}, Mode=OneWay}"
-                         Value="Modern">
-                <Setter Property="BorderBrush"
-                        Value="#3E3E3E" />
-                <Setter Property="Padding"
-                        Value="10,0,0,0" />
-                <Setter Property="local:TreeViewHelper.SelectedBrush"
-                        Value="#DDDDDD" />
-            </DataTrigger>
             <Trigger Property="IsEnabled"
                      Value="False">
                 <Setter Property="Opacity"
