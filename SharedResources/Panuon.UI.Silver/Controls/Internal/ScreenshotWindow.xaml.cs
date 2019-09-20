@@ -1,23 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Panuon.UI.Silver.Controls.Internal
 {
     internal partial class ScreenshotWindow : Window
     {
+        [DllImport("gdi32.dll")]
+        static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
+        public enum DeviceCap
+        {
+            VERTRES = 10,
+            DESKTOPVERTRES = 117,
+
+            // http://pinvoke.net/default.aspx/gdi32/GetDeviceCaps.html
+        }
+
+
         public ScreenshotWindow()
         {
             InitializeComponent();
@@ -61,6 +65,9 @@ namespace Panuon.UI.Silver.Controls.Internal
         private void Border_DragArea(object sender, Core.DragAreaEventArgs e)
         {
             Hide();
+
+            var scaling = GetScalingFactor();
+
             var left = (int)Math.Min(e.StartPosition.X, e.EndPosition.X);
             var top = (int)Math.Min(e.StartPosition.Y, e.EndPosition.Y);
 
@@ -68,11 +75,24 @@ namespace Panuon.UI.Silver.Controls.Internal
             {
                 using (Graphics g = Graphics.FromImage(bmp))
                 {
-                    g.CopyFromScreen(left - 5, top - 5, 0, 0, bmp.Size);
+                    g.CopyFromScreen((int)(left * scaling - 5), (int)(top * scaling - 5), 0, 0, bmp.Size);
                 }
                 Result = Imaging.CreateBitmapSourceFromHBitmap(bmp.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
                 Close();
             }
         }
+
+        private float GetScalingFactor()
+        {
+            var graphics = Graphics.FromHwnd(IntPtr.Zero);
+            var desktop = graphics.GetHdc();
+            int logicalScreenHeight = GetDeviceCaps(desktop, (int)DeviceCap.VERTRES);
+            int physicalScreenHeight = GetDeviceCaps(desktop, (int)DeviceCap.DESKTOPVERTRES);
+
+            float screenScalingFactor = (float)physicalScreenHeight / (float)logicalScreenHeight;
+
+            return screenScalingFactor; 
+        }
+
     }
 }

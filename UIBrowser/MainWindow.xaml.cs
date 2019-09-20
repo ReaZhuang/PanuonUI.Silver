@@ -71,7 +71,9 @@ namespace UIBrowser
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-           
+            var bit = ScreenshotHelper.BeginScreenshot();
+
+            ImgMain.Source = bit; 
         }
     }
 }

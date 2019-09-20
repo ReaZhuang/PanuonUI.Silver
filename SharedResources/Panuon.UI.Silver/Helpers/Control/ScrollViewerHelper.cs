@@ -97,11 +97,11 @@ namespace Panuon.UI.Silver
                 if (scrollViewer.ComputedVerticalScrollBarVisibility == Visibility.Visible)
                 { handle = false; }
                 else if (scrollViewer.ComputedHorizontalScrollBarVisibility == Visibility.Visible)
-                    scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset - e.Delta / 2);
+                    scrollViewer.LineDown();
                 else if (scrollViewer.VerticalScrollBarVisibility != ScrollBarVisibility.Disabled)
                 { handle = false; }
                 else if (scrollViewer.HorizontalScrollBarVisibility != ScrollBarVisibility.Disabled)
-                    scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset - e.Delta / 2);
+                    scrollViewer.LineRight();
                 else
                     return;
             }
@@ -110,11 +110,11 @@ namespace Panuon.UI.Silver
                 if (scrollViewer.ComputedVerticalScrollBarVisibility == Visibility.Visible)
                 { handle = false; }
                 else if (scrollViewer.ComputedHorizontalScrollBarVisibility == Visibility.Visible)
-                    scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset - e.Delta / 2);
+                    scrollViewer.LineUp();
                 else if (scrollViewer.VerticalScrollBarVisibility != ScrollBarVisibility.Disabled)
                 { handle = false; }
                 else if (scrollViewer.HorizontalScrollBarVisibility != ScrollBarVisibility.Disabled)
-                    scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset - e.Delta / 2);
+                    scrollViewer.LineLeft();
                 else
                     return;
             }
