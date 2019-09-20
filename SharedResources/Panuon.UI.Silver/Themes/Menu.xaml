@@ -40,15 +40,8 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{Binding Path=(local:MenuHelper.CornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}">
-                            <Border.Effect>
-                                <DropShadowEffect ShadowDepth="0"
-                                                  BlurRadius="10"
-                                                  Opacity="1"
-                                                  Color="{Binding Path=(local:MenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay, Converter={StaticResource NullableColorToColoConverter}}" />
-                            </Border.Effect>
-                        </Border>
-                        
+                                CornerRadius="{Binding Path=(local:MenuHelper.CornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}" />
+
                         <ScrollViewer local:ScrollViewerHelper.ScrollBarThickness="6"
                                       local:ScrollViewerHelper.ScrollBarCornerRadius="3"
                                       CanContentScroll="True"
@@ -69,7 +62,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-       
     </Style>
 
     <Style TargetType="{x:Type MenuItem}">

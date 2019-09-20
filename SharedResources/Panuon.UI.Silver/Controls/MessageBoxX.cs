@@ -61,6 +61,20 @@ namespace Panuon.UI.Silver
 
             return CallMsgBox(owner, message, title, messageBoxButton, configurations);
         }
+
+        public static IWaitingHandler ShowWaiting(string message, string title = null, Window owner = null)
+        {
+            var window = new Window();
+            window.ShowDialog();
+            return new WaitingHandler(window);
+        }
+
+        public static IWaitingHandler ShowWaiting(string message, string title = null, Window owner = null, Action cancellectionCallback = null)
+        {
+            var window = new Window();
+            window.ShowDialog();
+            return new WaitingHandler(window);
+        }
         #endregion
 
         #region Function

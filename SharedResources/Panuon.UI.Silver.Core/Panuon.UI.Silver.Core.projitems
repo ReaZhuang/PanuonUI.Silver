@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)EventHandler\DragAreaEventHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventHandler\DragingEventHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventHandler\LongPressEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\IWaitingHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MessageBoxXConfigurations.cs" />
   </ItemGroup>
 </Project>
