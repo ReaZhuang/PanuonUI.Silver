@@ -95,6 +95,24 @@ namespace Panuon.UI.Silver
 
             return msb.MessageBoxResult;
         }
+
+        private static MessageBoxResult CallWaitingBox(Window owner, string message, string title, MessageBoxButton messageBoxButton, MessageBoxXConfigurations configurations)
+        {
+            var msb = new MsgBox(owner, message, title, messageBoxButton, configurations);
+
+            WindowX windowX = null;
+
+            if (configurations.InteractOwnerMask && owner != null && owner is WindowX)
+                windowX = owner as WindowX;
+
+            if (windowX != null)
+                windowX.IsMaskVisible = true;
+            msb.ShowDialog();
+            if (windowX != null)
+                windowX.IsMaskVisible = false;
+
+            return msb.MessageBoxResult;
+        }
         #endregion
     }
 
