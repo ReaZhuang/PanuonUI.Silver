@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Panuon.UI.Silver.Core;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -84,6 +85,13 @@ namespace Panuon.UI.Silver
 
         internal static readonly DependencyProperty ValueProperty =
             DependencyProperty.Register("Value", typeof(double), typeof(Loading), new PropertyMetadata(0.0));
+        #endregion
+
+        #region Calling Methods
+        //public ILoadingHandler Show(string message, string title = null)
+        //{
+            
+        //}
         #endregion
     }
 }

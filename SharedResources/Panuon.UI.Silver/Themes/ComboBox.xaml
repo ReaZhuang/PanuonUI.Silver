@@ -50,6 +50,16 @@
                 Value="Disabled" />
         <Setter Property="MaxDropDownHeight"
                 Value="150" />
+        <Setter Property="local:IconHelper.FontSize"
+                Value="{Binding FontSize, Converter={StaticResource Add3Converter}}" />
+        <Setter Property="local:IconHelper.Foreground"
+                Value="{Binding Foreground}" />
+        <Setter Property="local:IconHelper.FontFamily"
+                Value="/Panuon.UI.Silver;component/Resources/#fontawesome" />
+        <Setter Property="local:ScrollViewerHelper.ScrollBarThickness"
+                Value="6" />
+        <Setter Property="local:ScrollViewerHelper.ScrollBarCornerRadius"
+                Value="3" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -85,8 +95,9 @@
                                        Padding="10,0,2,0"
                                        VerticalContentAlignment="Center"
                                        Content="{Binding Path=(local:ComboBoxHelper.Icon),Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=ComboBox}, Mode=OneWay}"
-                                       Foreground="{TemplateBinding Foreground}"
-                                       FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"></Label>
+                                       Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=ComboBox}, Mode=OneWay}"
+                                       FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=ComboBox}, Mode=OneWay}"
+                                       FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=ComboBox}, Mode=OneWay}"></Label>
                                 <ContentPresenter x:Name="ContentSite"
                                                   Grid.Column="1"
                                                   Margin="{TemplateBinding Padding}"
@@ -244,8 +255,8 @@
                                                       VerticalScrollBarVisibility="{Binding Path=(ScrollViewer.VerticalScrollBarVisibility),RelativeSource={RelativeSource AncestorType=ComboBox}, Mode=OneWay}"
                                                       HorizontalScrollBarVisibility="{Binding Path=(ScrollViewer.HorizontalScrollBarVisibility),RelativeSource={RelativeSource AncestorType=ComboBox}, Mode=OneWay}"
                                                       CanContentScroll="True"
-                                                      local:ScrollViewerHelper.ScrollBarThickness="6"
-                                                      local:ScrollViewerHelper.ScrollBarCornerRadius="3"
+                                                      local:ScrollViewerHelper.ScrollBarThickness="{Binding Path=(local:ScrollViewerHelper.ScrollBarThickness),RelativeSource={RelativeSource AncestorType=ComboBox},Mode=OneWay}"
+                                                      local:ScrollViewerHelper.ScrollBarCornerRadius="{Binding Path=(local:ScrollViewerHelper.ScrollBarCornerRadius),RelativeSource={RelativeSource AncestorType=ComboBox},Mode=OneWay}"
                                                       Margin="1,5,1,15"
                                                       MaxHeight="{TemplateBinding MaxDropDownHeight}">
                                             <ItemsPresenter />

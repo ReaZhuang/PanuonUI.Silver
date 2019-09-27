@@ -63,7 +63,6 @@ namespace Panuon.UI.Silver.Core
         /// </summary>
         public double MaxContentHeight { get; set; } = 100;
 
-
         /// <summary>
         /// Max content width. Default : 300;
         /// </summary>

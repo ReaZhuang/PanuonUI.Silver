@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Panuon.UI.Silver"
                     xmlns:converter="clr-namespace:Panuon.UI.Silver.Converters"
-                    
                     xmlns:internal="clr-namespace:Panuon.UI.Silver.Controls.Internal">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Themes/Button.xaml" />
@@ -10,6 +9,82 @@
     </ResourceDictionary.MergedDictionaries>
 
 
+    <Style TargetType="{x:Type local:StateIcon}">
+        <Setter Property="Foreground"
+                Value="LightGray" />
+        <Setter Property="FontFamily"
+                Value="{StaticResource FontAwesome}" />
+        <Setter Property="Icon"
+                Value="&#xf111;" />
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="FontSize"
+                Value="16" />
+        <Setter Property="IconState"
+                Value="Normal" />
+        <Setter Property="FailedBrush"
+                Value="Gray" />
+        <Setter Property="WarningBrush"
+                Value="#F5BD00" />
+        <Setter Property="ErrorBrush"
+                Value="#EB3941" />
+        <Setter Property="SuccessBrush"
+                Value="#6DD200" />
+        <Setter Property="TipsBrush"
+                Value="#3BC1F9" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:StateIcon}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <TextBlock x:Name="TxtIcon"
+                                   Text="{TemplateBinding Icon}"
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   FontWeight="{TemplateBinding FontWeight}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   FontStretch="{TemplateBinding FontStretch}"
+                                   FontStyle="{TemplateBinding FontStyle}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IconState"
+                                 Value="Failed">
+                            <Setter TargetName="TxtIcon"
+                                    Property="Foreground"
+                                    Value="{Binding FailedBrush, RelativeSource={RelativeSource AncestorType=local:StateIcon}}" />
+                        </Trigger>
+                        <Trigger Property="IconState"
+                                 Value="Warning">
+                            <Setter TargetName="TxtIcon"
+                                    Property="Foreground"
+                                    Value="{Binding WarningBrush, RelativeSource={RelativeSource AncestorType=local:StateIcon}}" />
+                        </Trigger>
+                        <Trigger Property="IconState"
+                                 Value="Error">
+                            <Setter TargetName="TxtIcon"
+                                    Property="Foreground"
+                                    Value="{Binding ErrorBrush, RelativeSource={RelativeSource AncestorType=local:StateIcon}}" />
+                        </Trigger>
+                        <Trigger Property="IconState"
+                                 Value="Success">
+                            <Setter TargetName="TxtIcon"
+                                    Property="Foreground"
+                                    Value="{Binding SuccessBrush, RelativeSource={RelativeSource AncestorType=local:StateIcon}}" />
+                        </Trigger>
+                        <Trigger Property="IconState"
+                                 Value="Tips">
+                            <Setter TargetName="TxtIcon"
+                                    Property="Foreground"
+                                    Value="{Binding TipsBrush, RelativeSource={RelativeSource AncestorType=local:StateIcon}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style TargetType="{x:Type local:Pagination}">
         <Setter Property="FontFamily"
                 Value="{StaticResource Default_FontFamily}" />
@@ -1424,7 +1499,7 @@
                                                   AllowsTransparency="True"
                                                   PopupAnimation="Slide"
                                                   StaysOpen="{Binding StaysOpen,RelativeSource={RelativeSource AncestorType=local:MultiSelector}}">
-                            <Grid MaxHeight="180" 
+                            <Grid MaxHeight="180"
                                   MinWidth="{TemplateBinding ActualWidth}"
                                   x:Name="DropDown">
                                 <Border x:Name="DropDownBorder"

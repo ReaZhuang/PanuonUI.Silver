@@ -112,6 +112,5 @@ namespace Panuon.UI.Silver
         public static readonly DependencyProperty HeaderWidthProperty =
             DependencyProperty.RegisterAttached("HeaderWidth", typeof(string), typeof(TextBoxHelper), new PropertyMetadata("Auto"));
         #endregion
-
     }
 }

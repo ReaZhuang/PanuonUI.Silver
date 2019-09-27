@@ -17,8 +17,6 @@ namespace Panuon.UI.Silver.Controls.Internal
         {
             VERTRES = 10,
             DESKTOPVERTRES = 117,
-
-            // http://pinvoke.net/default.aspx/gdi32/GetDeviceCaps.html
         }
 
 
@@ -91,7 +89,7 @@ namespace Panuon.UI.Silver.Controls.Internal
 
             float screenScalingFactor = (float)physicalScreenHeight / (float)logicalScreenHeight;
 
-            return screenScalingFactor; 
+            return screenScalingFactor;
         }
 
     }

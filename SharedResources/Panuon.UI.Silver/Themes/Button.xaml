@@ -28,6 +28,12 @@
                 Value="#3E3E3E" />
         <Setter Property="local:ButtonHelper.ClickCoverBrush"
                 Value="#22FFFFFF" />
+        <Setter Property="local:IconHelper.FontFamily"
+                Value="/Panuon.UI.Silver;component/Resources/#fontawesome" />
+        <Setter Property="local:IconHelper.FontSize"
+                Value="{Binding FontSize, Converter={StaticResource Add3Converter},RelativeSource={RelativeSource Self},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.Foreground"
+                Value="{Binding Foreground,RelativeSource={RelativeSource Self},Mode=OneWay}" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=(local:ButtonHelper.ButtonStyle),RelativeSource={RelativeSource Self}, Mode=OneWay}"
                          Value="Standard">
@@ -57,13 +63,14 @@
                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                       Margin="{TemplateBinding Padding}">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="{Binding Path=(local:IconHelper.Width),Converter={StaticResource GridLengthConverter} ,RelativeSource={RelativeSource AncestorType=Button}}" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Label x:Name="LblIcon"
                                            Content="{Binding Path=(local:ButtonHelper.Icon),Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
-                                           Foreground="{TemplateBinding Foreground}"
-                                           FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"
+                                           Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
+                                           FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
+                                           FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
                                            VerticalAlignment="Center" />
                                     <ContentPresenter x:Name="Content"
                                                       Grid.Column="1"
@@ -210,8 +217,9 @@
                                     </Grid.ColumnDefinitions>
                                     <Label x:Name="LblIcon"
                                            Content="{Binding Path=(local:ButtonHelper.Icon),Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
-                                           Foreground="{TemplateBinding Foreground}"
-                                           FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"
+                                           Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
+                                           FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
+                                           FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
                                            VerticalAlignment="Center" />
                                     <ContentPresenter Grid.Column="1"
                                                       x:Name="Content"
@@ -378,8 +386,9 @@
                                         </Grid.ColumnDefinitions>
                                         <Label x:Name="LblIcon"
                                                Content="{Binding Path=(local:ButtonHelper.Icon),Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
-                                               Foreground="{TemplateBinding Foreground}"
-                                               FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"
+                                               Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
+                                               FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
+                                               FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
                                                VerticalAlignment="Center" />
                                         <Grid Grid.Column="1">
                                             <ContentPresenter x:Name="Content"
@@ -531,8 +540,9 @@
                                         </Grid.ColumnDefinitions>
                                         <Label x:Name="LblIcon"
                                                Content="{Binding Path=(local:ButtonHelper.Icon),Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
-                                               Foreground="{TemplateBinding Foreground}"
-                                               FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"
+                                               Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
+                                               FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
+                                               FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=Button}, Mode=OneWay}"
                                                VerticalAlignment="Center" />
                                         <Grid Grid.Column="1">
                                             <ContentPresenter x:Name="Content"

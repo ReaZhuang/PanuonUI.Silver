@@ -1,16 +1,23 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using Panuon.UI.Silver.Controls.Internal;
+using Panuon.UI.Silver.Core;
 
 namespace Panuon.UI.Silver
 {
     public class WindowX : Window
     {
+        #region Identifier
+        internal bool _closeHandler = true;
+        #endregion
+
         #region Constructor
         public WindowX()
         {
@@ -26,6 +33,9 @@ namespace Panuon.UI.Silver
         #region Property
 
         #region Mask
+        /// <summary>
+        /// Show or hide mask cover. The default is false.
+        /// </summary>
         public bool IsMaskVisible
         {
             get { return (bool)GetValue(IsMaskVisibleProperty); }
@@ -35,6 +45,9 @@ namespace Panuon.UI.Silver
         public static readonly DependencyProperty IsMaskVisibleProperty =
             DependencyProperty.Register("IsMaskVisible", typeof(bool), typeof(WindowX));
 
+        /// <summary>
+        /// Fill of mask cover. The default is #AA3E3E3E.
+        /// </summary>
         public Brush MaskBrush
         {
             get { return (Brush)GetValue(MaskBrushProperty); }
@@ -44,6 +57,20 @@ namespace Panuon.UI.Silver
         public static readonly DependencyProperty MaskBrushProperty =
             DependencyProperty.Register("MaskBrush", typeof(Brush), typeof(WindowX));
 
+        #endregion
+
+        #region Function
+        /// <summary>
+        /// Disable force closing , such as "Alt + F4". The default is false.
+        /// </summary>
+        public bool DisableForceClosing
+        {
+            get { return (bool)GetValue(DisableForceClosingProperty); }
+            set { SetValue(DisableForceClosingProperty, value); }
+        }
+
+        public static readonly DependencyProperty DisableForceClosingProperty =
+            DependencyProperty.Register("DisableForceClosing", typeof(bool), typeof(WindowX));
         #endregion
 
         #endregion
@@ -75,7 +102,6 @@ namespace Panuon.UI.Silver
 
         internal static readonly DependencyProperty MaxCommandProperty =
             DependencyProperty.Register("MaxCommand", typeof(ICommand), typeof(WindowX), new PropertyMetadata(new MaxCommand()));
-
         #endregion
 
         #region Event
@@ -88,6 +114,26 @@ namespace Panuon.UI.Silver
         private void GrdTitle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (DisableForceClosing && _closeHandler)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            base.OnClosing(e);
+        }
+
+        #endregion
+
+        #region Calling Methods
+        public void ForceClose()
+        {
+            _closeHandler = false;
+            Close();
         }
         #endregion
     }
@@ -108,7 +154,8 @@ namespace Panuon.UI.Silver
 
         public void Execute(object parameter)
         {
-            var window = (parameter as Window);
+            var window = (parameter as WindowX);
+            window._closeHandler = false;
             window.Close();
         }
     }
@@ -127,7 +174,7 @@ namespace Panuon.UI.Silver
 
         public void Execute(object parameter)
         {
-            var window = (parameter as Window);
+            var window = (parameter as WindowX);
             if (window.WindowState == WindowState.Maximized)
                 window.WindowState = WindowState.Normal;
             else
@@ -149,10 +196,9 @@ namespace Panuon.UI.Silver
 
         public void Execute(object parameter)
         {
-            (parameter as Window).WindowState = WindowState.Minimized;
+            (parameter as WindowX).WindowState = WindowState.Minimized;
         }
     }
-
     #endregion
 
 }

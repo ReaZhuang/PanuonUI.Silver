@@ -31,6 +31,14 @@
                 Value="30" />
         <Setter Property="local:TabControlHelper.SelectedForeground"
                 Value="#3E3E3E" />
+        <Setter Property="local:IconHelper.FontFamily"
+                Value="/Panuon.UI.Silver;component/Resources/#fontawesome" />
+        <Setter Property="local:IconHelper.FontSize"
+                Value="{Binding FontSize, Converter={StaticResource Add3Converter},RelativeSource={RelativeSource Self},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.Foreground"
+                Value="{Binding Foreground,RelativeSource={RelativeSource Self},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.Width"
+                Value="Auto" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabControl}">
@@ -452,6 +460,14 @@
                 Value="10,0" />
         <Setter Property="local:TabControlHelper.CanRemove"
                 Value="{Binding Path=(local:TabControlHelper.CanRemove),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.Width"
+                Value="{Binding Path=(local:IconHelper.Width),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.Foreground"
+                Value="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.FontSize"
+                Value="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.FontFamily"
+                Value="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=(local:TabControlHelper.TabControlStyle),RelativeSource={RelativeSource AncestorType=TabControl}, Mode=OneWay}"
                          Value="Standard">
@@ -473,17 +489,26 @@
                                         </MultiBinding>
                                     </Grid.Margin>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="{Binding Path=(local:IconHelper.Width),RelativeSource={RelativeSource AncestorType=TabItem},Mode=OneWay,Converter={StaticResource GridLengthConverter}}" />
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
+                                    <Label x:Name="LblIcon"
+                                           Content="{Binding Path=(local:TabControlHelper.ItemIcon),Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=TabItem}, Mode=OneWay}"
+                                           Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}"
+                                           FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}"
+                                           FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}"
+                                           VerticalAlignment="Center"
+                                           Margin="5,0,0,0" />
                                     <ContentPresenter x:Name="Presenter"
+                                                      Grid.Column="1"
                                                       ContentSource="Header"
                                                       VerticalAlignment="Center"
                                                       HorizontalAlignment="Center" />
                                     <Button x:Name="BtnRemove"
                                             local:ButtonHelper.ButtonStyle="Link"
                                             Visibility="Collapsed"
-                                            Grid.Column="1"
+                                            Grid.Column="2"
                                             Content="×"
                                             FontSize="{TemplateBinding FontSize}"
                                             Margin="5,0,0,0"
@@ -508,6 +533,12 @@
                                 </Rectangle>
                             </Grid>
                             <ControlTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Path=(local:TabControlHelper.ItemIcon), RelativeSource={RelativeSource Self}}"
+                                             Value="{x:Null}">
+                                    <Setter TargetName="LblIcon"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
                                 <Trigger Property="TabStripPlacement"
                                          Value="Bottom">
                                     <Setter TargetName="Rect"
@@ -604,17 +635,26 @@
                                         </MultiBinding>
                                     </Grid.Margin>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="{Binding Path=(local:IconHelper.Width),RelativeSource={RelativeSource AncestorType=TabItem},Mode=OneWay,Converter={StaticResource GridLengthConverter}}" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
+                                    <Label x:Name="LblIcon"
+                                           Content="{Binding Path=(local:TabControlHelper.ItemIcon),Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=TabItem}, Mode=OneWay}"
+                                           Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}"
+                                           FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}"
+                                           FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}"
+                                           VerticalAlignment="Center"
+                                           Margin="5,0,0,0" />
                                     <ContentPresenter x:Name="Presenter"
+                                                      Grid.Column="1"
                                                       ContentSource="Header"
                                                       VerticalAlignment="Center"
                                                       HorizontalAlignment="Center" />
                                     <Button x:Name="BtnRemove"
                                             local:ButtonHelper.ButtonStyle="Link"
                                             Visibility="Collapsed"
-                                            Grid.Column="1"
+                                            Grid.Column="2"
                                             Content="×"
                                             FontSize="14"
                                             Margin="5,0,0,0"
@@ -633,6 +673,12 @@
 
                             </Grid>
                             <ControlTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Path=(local:TabControlHelper.ItemIcon), RelativeSource={RelativeSource Self}}"
+                                             Value="{x:Null}">
+                                    <Setter TargetName="LblIcon"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
                                         <Condition Property="IsSelected" 
@@ -726,17 +772,26 @@
                                         </MultiBinding>
                                     </Grid.Margin>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="{Binding Path=(local:IconHelper.Width),RelativeSource={RelativeSource AncestorType=TabItem},Mode=OneWay,Converter={StaticResource GridLengthConverter}}" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
+                                    <Label x:Name="LblIcon"
+                                           Content="{Binding Path=(local:TabControlHelper.ItemIcon),Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=TabItem}, Mode=OneWay}"
+                                           Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}"
+                                           FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}"
+                                           FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=TreeViewItem}, Mode=OneWay}"
+                                           VerticalAlignment="Center"
+                                           Margin="5,0,0,0" />
                                     <ContentPresenter x:Name="Presenter"
+                                                      Grid.Column="1"
                                                       ContentSource="Header"
                                                       VerticalAlignment="Center"
                                                       HorizontalAlignment="Center" />
                                     <Button x:Name="BtnRemove"
                                             local:ButtonHelper.ButtonStyle="Link"
                                             Visibility="Collapsed"
-                                            Grid.Column="1"
+                                            Grid.Column="2"
                                             Content="×"
                                             FontSize="14"
                                             Margin="5,0,0,0"
@@ -754,6 +809,12 @@
                                 </Grid>
                             </Grid>
                             <ControlTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Path=(local:TabControlHelper.ItemIcon), RelativeSource={RelativeSource Self}}"
+                                             Value="{x:Null}">
+                                    <Setter TargetName="LblIcon"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
                                 <Trigger Property="IsSelected"
                                          Value="True">
                                     <Setter TargetName="Presenter"

@@ -5,6 +5,7 @@
         <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Resources/Resource.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Resources/Converter.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Themes/ScrollViewer.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Themes/CheckBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type ContextMenu}">
@@ -30,18 +31,43 @@
                 Value="#DDDDDD" />
         <Setter Property="local:ContextMenuHelper.ItemHeight"
                 Value="35" />
-        <Setter Property="local:ContextMenuHelper.CheckedIcon"
-                Value="&#xf00c;" />
-        <Setter Property="local:ContextMenuHelper.CheckedIconBrush"
-                Value="#3E3E3E" />
         <Setter Property="Foreground"
                 Value="#3E3E3E" />
-        <Setter Property="local:ContextMenuHelper.ItemIconWidth"
-                Value="{Binding Path=(local:ContextMenuHelper.ItemHeight),RelativeSource={RelativeSource Self},Mode=OneWay}"/>
+        <Setter Property="local:IconHelper.FontSize"
+                Value="{Binding FontSize, Converter={StaticResource Add3Converter},RelativeSource={RelativeSource Self},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.Foreground"
+                Value="{Binding Foreground,RelativeSource={RelativeSource Self},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.Width"
+                Value="40" />
+        <Setter Property="local:IconHelper.FontFamily"
+                Value="/Panuon.UI.Silver;component/Resources/#fontawesome" />
+        <Setter Property="local:ScrollViewerHelper.ScrollBarThickness"
+                Value="6" />
+        <Setter Property="local:ScrollViewerHelper.ScrollBarCornerRadius"
+                Value="3" />
+        <Setter Property="local:ContextMenuHelper.CheckableCheckboxStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type CheckBox}"
+                       BasedOn="{StaticResource {x:Type CheckBox}}">
+                    <Setter Property="local:CheckBoxHelper.CheckBoxStyle"
+                            Value="Switch" />
+                    <Setter Property="HorizontalAlignment"
+                            Value="Center" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=(local:CheckBoxHelper.CheckBoxStyle),RelativeSource={RelativeSource Self}, Mode=OneWay}"
+                                     Value="Switch">
+                            <Setter Property="local:CheckBoxHelper.BoxWidth"
+                                    Value="32" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ContextMenu}">
-                    <Grid x:Name="GrdMain" Margin="10">
+                    <Grid x:Name="GrdMain"
+                          Margin="10">
                         <Border x:Name="BdrMain"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -54,10 +80,10 @@
                                                   Color="{Binding Path=(local:ContextMenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=ContextMenu}, Mode=OneWay, Converter={StaticResource NullableColorToColoConverter}}" />
                             </Border.Effect>
                         </Border>
-                        <ScrollViewer local:ScrollViewerHelper.ScrollBarThickness="6"
-                                      local:ScrollViewerHelper.ScrollBarCornerRadius="3"
-                                      CanContentScroll="True"
-                                      Margin="{TemplateBinding Padding}">
+                        <ScrollViewer  local:ScrollViewerHelper.ScrollBarThickness="{Binding Path=(local:ScrollViewerHelper.ScrollBarThickness),RelativeSource={RelativeSource AncestorType=ContextMenu},Mode=OneWay}"
+                                       local:ScrollViewerHelper.ScrollBarCornerRadius="{Binding Path=(local:ScrollViewerHelper.ScrollBarCornerRadius),RelativeSource={RelativeSource AncestorType=ContextMenu},Mode=OneWay}"
+                                       CanContentScroll="True"
+                                       Margin="{TemplateBinding Padding}">
                             <StackPanel IsItemsHost="True"
                                         KeyboardNavigation.DirectionalNavigation="Cycle" />
                         </ScrollViewer>
@@ -90,6 +116,16 @@
                         Value="{Binding Path=(local:ContextMenuHelper.ItemHeight),RelativeSource={RelativeSource AncestorType=ContextMenu},Mode=OneWay}" />
                 <Setter Property="Padding"
                         Value="{Binding Path=(local:ContextMenuHelper.ItemPadding),RelativeSource={RelativeSource AncestorType=ContextMenu},Mode=OneWay}" />
+                <Setter Property="local:IconHelper.Width"
+                        Value="{Binding Path=(local:IconHelper.Width),RelativeSource={RelativeSource AncestorType=ContextMenu},Mode=OneWay}" />
+                <Setter Property="local:IconHelper.Foreground"
+                        Value="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=ContextMenu},Mode=OneWay}" />
+                <Setter Property="local:IconHelper.FontSize"
+                        Value="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=ContextMenu},Mode=OneWay}" />
+                <Setter Property="local:IconHelper.FontFamily"
+                        Value="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=ContextMenu},Mode=OneWay}" />
+                <Setter Property="local:ContextMenuHelper.CheckableCheckboxStyle"
+                        Value="{Binding Path=(local:ContextMenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource AncestorType=ContextMenu},Mode=OneWay}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type MenuItem}">
@@ -104,25 +140,30 @@
                                         Opacity="0" />
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition x:Name="ColumnIcon"
-                                                          Width="{Binding Path=(local:ContextMenuHelper.ItemIconWidth),Converter={StaticResource GridLengthConverter},RelativeSource={RelativeSource AncestorType=ContextMenu}}" />
+                                        <ColumnDefinition Width="{Binding Path=(local:IconHelper.Width),Converter={StaticResource GridLengthConverter} ,RelativeSource={RelativeSource AncestorType=MenuItem}}" />
                                         <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Label x:Name="LblIcon"
-                                           Content="{TemplateBinding Icon}"
-                                           Foreground="{TemplateBinding Foreground}"
-                                           FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=MenuItem},Converter={StaticResource Add3Converter}}"
-                                           FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"
-                                           VerticalAlignment="Center" 
-                                           HorizontalAlignment="Center"/>
+                                           Content="{Binding Icon,Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+                                    <CheckBox x:Name="ChbCheckable"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding IsChecked,RelativeSource={RelativeSource AncestorType=MenuItem},Mode=TwoWay}"
+                                              Style="{Binding Path=(local:ContextMenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                              Visibility="Collapsed" />
                                     <ContentPresenter x:Name="Presenter"
                                                       ContentSource="Header"
                                                       Grid.Column="1"
                                                       VerticalAlignment="Center"
-                                                      Margin="{TemplateBinding Padding}"/>
+                                                      Margin="{TemplateBinding Padding}" />
                                     <Path x:Name="Path"
-                                          Grid.Column="3"
+                                          Grid.Column="2"
                                           Width="5"
                                           Height="10"
                                           Data="M0,0 L5,5 L0,10"
@@ -156,14 +197,14 @@
                                             </Border.Effect>
                                         </Border>
                                         <ScrollViewer CanContentScroll="True"
-                                                      local:ScrollViewerHelper.ScrollBarCornerRadius="3"
-                                                      local:ScrollViewerHelper.ScrollBarThickness="6"
+                                                      local:ScrollViewerHelper.ScrollBarThickness="{Binding Path=(local:ScrollViewerHelper.ScrollBarThickness),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}"
+                                                      local:ScrollViewerHelper.ScrollBarCornerRadius="{Binding Path=(local:ScrollViewerHelper.ScrollBarCornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}"
                                                       Margin="{Binding Padding,RelativeSource={RelativeSource AncestorType=ContextMenu},Mode=OneWay}">
                                             <StackPanel IsItemsHost="True"
                                                         KeyboardNavigation.DirectionalNavigation="Cycle" />
                                         </ScrollViewer>
                                     </Grid>
-                                    
+
                                 </Popup>
                             </Grid>
                             <ControlTemplate.Triggers>
@@ -212,14 +253,14 @@
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
                                 </Trigger>
-                                <Trigger Property="IsChecked"
+                                <Trigger Property="IsCheckable"
                                          Value="True">
+                                    <Setter TargetName="ChbCheckable"
+                                            Property="Visibility"
+                                            Value="Visible" />
                                     <Setter TargetName="LblIcon"
-                                            Property="Content"
-                                            Value="{Binding Path=(local:ContextMenuHelper.CheckedIcon),RelativeSource={RelativeSource AncestorType=ContextMenu}, Mode=OneWay}" />
-                                    <Setter TargetName="LblIcon"
-                                            Property="Foreground"
-                                            Value="{Binding Path=(local:ContextMenuHelper.CheckedIconBrush),RelativeSource={RelativeSource AncestorType=ContextMenu}, Mode=OneWay}" />
+                                            Property="Visibility"
+                                            Value="Collapsed" />
                                 </Trigger>
                                 <Trigger Property="HasItems"
                                          Value="True">

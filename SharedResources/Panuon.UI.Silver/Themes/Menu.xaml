@@ -5,6 +5,7 @@
         <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Resources/Resource.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Themes/ScrollViewer.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Resources/Converter.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Themes/CheckBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type Menu}">
@@ -28,10 +29,40 @@
                 Value="#EEEEEE" />
         <Setter Property="local:MenuHelper.ShadowColor"
                 Value="#DDDDDD" />
+        <Setter Property="Foreground"
+                Value="#3E3E3E" />
         <Setter Property="local:MenuHelper.SubmenuItemHeight"
-                Value="{Binding Height,RelativeSource={RelativeSource Self},Mode=OneWay}" />
-        <Setter Property="local:MenuHelper.SubmenuItemIconWidth"
-                Value="{Binding Path=(local:MenuHelper.SubmenuItemHeight),RelativeSource={RelativeSource Self},Mode=OneWay}" />
+                Value="35" />
+        <Setter Property="local:IconHelper.FontSize"
+                Value="{Binding FontSize, Converter={StaticResource Add3Converter},RelativeSource={RelativeSource Self},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.Foreground"
+                Value="{Binding Foreground,RelativeSource={RelativeSource Self},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.Width"
+                Value="40" />
+        <Setter Property="local:IconHelper.FontFamily"
+                Value="/Panuon.UI.Silver;component/Resources/#fontawesome" />
+        <Setter Property="local:ScrollViewerHelper.ScrollBarThickness"
+                Value="6" />
+        <Setter Property="local:ScrollViewerHelper.ScrollBarCornerRadius"
+                Value="3" />
+        <Setter Property="local:MenuHelper.CheckableCheckboxStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type CheckBox}"
+                       BasedOn="{StaticResource {x:Type CheckBox}}">
+                    <Setter Property="local:CheckBoxHelper.CheckBoxStyle"
+                            Value="Switch" />
+                    <Setter Property="HorizontalAlignment"
+                            Value="Right" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=(local:CheckBoxHelper.CheckBoxStyle),RelativeSource={RelativeSource Self}, Mode=OneWay}"
+                                     Value="Switch">
+                            <Setter Property="local:CheckBoxHelper.BoxWidth"
+                                    Value="32" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Menu}">
@@ -39,29 +70,25 @@
                         <Border x:Name="BdrMain"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{Binding Path=(local:MenuHelper.CornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}" />
-
-                        <ScrollViewer local:ScrollViewerHelper.ScrollBarThickness="6"
-                                      local:ScrollViewerHelper.ScrollBarCornerRadius="3"
-                                      CanContentScroll="True"
-                                      Margin="{TemplateBinding Padding}">
+                                BorderThickness="{TemplateBinding BorderThickness}" />
+                        <ScrollViewer local:ScrollViewerHelper.ScrollBarThickness="{Binding Path=(local:ScrollViewerHelper.ScrollBarThickness),RelativeSource={RelativeSource Self},Mode=OneWay}"
+                                      local:ScrollViewerHelper.ScrollBarCornerRadius="{Binding Path=(local:ScrollViewerHelper.ScrollBarCornerRadius),RelativeSource={RelativeSource Self},Mode=OneWay}"
+                                      CanContentScroll="True">
                             <StackPanel IsItemsHost="True"
                                         Orientation="{Binding Path=(local:MenuHelper.Orientation),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}"
                                         KeyboardNavigation.DirectionalNavigation="Cycle" />
                         </ScrollViewer>
                     </Grid>
-                    <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Path=(local:MenuHelper.ShadowColor),RelativeSource={RelativeSource Self}}"
-                                     Value="{x:Null}">
-                            <Setter TargetName="BdrMain"
-                                    Property="Effect"
-                                    Value="{x:Null}" />
-                        </DataTrigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=(local:MenuHelper.MenuStyle), RelativeSource={RelativeSource Self}, Mode=OneWay}"
+                         Value="Modern">
+                <Setter Property="local:MenuHelper.HoverForeground"
+                        Value="#000000" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type MenuItem}">
@@ -73,20 +100,28 @@
                 Value="{StaticResource Default_FontSize}" />
         <Setter Property="FocusVisualStyle"
                 Value="{x:Null}" />
-        <Setter Property="Background"
-                Value="White" />
         <Setter Property="Padding"
                 Value="{Binding Path=(local:MenuHelper.ItemPadding),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}" />
         <Setter Property="local:MenuHelper.HoverBackground"
                 Value="#EEEEEE" />
         <Setter Property="local:MenuHelper.ShadowColor"
                 Value="#DDDDDD" />
+        <Setter Property="local:IconHelper.Width"
+                Value="{Binding Path=(local:IconHelper.Width),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.Foreground"
+                Value="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.FontSize"
+                Value="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.FontFamily"
+                Value="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}" />
+        <Setter Property="local:MenuHelper.CheckableCheckboxStyle"
+                Value="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}" />
         <Style.Triggers>
             <!--Vertical / Standard-->
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding Path=(local:MenuHelper.Orientation),RelativeSource={RelativeSource AncestorType=Menu}}"
-                               Value="Vertical"/>
+                               Value="Vertical" />
                     <Condition Binding="{Binding Path=(local:MenuHelper.MenuStyle),RelativeSource={RelativeSource AncestorType=Menu}}"
                                Value="Standard" />
                 </MultiDataTrigger.Conditions>
@@ -104,17 +139,22 @@
                                         Opacity="0" />
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition x:Name="ColumnIcon"
-                                                          Width="{Binding Path=(local:MenuHelper.SubmenuItemIconWidth),Converter={StaticResource GridLengthConverter},RelativeSource={RelativeSource AncestorType=Menu}}" />
+                                        <ColumnDefinition Width="{Binding Path=(local:IconHelper.Width),Converter={StaticResource GridLengthConverter},RelativeSource={RelativeSource AncestorType=MenuItem}}" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Label x:Name="LblIcon"
-                                           Content="{TemplateBinding Icon}"
-                                           Foreground="{TemplateBinding Foreground}"
-                                           FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"
+                                           Content="{Binding Icon,Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=MenuItem}}"
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Center" />
+                                    <CheckBox x:Name="ChbCheckable"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding IsChecked,RelativeSource={RelativeSource AncestorType=MenuItem},Mode=TwoWay}"
+                                              Style="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                              Visibility="Collapsed" />
                                     <ContentPresenter x:Name="Presenter"
                                                       ContentSource="Header"
                                                       Grid.Column="1"
@@ -138,14 +178,14 @@
                                        AllowsTransparency="True"
                                        Focusable="False"
                                        PopupAnimation="Fade">
-                                    <Grid Width="{Binding Width,RelativeSource={RelativeSource AncestorType=Menu}}"
-                                          >
+                                    <Grid Width="{Binding Path=(local:MenuHelper.SubmenuWidth),RelativeSource={RelativeSource AncestorType=Menu}}"
+                                          Margin="10">
                                         <Border x:Name="BdrSubmenu"
                                                 SnapsToDevicePixels="True"
                                                 BorderThickness="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Menu}}"
                                                 BorderBrush="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Menu}}"
                                                 Background="{Binding Background,RelativeSource={RelativeSource AncestorType=Menu}}"
-                                                CornerRadius="{Binding Path=(local:MenuHelper.CornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}">
+                                                CornerRadius="{Binding Path=(local:MenuHelper.SubmenuCornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}">
                                             <Border.Effect>
                                                 <DropShadowEffect ShadowDepth="0"
                                                                   BlurRadius="10"
@@ -154,8 +194,8 @@
                                             </Border.Effect>
                                         </Border>
                                         <ScrollViewer CanContentScroll="True"
-                                                      local:ScrollViewerHelper.ScrollBarCornerRadius="3"
-                                                      local:ScrollViewerHelper.ScrollBarThickness="6"
+                                                      local:ScrollViewerHelper.ScrollBarThickness="{Binding Path=(local:ScrollViewerHelper.ScrollBarThickness),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}"
+                                                      local:ScrollViewerHelper.ScrollBarCornerRadius="{Binding Path=(local:ScrollViewerHelper.ScrollBarCornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}"
                                                       Margin="{Binding Padding,RelativeSource={RelativeSource AncestorType=Menu}}">
                                             <StackPanel IsItemsHost="True"
                                                         KeyboardNavigation.DirectionalNavigation="Cycle" />
@@ -216,6 +256,15 @@
                                             Property="Effect"
                                             Value="{x:Null}" />
                                 </DataTrigger>
+                                <Trigger Property="IsCheckable"
+                                         Value="True">
+                                    <Setter TargetName="ChbCheckable"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                    <Setter TargetName="LblIcon"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -249,11 +298,17 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Label x:Name="LblIcon"
-                                           Content="{TemplateBinding Icon}"
-                                           Foreground="{TemplateBinding Foreground}"
-                                           FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"
+                                           Content="{Binding Icon,Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=MenuItem}}"
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Center" />
+                                    <CheckBox x:Name="ChbCheckable"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding IsChecked,RelativeSource={RelativeSource AncestorType=MenuItem},Mode=TwoWay}"
+                                              Style="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                              Visibility="Collapsed" />
                                     <ContentPresenter x:Name="Presenter"
                                                       ContentSource="Header"
                                                       Grid.Column="1"
@@ -303,6 +358,15 @@
                                             </Storyboard>
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="IsCheckable"
+                                         Value="True">
+                                    <Setter TargetName="ChbCheckable"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                    <Setter TargetName="LblIcon"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
 
@@ -339,11 +403,17 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Label x:Name="LblIcon"
-                                           Content="{TemplateBinding Icon}"
-                                           Foreground="{TemplateBinding Foreground}"
-                                           FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"
+                                           Content="{Binding Icon,Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=MenuItem}}"
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Center" />
+                                    <CheckBox x:Name="ChbCheckable"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding IsChecked,RelativeSource={RelativeSource AncestorType=MenuItem},Mode=TwoWay}"
+                                              Style="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                              Visibility="Collapsed" />
                                     <ContentPresenter x:Name="Presenter"
                                                       ContentSource="Header"
                                                       Grid.Column="1"
@@ -366,14 +436,15 @@
                                        AllowsTransparency="True"
                                        Focusable="False"
                                        PopupAnimation="Fade">
-                                    <Grid>
+                                    <Grid Margin="10"
+                                          Width="{Binding Path=(local:MenuHelper.SubmenuWidth),RelativeSource={RelativeSource AncestorType=Menu}}">
                                         <Border x:Name="BdrSubmenu"
                                                 SnapsToDevicePixels="True"
                                                 BorderThickness="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Menu}}"
                                                 BorderBrush="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Menu}}"
                                                 Width="{Binding Width,RelativeSource={RelativeSource AncestorType=Menu}}"
                                                 Background="{Binding Background,RelativeSource={RelativeSource AncestorType=Menu}}"
-                                                CornerRadius="{Binding Path=(local:MenuHelper.CornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}">
+                                                CornerRadius="{Binding Path=(local:MenuHelper.SubmenuCornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}">
                                             <Border.Effect>
                                                 <DropShadowEffect ShadowDepth="0"
                                                                   BlurRadius="10"
@@ -382,8 +453,8 @@
                                             </Border.Effect>
                                         </Border>
                                         <ScrollViewer CanContentScroll="True"
-                                                      local:ScrollViewerHelper.ScrollBarCornerRadius="3"
-                                                      local:ScrollViewerHelper.ScrollBarThickness="6"
+                                                      local:ScrollViewerHelper.ScrollBarThickness="{Binding Path=(local:ScrollViewerHelper.ScrollBarThickness),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}"
+                                                      local:ScrollViewerHelper.ScrollBarCornerRadius="{Binding Path=(local:ScrollViewerHelper.ScrollBarCornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}"
                                                       Margin="{Binding Padding,RelativeSource={RelativeSource AncestorType=Menu}}">
                                             <StackPanel IsItemsHost="True"
                                                         KeyboardNavigation.DirectionalNavigation="Cycle" />
@@ -444,6 +515,15 @@
                                             Property="Effect"
                                             Value="{x:Null}" />
                                 </DataTrigger>
+                                <Trigger Property="IsCheckable"
+                                         Value="True">
+                                    <Setter TargetName="ChbCheckable"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                    <Setter TargetName="LblIcon"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -475,18 +555,22 @@
                                         Opacity="0" />
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition x:Name="ColumnIcon"
-                                                          Width="{Binding Path=(local:MenuHelper.SubmenuItemIconWidth),Converter={StaticResource GridLengthConverter},RelativeSource={RelativeSource AncestorType=Menu}}" />
+                                        <ColumnDefinition Width="{Binding Path=(local:IconHelper.Width),Converter={StaticResource GridLengthConverter},RelativeSource={RelativeSource AncestorType=MenuItem}}" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Label x:Name="LblIcon"
-                                           Content="{TemplateBinding Icon}"
-                                           Foreground="{TemplateBinding Foreground}"
-                                           FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=MenuItem},Converter={StaticResource Add3Converter}}"
-                                           FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"
+                                           Content="{Binding Icon,Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=MenuItem}}"
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Center" />
+                                    <CheckBox x:Name="ChbCheckable"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding IsChecked,RelativeSource={RelativeSource AncestorType=MenuItem},Mode=TwoWay}"
+                                              Style="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                              Visibility="Collapsed" />
                                     <ContentPresenter x:Name="Presenter"
                                                       ContentSource="Header"
                                                       Grid.Column="1"
@@ -537,6 +621,15 @@
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
                                 </Trigger>
+                                <Trigger Property="IsCheckable"
+                                         Value="True">
+                                    <Setter TargetName="ChbCheckable"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                    <Setter TargetName="LblIcon"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -568,18 +661,22 @@
                                         Opacity="0" />
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition x:Name="ColumnIcon"
-                                                          Width="{Binding Path=(local:MenuHelper.SubmenuItemIconWidth),Converter={StaticResource GridLengthConverter},RelativeSource={RelativeSource AncestorType=Menu}}" />
+                                        <ColumnDefinition Width="{Binding Path=(local:IconHelper.Width),Converter={StaticResource GridLengthConverter},RelativeSource={RelativeSource AncestorType=MenuItem}}" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Label x:Name="LblIcon"
-                                           Content="{TemplateBinding Icon}"
-                                           Foreground="{TemplateBinding Foreground}"
-                                           FontSize="{Binding FontSize,RelativeSource={RelativeSource AncestorType=MenuItem},Converter={StaticResource Add3Converter}}"
-                                           FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"
+                                           Content="{Binding Icon,Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=MenuItem}}"
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Center" />
+                                    <CheckBox x:Name="ChbCheckable"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding IsChecked,RelativeSource={RelativeSource AncestorType=MenuItem},Mode=TwoWay}"
+                                              Style="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                              Visibility="Collapsed" />
                                     <ContentPresenter x:Name="Presenter"
                                                       ContentSource="Header"
                                                       Grid.Column="1"
@@ -603,14 +700,14 @@
                                        AllowsTransparency="True"
                                        Focusable="False"
                                        PopupAnimation="Fade">
-                                    <Grid>
+                                    <Grid Margin="10">
                                         <Border x:Name="BdrSubmenu"
                                                 SnapsToDevicePixels="True"
                                                 BorderThickness="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Menu}}"
                                                 BorderBrush="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Menu}}"
                                                 Background="{Binding Background,RelativeSource={RelativeSource AncestorType=Menu}}"
                                                 Width="{Binding Width,RelativeSource={RelativeSource AncestorType=Menu}}"
-                                                CornerRadius="{Binding Path=(local:MenuHelper.CornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}">
+                                                CornerRadius="{Binding Path=(local:MenuHelper.SubmenuCornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}">
                                             <Border.Effect>
                                                 <DropShadowEffect ShadowDepth="0"
                                                                   BlurRadius="10"
@@ -619,8 +716,8 @@
                                             </Border.Effect>
                                         </Border>
                                         <ScrollViewer CanContentScroll="True"
-                                                      local:ScrollViewerHelper.ScrollBarCornerRadius="3"
-                                                      local:ScrollViewerHelper.ScrollBarThickness="6"
+                                                      local:ScrollViewerHelper.ScrollBarThickness="{Binding Path=(local:ScrollViewerHelper.ScrollBarThickness),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}"
+                                                      local:ScrollViewerHelper.ScrollBarCornerRadius="{Binding Path=(local:ScrollViewerHelper.ScrollBarCornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}"
                                                       Margin="{Binding Padding,RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}">
                                             <StackPanel IsItemsHost="True"
                                                         KeyboardNavigation.DirectionalNavigation="Cycle" />
@@ -675,6 +772,15 @@
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
                                 </Trigger>
+                                <Trigger Property="IsCheckable"
+                                         Value="True">
+                                    <Setter TargetName="ChbCheckable"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                    <Setter TargetName="LblIcon"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </Trigger>
                                 <Trigger Property="HasItems"
                                          Value="True">
                                     <Setter TargetName="Path"
@@ -692,7 +798,218 @@
                     </Setter.Value>
                 </Setter>
             </MultiDataTrigger>
+            <!--Horizontal / Modern / TopLevelItem-->
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(local:MenuHelper.Orientation),RelativeSource={RelativeSource AncestorType=Menu}}"
+                               Value="Horizontal" />
+                    <Condition Binding="{Binding Path=(local:MenuHelper.MenuStyle),RelativeSource={RelativeSource AncestorType=Menu}}"
+                               Value="Modern" />
+                    <Condition Binding="{Binding Role,RelativeSource={RelativeSource Self}}"
+                               Value="TopLevelItem" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type MenuItem}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label x:Name="LblIcon"
+                                       Content="{Binding Icon,Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                       Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                       FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                       FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                                <CheckBox x:Name="ChbCheckable"
+                                          VerticalAlignment="Center"
+                                          IsChecked="{Binding IsChecked,RelativeSource={RelativeSource AncestorType=MenuItem},Mode=TwoWay}"
+                                          Style="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                          Visibility="Collapsed" />
+                                <ContentPresenter x:Name="Presenter"
+                                                  ContentSource="Header"
+                                                  Grid.Column="1"
+                                                  VerticalAlignment="Center"
+                                                  Margin="{TemplateBinding Padding}" />
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsCheckable"
+                                         Value="True">
+                                    <Setter TargetName="ChbCheckable"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                    <Setter TargetName="LblIcon"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </Trigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.HoverForeground), RelativeSource={RelativeSource AncestorType=Menu},Converter={StaticResource IsNullConverter}}"
+                                                   Value="False" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="LblIcon"
+                                            Property="TextBlock.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource  AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="LblIcon"
+                                            Property="TextElement.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="Presenter"
+                                            Property="TextBlock.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="Presenter"
+                                            Property="TextElement.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                </MultiDataTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </MultiDataTrigger>
+            <!--Horizontal / Modern / TopLevelHeader-->
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(local:MenuHelper.Orientation),RelativeSource={RelativeSource AncestorType=Menu}}"
+                               Value="Horizontal" />
+                    <Condition Binding="{Binding Path=(local:MenuHelper.MenuStyle),RelativeSource={RelativeSource AncestorType=Menu}}"
+                               Value="Modern" />
+                    <Condition Binding="{Binding Role,RelativeSource={RelativeSource Self}}"
+                               Value="TopLevelHeader" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type MenuItem}">
+                            <Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label x:Name="LblIcon"
+                                           Content="{Binding Icon,Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+                                    <CheckBox x:Name="ChbCheckable"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding IsChecked,RelativeSource={RelativeSource AncestorType=MenuItem},Mode=TwoWay}"
+                                              Style="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource AncestorType=MenuItem}}"
+                                              Visibility="Collapsed" />
+                                    <ContentPresenter x:Name="Presenter"
+                                                      ContentSource="Header"
+                                                      Grid.Column="1"
+                                                      VerticalAlignment="Center"
+                                                      Margin="{TemplateBinding Padding}" />
+                                </Grid>
+                                <Popup x:Name="Popup"
+                                       Placement="Bottom"
+                                       IsOpen="{TemplateBinding IsSubmenuOpen}"
+                                       AllowsTransparency="True"
+                                       Focusable="False"
+                                       PopupAnimation="Fade">
+                                    <Grid Margin="10"
+                                          Width="{Binding Path=(local:MenuHelper.SubmenuWidth),RelativeSource={RelativeSource AncestorType=Menu}}">
+                                        <Border x:Name="BdrSubmenu"
+                                                SnapsToDevicePixels="True"
+                                                BorderThickness="{Binding BorderThickness,RelativeSource={RelativeSource AncestorType=Menu}}"
+                                                BorderBrush="{Binding BorderBrush,RelativeSource={RelativeSource AncestorType=Menu}}"
+                                                Width="{Binding Width,RelativeSource={RelativeSource AncestorType=Menu}}"
+                                                Background="{Binding Background,RelativeSource={RelativeSource AncestorType=Menu}}"
+                                                CornerRadius="{Binding Path=(local:MenuHelper.SubmenuCornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}">
+                                            <Border.Effect>
+                                                <DropShadowEffect ShadowDepth="0"
+                                                                  BlurRadius="10"
+                                                                  Opacity="1"
+                                                                  Color="{Binding Path=(local:MenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay, Converter={StaticResource NullableColorToColoConverter}}" />
+                                            </Border.Effect>
+                                        </Border>
+                                        <ScrollViewer CanContentScroll="True"
+                                                      local:ScrollViewerHelper.ScrollBarThickness="{Binding Path=(local:ScrollViewerHelper.ScrollBarThickness),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}"
+                                                      local:ScrollViewerHelper.ScrollBarCornerRadius="{Binding Path=(local:ScrollViewerHelper.ScrollBarCornerRadius),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}"
+                                                      Margin="{Binding Padding,RelativeSource={RelativeSource AncestorType=Menu}}">
+                                            <StackPanel IsItemsHost="True"
+                                                        KeyboardNavigation.DirectionalNavigation="Cycle" />
+                                        </ScrollViewer>
+                                    </Grid>
+
+                                </Popup>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsCheckable"
+                                         Value="True">
+                                    <Setter TargetName="ChbCheckable"
+                                            Property="Visibility"
+                                            Value="Visible" />
+                                    <Setter TargetName="LblIcon"
+                                            Property="Visibility"
+                                            Value="Collapsed" />
+                                </Trigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.HoverForeground), RelativeSource={RelativeSource AncestorType=Menu},Converter={StaticResource IsNullConverter}}"
+                                                   Value="False" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="LblIcon"
+                                            Property="TextBlock.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource  AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="LblIcon"
+                                            Property="TextElement.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="Presenter"
+                                            Property="TextBlock.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                    <Setter TargetName="Presenter"
+                                            Property="TextElement.Foreground"
+                                            Value="{Binding Path=(local:MenuHelper.HoverForeground),RelativeSource={RelativeSource AncestorType=Menu}, Mode=OneWay}" />
+                                </MultiDataTrigger>
+                                <DataTrigger Binding="{Binding Path=(local:MenuHelper.ShadowColor),RelativeSource={RelativeSource AncestorType=Menu}}"
+                                             Value="{x:Null}">
+                                    <Setter TargetName="BdrSubmenu"
+                                            Property="Effect"
+                                            Value="{x:Null}" />
+                                </DataTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </MultiDataTrigger>
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MenuItem_NonStyle"
+           TargetType="{x:Type MenuItem}">
+        <Setter Property="FontFamily"
+                Value="{StaticResource Default_FontFamily}" />
+        <Setter Property="SnapsToDevicePixels"
+                Value="{StaticResource Default_SnapsToDevicePixels}" />
+        <Setter Property="FontSize"
+                Value="{StaticResource Default_FontSize}" />
+        <Setter Property="FocusVisualStyle"
+                Value="{x:Null}" />
+        <Setter Property="Padding"
+                Value="{Binding Path=(local:MenuHelper.ItemPadding),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}" />
+        <Setter Property="Height"
+                Value="Auto" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type MenuItem}">
+                    <Grid Margin="1">
+                        <ContentPresenter x:Name="Presenter"
+                                          ContentSource="Header"
+                                          Grid.Column="1"
+                                          Margin="{TemplateBinding Padding}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}"

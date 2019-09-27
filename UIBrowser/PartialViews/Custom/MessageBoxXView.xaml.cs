@@ -62,7 +62,7 @@ namespace UIBrowser.PartialViews.Custom
 
         private void BtnModernInfo_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBoxX.Show(_message2, "Error", Application.Current.MainWindow, MessageBoxButton.YesNo, new MessageBoxXConfigurations()
+            var result = MessageBoxX.Show(_message2, "Infomation", Application.Current.MainWindow, MessageBoxButton.YesNo, new MessageBoxXConfigurations()
             {
                 MessageBoxStyle = MessageBoxStyle.Modern,
             });
@@ -100,7 +100,7 @@ namespace UIBrowser.PartialViews.Custom
 
         private void BtnClassicInfo_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBoxX.Show(_message2, "Error", Application.Current.MainWindow, MessageBoxButton.YesNo, new MessageBoxXConfigurations()
+            var result = MessageBoxX.Show(_message2, "Infomation", Application.Current.MainWindow, MessageBoxButton.YesNo, new MessageBoxXConfigurations()
             {
                 MessageBoxStyle = MessageBoxStyle.Classic,
             });
@@ -134,6 +134,11 @@ namespace UIBrowser.PartialViews.Custom
                 MessageBoxIcon = MessageBoxIcon.Warning,
                 ThemeBrush = "#F1C825".ToColor().ToBrush(),
             });
+        }
+
+        private void BtnLoading_Click(object sender, RoutedEventArgs e)
+        {
+       
         }
 
 

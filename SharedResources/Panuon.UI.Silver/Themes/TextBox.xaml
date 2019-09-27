@@ -38,6 +38,12 @@
                 Value="#888888" />
         <Setter Property="Cursor"
                 Value="IBeam" />
+        <Setter Property="local:IconHelper.FontFamily"
+                Value="/Panuon.UI.Silver;component/Resources/#fontawesome" />
+        <Setter Property="local:IconHelper.FontSize"
+                Value="{Binding FontSize, Converter={StaticResource Add3Converter},RelativeSource={RelativeSource Self},Mode=OneWay}" />
+        <Setter Property="local:IconHelper.Foreground"
+                Value="{Binding Foreground,RelativeSource={RelativeSource Self},Mode=OneWay}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -72,7 +78,7 @@
                         </Border>
                         <Grid Grid.Column="1">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="{Binding Path=(local:IconHelper.Width),Converter={StaticResource GridLengthConverter} ,RelativeSource={RelativeSource AncestorType=TextBox}}"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Label x:Name="LblIcon"
@@ -80,8 +86,9 @@
                                    Padding="10,0,7,0"
                                    VerticalContentAlignment="Center"
                                    Content="{Binding Path=(local:TextBoxHelper.Icon),Converter={StaticResource IconConverter},RelativeSource={RelativeSource AncestorType=TextBox}, Mode=OneWay}"
-                                   Foreground="{TemplateBinding Foreground}"
-                                   FontFamily="/Panuon.UI.Silver;component/Resources/#fontawesome"></Label>
+                                   Foreground="{Binding Path=(local:IconHelper.Foreground),RelativeSource={RelativeSource AncestorType=TextBox}, Mode=OneWay}"
+                                   FontSize="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=TextBox}, Mode=OneWay}"
+                                   FontFamily="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=TextBox}, Mode=OneWay}"></Label>
                             <Grid Grid.Column="2">
                                 <ScrollViewer x:Name="PART_ContentHost"
                                               local:ScrollViewerHelper.ScrollBarCornerRadius="3"

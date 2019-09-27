@@ -9,10 +9,6 @@
     <Import_RootNamespace>Panuon.UI.Silver</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Global\Attributes\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Global\Statics\" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Badge.xaml.cs">
       <DependentUpon>Badge.xaml</DependentUpon>
     </Compile>
@@ -39,6 +35,9 @@
       <DependentUpon>CheckIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Internal\DragableThumb.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Internal\LoadingBox.xaml.cs">
+      <DependentUpon>LoadingBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Internal\MsgBox.xaml.cs">
       <DependentUpon>MsgBox.xaml</DependentUpon>
     </Compile>
@@ -61,6 +60,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Notice.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Pagination.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\StateIcon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\TagPanel.xaml.cs">
       <DependentUpon>TagPanel.xaml</DependentUpon>
     </Compile>
@@ -116,6 +116,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Control\TreeViewHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Control\WindowXCaption.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Others\AnimationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\Others\IconHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Others\LayoutHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Others\MouseEventHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\Others\ScreenshotHelper.cs" />
@@ -153,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\Internal\CheckIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\Internal\LoadingBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

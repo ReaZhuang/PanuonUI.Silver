@@ -22,19 +22,19 @@ namespace Panuon.UI.Silver
             DependencyProperty.RegisterAttached("Orientation", typeof(Orientation), typeof(MenuHelper), new PropertyMetadata(Orientation.Horizontal));
         #endregion
 
-        #region CornerRadius
-        public static CornerRadius GetCornerRadius(DependencyObject obj)
+        #region SubmenuCornerRadius
+        public static CornerRadius GetSubmenuCornerRadius(DependencyObject obj)
         {
-            return (CornerRadius)obj.GetValue(CornerRadiusProperty);
+            return (CornerRadius)obj.GetValue(SubmenuCornerRadiusProperty);
         }
 
-        public static void SetCornerRadius(DependencyObject obj, CornerRadius value)
+        public static void SetSubmenuCornerRadius(DependencyObject obj, CornerRadius value)
         {
-            obj.SetValue(CornerRadiusProperty, value);
+            obj.SetValue(SubmenuCornerRadiusProperty, value);
         }
 
-        public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.RegisterAttached("CornerRadius", typeof(CornerRadius), typeof(MenuHelper));
+        public static readonly DependencyProperty SubmenuCornerRadiusProperty =
+            DependencyProperty.RegisterAttached("SubmenuCornerRadius", typeof(CornerRadius), typeof(MenuHelper));
         #endregion
 
         #region HoverForeground
@@ -112,19 +112,19 @@ namespace Panuon.UI.Silver
             DependencyProperty.RegisterAttached("SubmenuItemHeight", typeof(double), typeof(MenuHelper));
         #endregion
 
-        #region SubmenuItemIconWidth
-        public static string GetSubmenuItemIconWidth(DependencyObject obj)
+        #region SubmenuWidth
+        public static double GetSubmenuWidth(DependencyObject obj)
         {
-            return (string)obj.GetValue(SubmenuItemIconWidthProperty);
+            return (double)obj.GetValue(SubmenuWidthProperty);
         }
 
-        public static void SetSubmenuItemIconWidth(DependencyObject obj, string value)
+        public static void SetSubmenuWidth(DependencyObject obj, double value)
         {
-            obj.SetValue(SubmenuItemIconWidthProperty, value);
+            obj.SetValue(SubmenuWidthProperty, value);
         }
 
-        public static readonly DependencyProperty SubmenuItemIconWidthProperty =
-            DependencyProperty.RegisterAttached("SubmenuItemIconWidth", typeof(string), typeof(MenuHelper));
+        public static readonly DependencyProperty SubmenuWidthProperty =
+            DependencyProperty.RegisterAttached("SubmenuWidth", typeof(double), typeof(MenuHelper), new PropertyMetadata(double.NaN));
         #endregion
 
         #region ItemPadding
@@ -142,19 +142,20 @@ namespace Panuon.UI.Silver
             DependencyProperty.RegisterAttached("ItemPadding", typeof(Thickness), typeof(MenuHelper));
         #endregion
 
-        #region PopupAnimation
-        public static PopupAnimation GetPopupAnimation(DependencyObject obj)
+        #region CheckableCheckboxStyle
+        public static Style GetCheckableCheckboxStyle(DependencyObject obj)
         {
-            return (PopupAnimation)obj.GetValue(PopupAnimationProperty);
+            return (Style)obj.GetValue(CheckableCheckboxStyleProperty);
         }
 
-        public static void SetPopupAnimation(DependencyObject obj, PopupAnimation value)
+        public static void SetCheckableCheckboxStyle(DependencyObject obj, Style value)
         {
-            obj.SetValue(PopupAnimationProperty, value);
+            obj.SetValue(CheckableCheckboxStyleProperty, value);
         }
 
-        public static readonly DependencyProperty PopupAnimationProperty =
-            DependencyProperty.RegisterAttached("PopupAnimation", typeof(PopupAnimation), typeof(MenuHelper), new PropertyMetadata(PopupAnimation.Fade));
+        public static readonly DependencyProperty CheckableCheckboxStyleProperty =
+            DependencyProperty.RegisterAttached("CheckableCheckboxStyle", typeof(Style), typeof(MenuHelper));
         #endregion
+
     }
 }

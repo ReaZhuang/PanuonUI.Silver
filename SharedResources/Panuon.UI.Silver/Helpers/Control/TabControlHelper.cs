@@ -117,6 +117,21 @@ namespace Panuon.UI.Silver
             DependencyProperty.RegisterAttached("DisableSideButton", typeof(bool), typeof(TabControlHelper));
         #endregion
 
+        #region ItemIcon
+        public static object GetItemIcon(DependencyObject obj)
+        {
+            return (object)obj.GetValue(ItemIconProperty);
+        }
+
+        public static void SetItemIcon(DependencyObject obj, object value)
+        {
+            obj.SetValue(ItemIconProperty, value);
+        }
+
+        public static readonly DependencyProperty ItemIconProperty =
+            DependencyProperty.RegisterAttached("ItemIcon", typeof(object), typeof(TabControlHelper));
+        #endregion
+
         #region (Event) Removed
         public static readonly RoutedEvent RemovedEvent = EventManager.RegisterRoutedEvent("Removed", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<TabItem>), typeof(TabControlHelper));
         public static void AddRemovedHandler(DependencyObject d, RoutedPropertyChangedEventHandler<TabItem> handler)
