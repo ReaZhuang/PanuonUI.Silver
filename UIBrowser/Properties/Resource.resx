@@ -432,4 +432,10 @@
   <data name="ContextMenu" xml:space="preserve">
     <value>ContextMenu</value>
   </data>
+  <data name="ClearButton" xml:space="preserve">
+    <value>ClearButton</value>
+  </data>
+  <data name="ShowPasswordButton" xml:space="preserve">
+    <value>ShowPasswordButton</value>
+  </data>
 </root>

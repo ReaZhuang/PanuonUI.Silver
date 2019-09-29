@@ -196,6 +196,15 @@ namespace UIBrowser.Properties {
         }
         
         /// <summary>
+        ///   查找类似 ClearButton 的本地化字符串。
+        /// </summary>
+        public static string ClearButton {
+            get {
+                return ResourceManager.GetString("ClearButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Clock 的本地化字符串。
         /// </summary>
         public static string Clock {
@@ -750,6 +759,15 @@ namespace UIBrowser.Properties {
         public static string ShowMeasuredValue {
             get {
                 return ResourceManager.GetString("ShowMeasuredValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ShowPasswordButton 的本地化字符串。
+        /// </summary>
+        public static string ShowPasswordButton {
+            get {
+                return ResourceManager.GetString("ShowPasswordButton", resourceCulture);
             }
         }
         

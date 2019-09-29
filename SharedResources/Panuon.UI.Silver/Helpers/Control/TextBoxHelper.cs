@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Panuon.UI.Silver
@@ -111,6 +113,61 @@ namespace Panuon.UI.Silver
 
         public static readonly DependencyProperty HeaderWidthProperty =
             DependencyProperty.RegisterAttached("HeaderWidth", typeof(string), typeof(TextBoxHelper), new PropertyMetadata("Auto"));
+        #endregion
+
+        #region IsClearButtonVisible
+        public static bool GetIsClearButtonVisible(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(IsClearButtonVisibleProperty);
+        }
+
+        public static void SetIsClearButtonVisible(DependencyObject obj, bool value)
+        {
+            obj.SetValue(IsClearButtonVisibleProperty, value);
+        }
+
+        public static readonly DependencyProperty IsClearButtonVisibleProperty =
+            DependencyProperty.RegisterAttached("IsClearButtonVisible", typeof(bool), typeof(TextBoxHelper));
+        #endregion
+
+        #region (Internal) TextBoxHook
+        internal static bool GetTextBoxHook(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(TextBoxHookProperty);
+        }
+
+        internal static void SetTextBoxHook(DependencyObject obj, bool value)
+        {
+            obj.SetValue(TextBoxHookProperty, value);
+        }
+
+        internal static readonly DependencyProperty TextBoxHookProperty =
+            DependencyProperty.RegisterAttached("TextBoxHook", typeof(bool), typeof(TextBoxHelper), new PropertyMetadata(OnTextBoxHookChanged));
+
+
+        private static void OnTextBoxHookChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var textbox = d as TextBox;
+            textbox.RemoveHandler(Button.ClickEvent, new RoutedEventHandler(ClearButtonClicked));
+            textbox.AddHandler(Button.ClickEvent, new RoutedEventHandler(ClearButtonClicked));
+        }
+
+        private static void ClearButtonClicked(object sender, RoutedEventArgs e)
+        {
+            var button = e.OriginalSource as Button;
+
+            if (button == null || button.Name != "PART_BtnClear")
+                return;
+
+            var textbox = sender as TextBox;
+
+            if (textbox == null)
+                return;
+
+            textbox.Text = "";
+        }
+
+
         #endregion
     }
 }

@@ -141,6 +141,21 @@ namespace Panuon.UI.Silver
             DependencyProperty.RegisterAttached("HeaderWidth", typeof(string), typeof(PasswordBoxHelper), new PropertyMetadata("Auto"));
         #endregion
 
+        #region IsShowPwdButtonVisible
+        public static bool GetIsShowPwdButtonVisible(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(IsShowPwdButtonVisibleProperty);
+        }
+
+        public static void SetIsShowPwdButtonVisible(DependencyObject obj, bool value)
+        {
+            obj.SetValue(IsShowPwdButtonVisibleProperty, value);
+        }
+
+        public static readonly DependencyProperty IsShowPwdButtonVisibleProperty =
+            DependencyProperty.RegisterAttached("IsShowPwdButtonVisible", typeof(bool), typeof(PasswordBoxHelper));
+        #endregion
+
         #region (Internal) PasswordHook (Default is true)
         internal static bool GetPasswordHook(DependencyObject obj)
         {
