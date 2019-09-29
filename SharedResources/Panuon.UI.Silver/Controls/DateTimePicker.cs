@@ -140,6 +140,17 @@ namespace Panuon.UI.Silver
 
         public static readonly DependencyProperty IsSundayFirstProperty =
             DependencyProperty.Register("IsSundayFirst", typeof(bool), typeof(DateTimePicker), new PropertyMetadata(true));
+
+        public bool StaysOpen
+        {
+            get { return (bool)GetValue(StaysOpenProperty); }
+            set { SetValue(StaysOpenProperty, value); }
+        }
+
+        public static readonly DependencyProperty StaysOpenProperty =
+            DependencyProperty.Register("StaysOpen", typeof(bool), typeof(DateTimePicker), new PropertyMetadata(false));
+
+
         #endregion
 
         #region Event Handler
