@@ -104,7 +104,13 @@ namespace Panuon.UI.Silver
         }
 
         public static readonly DependencyProperty IsOpacityEnabledProperty =
-            DependencyProperty.Register("IsOpacityEnabled", typeof(bool), typeof(ColorPicker), new PropertyMetadata(true));
+            DependencyProperty.Register("IsOpacityEnabled", typeof(bool), typeof(ColorPicker), new PropertyMetadata(true, OnIsOpacityEnabled));
+
+        private static void OnIsOpacityEnabled(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var picker = d as ColorPicker;
+            picker.UpdateText();
+        }
 
         /// <summary>
         /// Gets or sets corner radius.

@@ -205,14 +205,14 @@ namespace Panuon.UI.Silver
             if (selector.IsOpacityEnabled)
             {
                 selector.ColumnA.Width = new GridLength(1, GridUnitType.Star);
-                selector.SliderOpacity.IsEnabled = true;
-                selector.SliderOpacity.Opacity = 1;
+                selector.RowOpacity.Height = new GridLength(1, GridUnitType.Star);
+                selector.SliderOpacity.Value = 255;
             }
             else
             {
                 selector.ColumnA.Width = new GridLength(0, GridUnitType.Pixel);
-                selector.SliderOpacity.IsEnabled = false;
-                selector.SliderOpacity.Opacity = 0.2;
+                selector.RowOpacity.Height = new GridLength(0);
+                selector.SliderOpacity.Value = 255;
             }
         }
 
@@ -307,7 +307,7 @@ namespace Panuon.UI.Silver
 
         private void SliderOpacity_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (!IsLoaded)
+            if (_actualHeight == 0)
                 return;
 
             UpdateSelectedBrush();
@@ -315,6 +315,9 @@ namespace Panuon.UI.Silver
 
         private void SliderColor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            if (_actualHeight == 0)
+                return;
+
             var color = GetColorByOffset(Linear.GradientStops, (double)(6 - SliderColor.Value) / 6);
             BackgroundBrush = color.ToBrush();
 
