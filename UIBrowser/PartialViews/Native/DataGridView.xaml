@@ -50,6 +50,14 @@
                               Height="300"
                               Width="450"
                              >
+                        <DataGrid.Columns>
+                            <DataGridComboBoxColumn Header="HelloWorld">
+                                <DataGridComboBoxColumn.EditingElementStyle>
+                                    <Style TargetType="{x:Type ComboBox}" 
+                                           BasedOn="{StaticResource {x:Type ComboBox}}"/>
+                                </DataGridComboBoxColumn.EditingElementStyle>
+                            </DataGridComboBoxColumn>
+                        </DataGrid.Columns>
                         <pu:DataGridHelper.AutoGenerateCheckBoxStyle>
                             <Style TargetType="CheckBox"
                                    BasedOn="{StaticResource {x:Type CheckBox}}">

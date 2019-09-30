@@ -1,5 +1,4 @@
-﻿using Panuon.UI.Silver.Converters;
-using Panuon.UI.Silver.Core;
+﻿using Panuon.UI.Silver.Core;
 using Panuon.UI.Silver.Utils;
 using System;
 using System.ComponentModel;
@@ -135,21 +134,6 @@ namespace Panuon.UI.Silver
 
 
         #endregion
-
-        //#region ColumnStyle
-        //public static ColumnStyle GetColumnStyle(DependencyObject obj)
-        //{
-        //    return (ColumnStyle)obj.GetValue(ColumnStyleProperty);
-        //}
-
-        //public static void SetColumnStyle(DependencyObject obj, ColumnStyle value)
-        //{
-        //    obj.SetValue(ColumnStyleProperty, value);
-        //}
-
-        //public static readonly DependencyProperty ColumnStyleProperty =
-        //    DependencyProperty.RegisterAttached("ColumnStyle", typeof(ColumnStyle), typeof(DataGridHelper));
-        //#endregion
 
         #region ColumnVerticalContentAlignment
         public static VerticalAlignment GetColumnVerticalContentAlignment(DependencyObject obj)
@@ -298,15 +282,15 @@ namespace Panuon.UI.Silver
                 {
                     visibility = Visibility.Collapsed;
                 }
-                if(attribute is ColumnWidthAttribute)
+                if (attribute is ColumnWidthAttribute)
                 {
                     width = GridLengthUtil.ConvertToDataGridLength((attribute as ColumnWidthAttribute).Width);
                 }
-                if(attribute is DisplayNameAttribute)
+                if (attribute is DisplayNameAttribute)
                 {
                     header = (attribute as DisplayNameAttribute).DisplayName;
                 }
-                if(attribute is ReadOnlyColumnAttribute)
+                if (attribute is ReadOnlyColumnAttribute)
                 {
                     readOnly = true;
                 }

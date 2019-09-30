@@ -1,6 +1,5 @@
 ﻿using Panuon.UI.Silver;
 using Panuon.UI.Silver.Core;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;

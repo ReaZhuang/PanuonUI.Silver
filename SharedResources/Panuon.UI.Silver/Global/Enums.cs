@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Panuon.UI.Silver
+﻿namespace Panuon.UI.Silver
 {
-    #region MessageBox
+    #region MessageBoxX
     #region MessageBoxStyle
     public enum MessageBoxStyle
     {
@@ -32,6 +27,14 @@ namespace Panuon.UI.Silver
         CancelOrNo,
     }
     #endregion
+    #endregion
+
+    #region PendingBox
+    public enum PendingBoxStyle
+    {
+        Standard,
+        Classic,
+    }
     #endregion
 
     #region Button
@@ -160,7 +163,7 @@ namespace Panuon.UI.Silver
     {
         Standard,
         Classic,
-        
+
     }
     #endregion
 

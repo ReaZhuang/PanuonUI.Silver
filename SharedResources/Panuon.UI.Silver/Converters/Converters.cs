@@ -1,10 +1,8 @@
 ﻿using Panuon.UI.Silver.Utils;
 using System;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Media;
 
 namespace Panuon.UI.Silver.Converters
 {

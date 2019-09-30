@@ -160,7 +160,7 @@ namespace UIBrowser.PartialViews.Native
             TreeViewHelper.SetItemHeight(TvCustom, SldItemHeight.Value);
 
 
-            if(TreeViewHelper.GetTreeViewStyle(TvCustom) == TreeViewStyle.Standard || TreeViewHelper.GetTreeViewStyle(TvCustom) == TreeViewStyle.Chain)
+            if (TreeViewHelper.GetTreeViewStyle(TvCustom) == TreeViewStyle.Standard || TreeViewHelper.GetTreeViewStyle(TvCustom) == TreeViewStyle.Chain)
             {
                 foreach (TreeViewItem item in TvCustom.Items)
                 {
@@ -174,13 +174,13 @@ namespace UIBrowser.PartialViews.Native
             {
                 foreach (TreeViewItem item in TvCustom.Items)
                 {
-                    foreach(TreeViewItem itemx in item.Items)
+                    foreach (TreeViewItem itemx in item.Items)
                     {
                         itemx.Padding = new Thickness(20, 0, 0, 0);
                     }
                 }
             }
-           
+
             switch (TreeViewHelper.GetTreeViewStyle(TvCustom))
             {
                 case TreeViewStyle.Standard:
@@ -225,6 +225,6 @@ namespace UIBrowser.PartialViews.Native
 
         #endregion
 
-       
+
     }
 }

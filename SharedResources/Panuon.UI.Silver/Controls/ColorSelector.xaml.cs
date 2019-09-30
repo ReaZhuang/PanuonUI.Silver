@@ -1,19 +1,12 @@
-﻿using System;
+﻿using Panuon.UI.Silver.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace Panuon.UI.Silver
 {
@@ -41,6 +34,7 @@ namespace Panuon.UI.Silver
 
         #endregion
 
+        #region Constructor
         public ColorSelector()
         {
             InitializeComponent();
@@ -51,19 +45,18 @@ namespace Panuon.UI.Silver
         {
             _actualHeight = GetAvailbleAreaHeight();
         }
-
-
+        #endregion
 
         #region RoutedEvent
-        public static readonly RoutedEvent SelectedBrushChangedEvent = EventManager.RegisterRoutedEvent("SelectedBrushChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ColorSelector));
-        public event RoutedEventHandler SelectedBrushChanged
+        public static readonly RoutedEvent SelectedBrushChangedEvent = EventManager.RegisterRoutedEvent("SelectedBrushChanged", RoutingStrategy.Bubble, typeof(SelectedBrushChangedEventHandler), typeof(ColorSelector));
+        public event SelectedBrushChangedEventHandler SelectedBrushChanged
         {
             add { AddHandler(SelectedBrushChangedEvent, value); }
             remove { RemoveHandler(SelectedBrushChangedEvent, value); }
         }
-        void RaiseSelectedBrushChanged()
+        void RaiseSelectedBrushChanged(Brush brush)
         {
-            var arg = new RoutedEventArgs(SelectedBrushChangedEvent);
+            var arg = new SelectedBrushChangedEventArgs(brush, SelectedBrushChangedEvent);
             RaiseEvent(arg);
         }
         #endregion
@@ -172,6 +165,12 @@ namespace Panuon.UI.Silver
         #endregion
 
         #region Event Handler
+        private void BdrDefaultColor_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var border = sender as Border;
+            SelectedBrush = border.Background.ToColor().ToBrush();
+        }
+
         private static void OnHexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var selector = d as ColorSelector;
@@ -228,7 +227,7 @@ namespace Panuon.UI.Silver
         private static void OnSelectedBrushChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var selector = d as ColorSelector;
-            selector.RaiseSelectedBrushChanged();
+            selector.RaiseSelectedBrushChanged(selector.SelectedBrush);
             var brush = e.NewValue as SolidColorBrush;
 
             var color = brush.ToColor();
@@ -381,6 +380,11 @@ namespace Panuon.UI.Silver
         #endregion
 
         #region Function
+        private double GetAvailbleAreaHeight()
+        {
+            return Height - 50 - (IsMeasuredValueVisible ? GrdMeasuredValue.Height : 0) - (IsDefaultColorPanelVisible ? GrdDefaultColor.Height : 0);
+        }
+
         private void UpdateSelectedBrush()
         {
             if (!_updateSelectedBrush)
@@ -499,16 +503,6 @@ namespace Panuon.UI.Silver
             return Color.FromArgb(a, r, g, b);
         }
         #endregion
-
-        private void BdrDefaultColor_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            var border = sender as Border;
-            SelectedBrush = border.Background.ToColor().ToBrush();
-        }
-
-        private double GetAvailbleAreaHeight()
-        {
-            return Height - 50 - (IsMeasuredValueVisible ? GrdMeasuredValue.Height : 0) - (IsDefaultColorPanelVisible ? GrdDefaultColor.Height : 0);
-        }
+       
     }
 }

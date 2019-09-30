@@ -1,7 +1,5 @@
 ﻿using Panuon.UI.Silver;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -159,7 +157,7 @@ namespace UIBrowser.PartialViews.Custom
                         (paginationStyle == PaginationStyle.Standard ? $"\nBackground=\"{PgnCustom.Background.ToColor().ToHexString()}\"" : "") +
                         $"\nHoverBrush=\"{PgnCustom.HoverBrush.ToColor().ToHexString()}\"" +
                         (cornerRadius.TopLeft == 2 ? "" : $"\nCornerRadius=\"{cornerRadius.TopLeft}\"") +
-                        (spacing == 5 ? "" : $"\nSpacing=\"{spacing}\"") + 
+                        (spacing == 5 ? "" : $"\nSpacing=\"{spacing}\"") +
                         (currentIndex == 1 ? "" : $"\nCurrentIndex=\"{currentIndex}\"") +
                         (totalIndex == 1 ? "" : $"\nTotalIndex=\"{totalIndex}\"") +
                         " />";

@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Panuon.UI.Silver;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
-using Panuon.UI.Silver;
 using UIBrowser.Models;
 
 namespace UIBrowser
@@ -71,16 +68,9 @@ namespace UIBrowser
             Application.Current.Shutdown();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var handler = PendingBox.Show("Please wait...", "Processing", false, Application.Current.MainWindow);
-            handler.Canceled += delegate
-            {
-                handler.Close();
-            };
 
-            await Task.Delay(1000);
-            handler.UpdateMessage("Almost completed...");
         }
     }
 }

@@ -1,38 +1,53 @@
 ﻿using Panuon.UI.Silver.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Panuon.UI.Silver.Controls.Internal
 {
     /// <summary>
     /// CheckIcon.xaml 的交互逻辑
     /// </summary>
-    internal partial class PendingBox : WindowX
+    internal partial class PendingBox : Window
     {
-        public PendingBox(Window owner, string message, string title, PendingBoxConfigurations configurations)
+        #region Identifier
+        private bool _closeHandler = true;
+        #endregion
+
+        public PendingBox(Window owner, string message, string title,bool cancelable, PendingBoxConfigurations configurations)
         {
             InitializeComponent();
 
-            if (!string.IsNullOrEmpty(title))
+            PendingBoxStyle = configurations.PendingBoxStyle;
+            if(configurations.PendingBoxStyle == PendingBoxStyle.Standard)
             {
-                Title = title;
-                WindowXCaption.SetHeight(this, 35);
+                if (!string.IsNullOrEmpty(title))
+                {
+                    TxtTitle.Text = title;
+                    TxtTitle.Visibility = Visibility.Visible;
+                    Title = title;
+                    WindowXCaption.SetHeight(this, 30);
+                }
+            }
+            else if(configurations.PendingBoxStyle == PendingBoxStyle.Classic)
+            {
+                if (!string.IsNullOrEmpty(title))
+                {
+                    TxtTitle2.Text = title;
+                    TxtTitle2.Visibility = Visibility.Visible;
+                    Title = title;
+                    WindowXCaption.SetHeight(this, 30);
+                }
+                GrdStandard.Visibility = Visibility.Collapsed;
+                GrdClassic.Visibility = Visibility.Visible;
             }
 
+
+            Cancelable = cancelable;
             Message = message;
             CancelButton = configurations.CancelButton;
 
+            Foreground = configurations.Foreground;
             LoadingBackground = configurations.LoadingBackground;
             LoadingForeground = configurations.LoadingForeground;
             ButtonBrush = configurations.ButtonBrush;
@@ -49,13 +64,34 @@ namespace Panuon.UI.Silver.Controls.Internal
             MaxWidth = configurations.MaxWidth;
         }
 
-
-
         #region Event
         public event EventHandler Canceled;
         #endregion
 
         #region Property
+
+
+        public bool Cancelable
+        {
+            get { return (bool)GetValue(CancelableProperty); }
+            set { SetValue(CancelableProperty, value); }
+        }
+
+        public static readonly DependencyProperty CancelableProperty =
+            DependencyProperty.Register("Cancelable", typeof(bool), typeof(PendingBox));
+
+
+
+        public PendingBoxStyle PendingBoxStyle
+        {
+            get { return (PendingBoxStyle)GetValue(PendingBoxStyleProperty); }
+            set { SetValue(PendingBoxStyleProperty, value); }
+        }
+
+        public static readonly DependencyProperty PendingBoxStyleProperty =
+            DependencyProperty.Register("PendingBoxStyle", typeof(PendingBoxStyle), typeof(PendingBox));
+
+
         /// <summary>
         /// Gets or sets loading style.
         /// </summary>
@@ -117,18 +153,6 @@ namespace Panuon.UI.Silver.Controls.Internal
             DependencyProperty.Register("Message", typeof(string), typeof(PendingBox));
 
         /// <summary>
-        /// Gets or sets is runing.
-        /// </summary>
-        public bool IsRunning
-        {
-            get { return (bool)GetValue(IsRunningProperty); }
-            set { SetValue(IsRunningProperty, value); }
-        }
-
-        public static readonly DependencyProperty IsRunningProperty =
-            DependencyProperty.Register("IsRunning", typeof(bool), typeof(PendingBox));
-
-        /// <summary>
         /// Gets or sets loading size.
         /// </summary>
         public double LoadingSize
@@ -154,9 +178,18 @@ namespace Panuon.UI.Silver.Controls.Internal
         #endregion
 
         #region Event Handler
+        private void PendingBox_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if(_closeHandler)
+                e.Cancel = true;
+        }
+
         private void PendingBox_Loaded(object sender, RoutedEventArgs e)
         {
-            IsRunning = true;
+            if(PendingBoxStyle == PendingBoxStyle.Standard)
+                LdMain.IsRunning = true;
+            else
+                LdMain2.IsRunning = true;
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
@@ -180,6 +213,12 @@ namespace Panuon.UI.Silver.Controls.Internal
         public void UpdateMessage(string message)
         {
             Message = message;
+        }
+
+        public void ForceClose()
+        {
+            _closeHandler = false;
+            Close();
         }
         #endregion
     }

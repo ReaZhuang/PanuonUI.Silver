@@ -1,17 +1,6 @@
 ﻿using Panuon.UI.Silver.Core;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Panuon.UI.Silver.Controls.Internal
 {
@@ -25,6 +14,7 @@ namespace Panuon.UI.Silver.Controls.Internal
             InitializeComponent();
 
             Title = title;
+            Owner = owner;
             Text = message;
             MessageBoxStyle = messageBoxXConfigurations.MessageBoxStyle;
             Topmost = messageBoxXConfigurations.Topmost;
@@ -123,6 +113,8 @@ namespace Panuon.UI.Silver.Controls.Internal
 
         public static readonly DependencyProperty MaxContentHeightProperty =
             DependencyProperty.Register("MaxContentHeight", typeof(double), typeof(MsgBox));
+
+        public Window Owner { get; }
 
         public string Text
         {

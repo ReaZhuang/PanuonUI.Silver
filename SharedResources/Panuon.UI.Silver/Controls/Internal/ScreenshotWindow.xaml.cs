@@ -11,22 +11,29 @@ namespace Panuon.UI.Silver.Controls.Internal
 {
     internal partial class ScreenshotWindow : Window
     {
+        #region Extern
         [DllImport("gdi32.dll")]
         static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
+
         public enum DeviceCap
         {
             VERTRES = 10,
             DESKTOPVERTRES = 117,
         }
+        #endregion
 
-
+        #region Constructor
         public ScreenshotWindow()
         {
             InitializeComponent();
         }
+        #endregion
 
+        #region Property
         public BitmapSource Result { get; set; }
+        #endregion
 
+        #region Event Handler
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -79,7 +86,9 @@ namespace Panuon.UI.Silver.Controls.Internal
                 Close();
             }
         }
+        #endregion
 
+        #region Function
         private float GetScalingFactor()
         {
             var graphics = Graphics.FromHwnd(IntPtr.Zero);
@@ -91,6 +100,7 @@ namespace Panuon.UI.Silver.Controls.Internal
 
             return screenScalingFactor;
         }
+        #endregion
 
     }
 }

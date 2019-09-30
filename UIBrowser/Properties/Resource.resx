@@ -438,4 +438,7 @@
   <data name="ShowPasswordButton" xml:space="preserve">
     <value>ShowPasswordButton</value>
   </data>
+  <data name="PendingBox" xml:space="preserve">
+    <value>PendingBox</value>
+  </data>
 </root>

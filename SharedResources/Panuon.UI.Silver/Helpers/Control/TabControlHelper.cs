@@ -120,7 +120,7 @@ namespace Panuon.UI.Silver
         #region ItemIcon
         public static object GetItemIcon(DependencyObject obj)
         {
-            return (object)obj.GetValue(ItemIconProperty);
+            return obj.GetValue(ItemIconProperty);
         }
 
         public static void SetItemIcon(DependencyObject obj, object value)
@@ -169,7 +169,7 @@ namespace Panuon.UI.Silver
             obj.SetValue(TabControlHookProperty, value);
         }
 
-        internal  static readonly DependencyProperty TabControlHookProperty =
+        internal static readonly DependencyProperty TabControlHookProperty =
             DependencyProperty.RegisterAttached("TabControlHook", typeof(bool), typeof(TabControlHelper), new PropertyMetadata(OnTabControlHookChanged));
 
         private static void OnTabControlHookChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

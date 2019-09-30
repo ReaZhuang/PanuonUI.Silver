@@ -6,8 +6,8 @@
         <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Resources/Resource.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Themes/ScrollViewer.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Resources/Converter.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Panuon.UI.Silver;component/Themes/ComboBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    <converter:Add5Converter x:Key="Add5Converter" />
 
     <Style TargetType="{x:Type DataGrid}">
         <Setter Property="local:DataGridHelper.DataGridHook"
@@ -451,4 +451,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+
 </ResourceDictionary>

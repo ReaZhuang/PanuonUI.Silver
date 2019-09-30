@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
+﻿using Panuon.UI.Silver.Core;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Panuon.UI.Silver
 {
@@ -20,6 +10,7 @@ namespace Panuon.UI.Silver
     /// </summary>
     public partial class ColorPicker : ContentControl
     {
+        #region Constructor
         public ColorPicker()
         {
             InitializeComponent();
@@ -35,17 +26,18 @@ namespace Panuon.UI.Silver
                 UpdateText();
             };
         }
+        #endregion
 
         #region RoutedEvent
-        public static readonly RoutedEvent SelectedBrushChangedEvent = EventManager.RegisterRoutedEvent("SelectedBrushChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ColorPicker));
-        public event RoutedEventHandler SelectedBrushChanged
+        public static readonly RoutedEvent SelectedBrushChangedEvent = EventManager.RegisterRoutedEvent("SelectedBrushChanged", RoutingStrategy.Bubble, typeof(SelectedBrushChangedEventHandler), typeof(ColorPicker));
+        public event SelectedBrushChangedEventHandler SelectedBrushChanged
         {
             add { AddHandler(SelectedBrushChangedEvent, value); }
             remove { RemoveHandler(SelectedBrushChangedEvent, value); }
         }
-        void RaiseSelectedBrushChanged()
+        void RaiseSelectedBrushChanged(Brush brush)
         {
-            var arg = new RoutedEventArgs(SelectedBrushChangedEvent);
+            var arg = new SelectedBrushChangedEventArgs(brush, SelectedBrushChangedEvent);
             RaiseEvent(arg);
         }
         #endregion
@@ -91,7 +83,7 @@ namespace Panuon.UI.Silver
         {
             var picker = d as ColorPicker;
             picker.UpdateText();
-            picker.RaiseSelectedBrushChanged();
+            picker.RaiseSelectedBrushChanged(picker.SelectedBrush);
         }
 
         /// <summary>

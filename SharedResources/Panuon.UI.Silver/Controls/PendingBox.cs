@@ -1,9 +1,6 @@
-﻿using Panuon.UI.Silver.Controls.Internal;
-using Panuon.UI.Silver.Core;
+﻿using Panuon.UI.Silver.Core;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace Panuon.UI.Silver
@@ -24,17 +21,17 @@ namespace Panuon.UI.Silver
         #region Show API
         public static IPendingHandler Show(string message, string title = null)
         {
-            return CallPendingBox(null, message, title, new PendingBoxConfigurations());
+            return CallPendingBox(null, message, title, false, new PendingBoxConfigurations());
         }
 
         public static IPendingHandler Show(string message, string title = null, bool cancelable = false)
         {
-            return CallPendingBox(null, message, title,  new PendingBoxConfigurations());
+            return CallPendingBox(null, message, title, cancelable, new PendingBoxConfigurations());
         }
 
         public static IPendingHandler Show(string message, string title = null, bool cancelable = false, Window owner = null)
         {
-            return CallPendingBox(owner, message, title, new PendingBoxConfigurations());
+            return CallPendingBox(owner, message, title, cancelable, new PendingBoxConfigurations());
         }
 
 
@@ -52,7 +49,7 @@ namespace Panuon.UI.Silver
                 pendingBoxConfigurations = PendingBoxConfigurations[configKey];
             }
 
-            return CallPendingBox(owner, message, title, pendingBoxConfigurations);
+            return CallPendingBox(owner, message, title, cancelable, pendingBoxConfigurations);
         }
 
         public static IPendingHandler Show(string message, string title = null, bool cancelable = false, Window owner = null, PendingBoxConfigurations configurations = null)
@@ -60,14 +57,14 @@ namespace Panuon.UI.Silver
             if (configurations == null)
                 configurations = new PendingBoxConfigurations();
 
-            return CallPendingBox(owner, message, title, configurations);
+            return CallPendingBox(owner, message, title, cancelable, configurations);
         }
         #endregion
 
         #region Function
-        private static IPendingHandler CallPendingBox(Window owner, string message, string title, PendingBoxConfigurations configurations)
+        private static IPendingHandler CallPendingBox(Window owner, string message, string title, bool cancelable, PendingBoxConfigurations configurations)
         {
-            var msb = new Controls.Internal.PendingBox(owner, message, title, configurations);
+            var msb = new Controls.Internal.PendingBox(owner, message, title, cancelable, configurations);
             var handler = new PendingHandler(() =>
             {
                 msb.ForceClose();

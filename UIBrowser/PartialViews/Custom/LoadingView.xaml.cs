@@ -99,7 +99,7 @@ namespace UIBrowser.PartialViews.Custom
             Clipboard.SetText(TbCode.Text);
         }
 
-        
+
 
         private void ChbIsRunning_CheckChanged(object sender, RoutedEventArgs e)
         {

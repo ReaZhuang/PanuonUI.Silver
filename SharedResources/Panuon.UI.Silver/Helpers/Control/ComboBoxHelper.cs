@@ -102,7 +102,7 @@ namespace Panuon.UI.Silver
         #region Icon
         public static object GetIcon(DependencyObject obj)
         {
-            return (object)obj.GetValue(IconProperty);
+            return obj.GetValue(IconProperty);
         }
 
         public static void SetIcon(DependencyObject obj, object value)
@@ -219,7 +219,7 @@ namespace Panuon.UI.Silver
         #region Header
         public static object GetHeader(DependencyObject obj)
         {
-            return (object)obj.GetValue(HeaderProperty);
+            return obj.GetValue(HeaderProperty);
         }
 
         public static void SetHeader(DependencyObject obj, object value)
@@ -249,7 +249,7 @@ namespace Panuon.UI.Silver
         #region BindToEnum
         public static object GetBindToEnum(DependencyObject obj)
         {
-            return (object)obj.GetValue(BindToEnumProperty);
+            return obj.GetValue(BindToEnumProperty);
         }
 
         public static void SetBindToEnum(DependencyObject obj, Enum value)
@@ -284,7 +284,8 @@ namespace Panuon.UI.Silver
                         var descriptions = field.GetCustomAttributes(typeof(DescriptionAttribute), true) as DescriptionAttribute[];
                         if (descriptions.Length > 0)
                         {
-                            enumList.Add(new {
+                            enumList.Add(new
+                            {
                                 Name = descriptions[0].Description,
                                 Enum = item,
                             });
