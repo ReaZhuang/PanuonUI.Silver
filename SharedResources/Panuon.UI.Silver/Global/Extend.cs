@@ -125,6 +125,12 @@ namespace Panuon.UI.Silver
             }
             return lcb;
         }
+
+        public static bool IsEqual(this Color thisColor, Color color)
+        {
+            return thisColor.A == color.A && thisColor.R == color.R && thisColor.G == color.G
+                && thisColor.B == color.B;
+        }
         #endregion
 
         #region List

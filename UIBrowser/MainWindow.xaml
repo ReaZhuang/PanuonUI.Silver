@@ -11,8 +11,7 @@
             Height="700"
             Width="1200"
             WindowStartupLocation="CenterScreen"
-            Closing="WindowX_Closing"
-            DisableForceClosing="True">
+            Closing="WindowX_Closing">
     <pu:WindowXCaption.ExtendControl>
         <Button Content="&#xf09b;"
                 FontFamily="{StaticResource FontAwesome}"

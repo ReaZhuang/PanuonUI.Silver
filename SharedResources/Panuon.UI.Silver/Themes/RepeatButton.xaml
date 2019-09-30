@@ -80,7 +80,7 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <local:Loading x:Name="Loading"
-                                                   Stroke="{TemplateBinding Foreground}"
+                                                   Foreground="{TemplateBinding Foreground}"
                                                    Width="20"
                                                    Height="20" />
                                     <ContentPresenter Grid.Column="1"
@@ -236,7 +236,7 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <local:Loading x:Name="Loading"
-                                                   Stroke="{TemplateBinding Foreground}"
+                                                   Foreground="{TemplateBinding Foreground}"
                                                    Width="20"
                                                    Height="20" />
                                     <ContentPresenter Grid.Column="1"
@@ -443,7 +443,7 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <local:Loading x:Name="Loading"
-                                                   Stroke="{TemplateBinding Foreground}"
+                                                   Foreground="{TemplateBinding Foreground}"
                                                    Width="20"
                                                    Height="20" />
                                     <ContentPresenter Grid.Column="1"
@@ -608,7 +608,7 @@
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
                                         <local:Loading x:Name="Loading"
-                                                       Stroke="{TemplateBinding Foreground}"
+                                                       Foreground="{TemplateBinding Foreground}"
                                                        Width="20"
                                                        Height="20" />
                                         <ContentPresenter Grid.Column="1"

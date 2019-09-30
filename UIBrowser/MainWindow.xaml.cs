@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -72,6 +73,14 @@ namespace UIBrowser
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            var handler = PendingBox.Show("Please wait...", "Processing", false, Application.Current.MainWindow);
+            handler.Canceled += delegate
+            {
+                handler.Close();
+            };
+
+            await Task.Delay(1000);
+            handler.UpdateMessage("Almost completed...");
         }
     }
 }

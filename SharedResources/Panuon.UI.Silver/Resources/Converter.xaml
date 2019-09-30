@@ -44,7 +44,7 @@
     <converter:MultiSelectorIsCheckedConverter x:Key="MultiSelectorIsCheckedConverter" />
     <converter:DropDownBorderPathConverter x:Key="DropDownBorderPathConverter" />
     <converter:RingProgressBarConverter x:Key="RingProgressBarConverter" />
-    <converter:LoadingStrokeThicknessConverter x:Key="LoadingStrokeThicknessConverter" />
+    <converter:LoadingBackgroundThicknessConverter x:Key="LoadingBackgroundThicknessConverter" />
     <converter:LoadingLineYConverter x:Key="LoadingLineYConverter" />
     <converter:LoadingClassicMarginConverter x:Key="LoadingClassicMarginConverter" />
     <converter:LoadingClassicEllipseSizeConverter x:Key="LoadingClassicEllipseSizeConverter" />

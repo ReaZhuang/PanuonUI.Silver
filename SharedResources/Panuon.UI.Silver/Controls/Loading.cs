@@ -15,24 +15,6 @@ namespace Panuon.UI.Silver
         #endregion
 
         #region Property
-        public Brush Stroke
-        {
-            get { return (Brush)GetValue(StrokeProperty); }
-            set { SetValue(StrokeProperty, value); }
-        }
-
-        public static readonly DependencyProperty StrokeProperty =
-            DependencyProperty.Register("Stroke", typeof(Brush), typeof(Loading));
-
-        public Brush StrokeCover
-        {
-            get { return (Brush)GetValue(StrokeCoverProperty); }
-            set { SetValue(StrokeCoverProperty, value); }
-        }
-
-        public static readonly DependencyProperty StrokeCoverProperty =
-            DependencyProperty.Register("StrokeCover", typeof(Brush), typeof(Loading));
-
         /// <summary>
         /// 获取或设置加载控件的状态。默认为False。
         /// </summary>

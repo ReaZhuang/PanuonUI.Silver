@@ -4,29 +4,29 @@ using System.Text;
 
 namespace Panuon.UI.Silver.Core
 {
-    public interface ILoadingHandler
+    public interface IPendingHandler
     {
         event EventHandler Closed;
 
-        void Close();
-    }
-
-    public interface ICancelableLoadingHandler : ILoadingHandler
-    {
         event EventHandler Canceled;
+
+        void Close();
+
+        void UpdateMessage(string message);
     }
 
-
-    internal class LoadingHandler : ICancelableLoadingHandler
+    internal class PendingHandler : IPendingHandler
     {
         #region Identifier
         private Action _closeAction;
+        private Action<string> _updateMessageAction;
         #endregion
 
         #region Constructor
-        public LoadingHandler(Action closeAction)
+        public PendingHandler(Action closeAction, Action<string> updateMessageAction)
         {
             _closeAction = closeAction;
+            _updateMessageAction = updateMessageAction;
         }
         #endregion
 
@@ -49,6 +49,11 @@ namespace Panuon.UI.Silver.Core
         public void RaiseCanceledEvent(object sender, EventArgs e)
         {
             Canceled?.Invoke(sender, e);
+        }
+
+        public void UpdateMessage(string message)
+        {
+            _updateMessageAction(message);
         }
         #endregion
 
