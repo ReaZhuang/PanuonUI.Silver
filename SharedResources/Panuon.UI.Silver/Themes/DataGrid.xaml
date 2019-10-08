@@ -31,9 +31,9 @@
         <Setter Property="VerticalGridLinesBrush"
                 Value="LightGray" />
         <Setter Property="local:DataGridHelper.CellPadding"
-                Value="15,0" />
+                Value="10,0" />
         <Setter Property="local:DataGridHelper.HeaderPadding"
-                Value="15,0" />
+                Value="10,0" />
         <Setter Property="local:DataGridHelper.RowMinHeight"
                 Value="35" />
         <Setter Property="local:DataGridHelper.HeaderMinHeight"
@@ -231,39 +231,96 @@
                                     Property="Opacity"
                                     Value="1"></Setter>
                         </Trigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(local:DataGridHelper.ColumnHorizontalContentAlignment),RelativeSource={RelativeSource AncestorType=DataGrid},Mode=OneWay,Converter={StaticResource NotAlignmentCenterConverter}}"
+                                           Value="False" />
+                                <Condition Binding="{Binding SortDirection,RelativeSource={RelativeSource Self}}"
+                                           Value="{x:Null}"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="PathAsc"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                            <Setter TargetName="PathDesc"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(local:DataGridHelper.ColumnHorizontalContentAlignment),RelativeSource={RelativeSource AncestorType=DataGrid},Mode=OneWay,Converter={StaticResource NotAlignmentCenterConverter}}"
+                                           Value="False" />
+                                <Condition Binding="{Binding SortDirection,RelativeSource={RelativeSource Self}}"
+                                           Value="Descending" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="PathAsc"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                            <Setter TargetName="PathDesc"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(local:DataGridHelper.ColumnHorizontalContentAlignment),RelativeSource={RelativeSource AncestorType=DataGrid},Mode=OneWay,Converter={StaticResource NotAlignmentCenterConverter}}"
+                                           Value="False" />
+                                <Condition Binding="{Binding SortDirection,RelativeSource={RelativeSource Self}}"
+                                           Value="Ascending" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter TargetName="PathAsc"
+                                    Property="Visibility"
+                                    Value="Visible" />
+                            <Setter TargetName="PathDesc"
+                                    Property="Visibility"
+                                    Value="Collapsed" />
+                        </MultiDataTrigger>
                         <DataTrigger Binding="{Binding CanUserSortColumns,RelativeSource={RelativeSource AncestorType=DataGrid},Mode=OneWay}"
                                      Value="False">
                             <Setter TargetName="GrdSort"
                                     Property="Visibility"
                                     Value="Collapsed" />
                         </DataTrigger>
-                        <Trigger Property="SortDirection"
-                                 Value="{x:Null}">
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(local:DataGridHelper.ColumnHorizontalContentAlignment),RelativeSource={RelativeSource AncestorType=DataGrid},Mode=OneWay,Converter={StaticResource NotAlignmentCenterConverter}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding SortDirection,RelativeSource={RelativeSource Self}}"
+                                           Value="{x:Null}" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="PathAsc"
                                     Property="Visibility"
                                     Value="Hidden" />
                             <Setter TargetName="PathDesc"
                                     Property="Visibility"
                                     Value="Hidden" />
-                        </Trigger>
-                        <Trigger Property="SortDirection"
-                                 Value="Descending">
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(local:DataGridHelper.ColumnHorizontalContentAlignment),RelativeSource={RelativeSource AncestorType=DataGrid},Mode=OneWay,Converter={StaticResource NotAlignmentCenterConverter}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding SortDirection,RelativeSource={RelativeSource Self}}"
+                                           Value="Descending" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="PathAsc"
                                     Property="Visibility"
                                     Value="Hidden" />
                             <Setter TargetName="PathDesc"
                                     Property="Visibility"
                                     Value="Visible" />
-                        </Trigger>
-                        <Trigger Property="SortDirection"
-                                 Value="Ascending">
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(local:DataGridHelper.ColumnHorizontalContentAlignment),RelativeSource={RelativeSource AncestorType=DataGrid},Mode=OneWay,Converter={StaticResource NotAlignmentCenterConverter}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding SortDirection,RelativeSource={RelativeSource Self}}"
+                                           Value="Ascending" />
+                            </MultiDataTrigger.Conditions>
                             <Setter TargetName="PathAsc"
                                     Property="Visibility"
                                     Value="Visible" />
                             <Setter TargetName="PathDesc"
                                     Property="Visibility"
                                     Value="Hidden" />
-                        </Trigger>
+                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

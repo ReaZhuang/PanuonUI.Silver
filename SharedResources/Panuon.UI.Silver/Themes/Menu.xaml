@@ -256,15 +256,31 @@
                                             Property="Effect"
                                             Value="{x:Null}" />
                                 </DataTrigger>
-                                <Trigger Property="IsCheckable"
-                                         Value="True">
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource Self},Converter={StaticResource IsNullConverter}}"
+                                                   Value="False" />
+                                        <Condition Binding="{Binding IsCheckable,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
                                     <Setter TargetName="ChbCheckable"
                                             Property="Visibility"
                                             Value="Visible" />
                                     <Setter TargetName="LblIcon"
                                             Property="Visibility"
                                             Value="Collapsed" />
-                                </Trigger>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource Self},Converter={StaticResource IsNullConverter}}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding IsChecked,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="LblIcon"
+                                            Property="Content"
+                                            Value="&#xf00c;" />
+                                </MultiDataTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -359,15 +375,32 @@
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
                                 </Trigger>
-                                <Trigger Property="IsCheckable"
-                                         Value="True">
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource Self},Converter={StaticResource IsNullConverter}}"
+                                                   Value="False" />
+                                        <Condition Binding="{Binding IsCheckable,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
                                     <Setter TargetName="ChbCheckable"
                                             Property="Visibility"
                                             Value="Visible" />
                                     <Setter TargetName="LblIcon"
                                             Property="Visibility"
                                             Value="Collapsed" />
-                                </Trigger>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource Self},Converter={StaticResource IsNullConverter}}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding IsChecked,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="LblIcon"
+                                            Property="Content"
+                                            Value="&#xf00c;" />
+                                </MultiDataTrigger>
+
                             </ControlTemplate.Triggers>
 
                         </ControlTemplate>
@@ -515,15 +548,32 @@
                                             Property="Effect"
                                             Value="{x:Null}" />
                                 </DataTrigger>
-                                <Trigger Property="IsCheckable"
-                                         Value="True">
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource Self},Converter={StaticResource IsNullConverter}}"
+                                                   Value="False" />
+                                        <Condition Binding="{Binding IsCheckable,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
                                     <Setter TargetName="ChbCheckable"
                                             Property="Visibility"
                                             Value="Visible" />
                                     <Setter TargetName="LblIcon"
                                             Property="Visibility"
                                             Value="Collapsed" />
-                                </Trigger>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource Self},Converter={StaticResource IsNullConverter}}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding IsChecked,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="LblIcon"
+                                            Property="Content"
+                                            Value="&#xf00c;" />
+                                </MultiDataTrigger>
+
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -621,15 +671,32 @@
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
                                 </Trigger>
-                                <Trigger Property="IsCheckable"
-                                         Value="True">
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource Self},Converter={StaticResource IsNullConverter}}"
+                                                   Value="False" />
+                                        <Condition Binding="{Binding IsCheckable,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
                                     <Setter TargetName="ChbCheckable"
                                             Property="Visibility"
                                             Value="Visible" />
                                     <Setter TargetName="LblIcon"
                                             Property="Visibility"
                                             Value="Collapsed" />
-                                </Trigger>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource Self},Converter={StaticResource IsNullConverter}}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding IsChecked,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="LblIcon"
+                                            Property="Content"
+                                            Value="&#xf00c;" />
+                                </MultiDataTrigger>
+
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -772,15 +839,32 @@
                                         </BeginStoryboard>
                                     </Trigger.ExitActions>
                                 </Trigger>
-                                <Trigger Property="IsCheckable"
-                                         Value="True">
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource Self},Converter={StaticResource IsNullConverter}}"
+                                                   Value="False" />
+                                        <Condition Binding="{Binding IsCheckable,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
                                     <Setter TargetName="ChbCheckable"
                                             Property="Visibility"
                                             Value="Visible" />
                                     <Setter TargetName="LblIcon"
                                             Property="Visibility"
                                             Value="Collapsed" />
-                                </Trigger>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource Self},Converter={StaticResource IsNullConverter}}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding IsChecked,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="LblIcon"
+                                            Property="Content"
+                                            Value="&#xf00c;" />
+                                </MultiDataTrigger>
+
                                 <Trigger Property="HasItems"
                                          Value="True">
                                     <Setter TargetName="Path"
@@ -835,15 +919,32 @@
                                                   Margin="{TemplateBinding Padding}" />
                             </Grid>
                             <ControlTemplate.Triggers>
-                                <Trigger Property="IsCheckable"
-                                         Value="True">
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource Self},Converter={StaticResource IsNullConverter}}"
+                                                   Value="False" />
+                                        <Condition Binding="{Binding IsCheckable,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
                                     <Setter TargetName="ChbCheckable"
                                             Property="Visibility"
                                             Value="Visible" />
                                     <Setter TargetName="LblIcon"
                                             Property="Visibility"
                                             Value="Collapsed" />
-                                </Trigger>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource Self},Converter={StaticResource IsNullConverter}}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding IsChecked,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="LblIcon"
+                                            Property="Content"
+                                            Value="&#xf00c;" />
+                                </MultiDataTrigger>
+
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}"
@@ -941,15 +1042,32 @@
                                 </Popup>
                             </Grid>
                             <ControlTemplate.Triggers>
-                                <Trigger Property="IsCheckable"
-                                         Value="True">
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource Self},Converter={StaticResource IsNullConverter}}"
+                                                   Value="False" />
+                                        <Condition Binding="{Binding IsCheckable,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
                                     <Setter TargetName="ChbCheckable"
                                             Property="Visibility"
                                             Value="Visible" />
                                     <Setter TargetName="LblIcon"
                                             Property="Visibility"
                                             Value="Collapsed" />
-                                </Trigger>
+                                </MultiDataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(local:MenuHelper.CheckableCheckboxStyle),RelativeSource={RelativeSource Self},Converter={StaticResource IsNullConverter}}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding IsChecked,RelativeSource={RelativeSource Self}}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter TargetName="LblIcon"
+                                            Property="Content"
+                                            Value="&#xf00c;" />
+                                </MultiDataTrigger>
+
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
                                         <Condition Binding="{Binding IsMouseOver,RelativeSource={RelativeSource Self}}"

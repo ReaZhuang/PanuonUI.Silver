@@ -110,20 +110,18 @@
                                        Text="{Binding Message,ElementName=box}"
                                        VerticalAlignment="Center" />
                         </Grid>
-                      
                     </Grid>
                     <Button Grid.Row="2"
-                            Height="35"
-                            Background="Transparent"
+                            Height="32"
+                            Foreground="White"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Bottom"
                             BorderThickness="0"
-                            pu:ButtonHelper.ButtonStyle="Link"
-                            Foreground="{Binding Foreground,ElementName=box}"
-                            pu:ButtonHelper.HoverBrush="{Binding ButtonBrush,ElementName=box}"
+                            Background="{Binding ButtonBrush,ElementName=box}"
+                            pu:ButtonHelper.HoverBrush="#22FFFFFF"
                             pu:ButtonHelper.CornerRadius="5"
                             Padding="20,0"
-                            Margin="0,20,0,0"
+                            Margin="0,20,10,5"
                             Visibility="{Binding Cancelable,ElementName=box,Converter={StaticResource BoolToVisibleConverter}}"
                             Content="{Binding CancelButton,ElementName=box}"
                             Click="BtnCancel_Click" />

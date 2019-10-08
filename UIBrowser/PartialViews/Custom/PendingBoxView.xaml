@@ -12,15 +12,18 @@
     <Grid>
         <Rectangle x:Name="RectBackground" />
         <GroupBox VerticalAlignment="Center"
-                  Header="WindowX Examples"
+                  Header="PendingBox Examples"
                   Width="400"
                   Background="White"
                   pu:GroupBoxHelper.Effect="{DynamicResource DropShadow}">
-            <ScrollViewer Margin="0,20"
+            
+            <ScrollViewer Margin="0,0,0,20"
                           MaxHeight="300"
                           VerticalScrollBarVisibility="Auto"
                           HorizontalScrollBarVisibility="Disabled">
                 <StackPanel>
+                    <TextBlock Text="ULBrowser/PartialViews/Custom/PendingBoxView.xaml"
+                               Margin="0,0,0,20" />
                     <Button Content="Standard"
                             Height="30"
                             HorizontalAlignment="Left"

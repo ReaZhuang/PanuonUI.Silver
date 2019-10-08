@@ -12,7 +12,7 @@
     <Grid>
         <Rectangle x:Name="RectBackground" />
         <GroupBox VerticalAlignment="Center"
-                  Header="WindowX Examples"
+                  Header="MessageBoxX Examples"
                   Width="400"
                   Background="White"
                   pu:GroupBoxHelper.Effect="{DynamicResource DropShadow}">

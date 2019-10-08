@@ -50,7 +50,7 @@
         <Setter Property="local:IconHelper.Foreground"
                 Value="{Binding Foreground,RelativeSource={RelativeSource Self},Mode=OneWay}" />
         <Setter Property="local:IconHelper.Width"
-                Value="{Binding Path=(local:TreeViewHelper.ItemHeight),RelativeSource={RelativeSource Self},Mode=OneWay}" />
+                Value="NaN" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TreeView">
@@ -126,6 +126,8 @@
                 Value="{Binding Path=(local:IconHelper.FontSize),RelativeSource={RelativeSource AncestorType=TreeView},Mode=OneWay}" />
         <Setter Property="local:IconHelper.FontFamily"
                 Value="{Binding Path=(local:IconHelper.FontFamily),RelativeSource={RelativeSource AncestorType=TreeView},Mode=OneWay}" />
+        <Setter Property="local:TreeViewHelper.ItemHeight"
+                Value="{Binding Path=(local:TreeViewHelper.ItemHeight),RelativeSource={RelativeSource AncestorType=TreeView},Mode=OneWay}" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=(local:TreeViewHelper.TreeViewStyle),RelativeSource={RelativeSource AncestorType=TreeView}, Mode=OneWay}"
                          Value="Standard">
@@ -137,11 +139,11 @@
                                     Background="{TemplateBinding Background}">
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="{Binding Path=(local:IconHelper.Width),RelativeSource={RelativeSource AncestorType=TreeViewItem},Mode=OneWay,Converter={StaticResource GridLengthConverter}}" />
+                                        <RowDefinition Height="{Binding Path=(local:TreeViewHelper.ItemHeight),RelativeSource={RelativeSource AncestorType=TreeViewItem},Mode=OneWay,Converter={StaticResource GridLengthConverter}}" />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="{Binding Path=(local:IconHelper.Width),RelativeSource={RelativeSource AncestorType=TreeViewItem},Mode=OneWay,Converter={StaticResource GridLengthConverter}}" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <ToggleButton x:Name="Toggle"
@@ -283,7 +285,7 @@
                                 </Border>
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="{Binding Path=(local:TreeViewHelper.ItemHeight),RelativeSource={RelativeSource AncestorType=TreeViewItem},Mode=OneWay,Converter={StaticResource GridLengthConverter}}" />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Border x:Name="BdrSelected"
@@ -455,11 +457,11 @@
                             <Grid>
                                 <Border x:Name="BdrMain"
                                         BorderThickness="0"
-                                        Background="{TemplateBinding Background}">
-                                </Border>
+                                        Background="{TemplateBinding Background}" />
+
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="{Binding Path=(local:IconHelper.Width),RelativeSource={RelativeSource AncestorType=TreeViewItem},Mode=OneWay,Converter={StaticResource GridLengthConverter}}" />
+                                        <RowDefinition Height="{Binding Path=(local:TreeViewHelper.ItemHeight),RelativeSource={RelativeSource AncestorType=TreeViewItem},Mode=OneWay,Converter={StaticResource GridLengthConverter}}" />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
@@ -561,7 +563,7 @@
                                     Background="{TemplateBinding Background}">
                                 <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="{Binding Path=(local:IconHelper.Width),RelativeSource={RelativeSource AncestorType=TreeViewItem},Mode=OneWay,Converter={StaticResource GridLengthConverter}}" />
+                                        <RowDefinition Height="{Binding Path=(local:TreeViewHelper.ItemHeight),RelativeSource={RelativeSource AncestorType=TreeViewItem},Mode=OneWay,Converter={StaticResource GridLengthConverter}}" />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>

@@ -101,7 +101,7 @@ namespace UIBrowser.PartialViews.Native
             if (!IsLoaded)
                 return;
 
-            ComboBoxHelper.SetIcon(CmbCustom, ChbShowIcon.IsChecked == true ? "" : null);
+            ComboBoxHelper.SetIcon(CmbCustom, ChbShowIcon.IsChecked == true ? "\uf11c" : null);
 
             UpdateCode();
         }
@@ -136,6 +136,8 @@ namespace UIBrowser.PartialViews.Native
             {
                 item.Visibility = item.Content.ToString().Contains(value) ? Visibility.Visible : Visibility.Collapsed;
             }
+
+            UpdateCode();
         }
         #endregion
 
@@ -173,12 +175,12 @@ namespace UIBrowser.PartialViews.Native
             TbCode.Text = "<ComboBox  Height=\"30\"" +
                         $"\nWidth=\"{CmbCustom.Width}\"" +
                         (watermark == null ? "" : $"\npu:ComboBoxHelper.Watermark=\"{watermark}\"") +
-                        (icon == null ? "" : $"\npu:ComboBoxHelper.Icon=\"{icon}\"") +
+                        (icon == null ? "" : $"\npu:ComboBoxHelper.Icon=\"&#xf11c;\"") +
                         $"\npu:ComboBoxHelper.HoverBrush=\"{ComboBoxHelper.GetHoverBackground(CmbCustom).ToColor().ToHexString()}\"" +
                         $"\npu:ComboBoxHelper.SelectedBrush=\"{ComboBoxHelper.GetSelectedBackground(CmbCustom).ToColor().ToHexString()}\"" +
                         (cornerRadius == 0 ? "" : $"\npu:ComboBoxHelper.CornerRadius=\"{cornerRadius}\"") +
-                        (searchBoxVisible ? "pu:ComboBoxHelper.IsSearchTextBoxVisible=\"True\"" : "") +
-                        (searchBoxVisible ? "pu:ComboBoxHelper.SearchTextChanged=\"...\"" : "") +
+                        (searchBoxVisible ? "\npu:ComboBoxHelper.IsSearchTextBoxVisible=\"True\"" : "") +
+                        (searchBoxVisible ? "\npu:ComboBoxHelper.SearchTextChanged=\"...\"" : "") +
                         " />";
         }
         #endregion

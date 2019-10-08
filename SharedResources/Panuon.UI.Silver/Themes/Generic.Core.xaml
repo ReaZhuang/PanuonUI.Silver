@@ -289,7 +289,6 @@
         </Setter>
     </Style>
 
-
     <Style TargetType="{x:Type local:Loading}">
         <Setter Property="SnapsToDevicePixels"
                 Value="{StaticResource Default_SnapsToDevicePixels}" />

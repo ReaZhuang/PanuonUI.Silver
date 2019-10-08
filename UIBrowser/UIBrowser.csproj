@@ -42,7 +42,7 @@
       <HintPath>References\Caliburn.Micro.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Windows.Shell">
-      <HintPath>..\Net40\Panuon.UI.Silver\References\Microsoft.Windows.Shell.dll</HintPath>
+      <HintPath>..\Output\Net40\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -345,7 +345,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Net45\Panuon.UI.Silver\Panuon.UI.Silver.csproj">
-      <Project>{461FE59D-57B8-4599-8E7D-439E27A2BBB2}</Project>
+      <Project>{461fe59d-57b8-4599-8e7d-439e27a2bbb2}</Project>
       <Name>Panuon.UI.Silver</Name>
     </ProjectReference>
   </ItemGroup>

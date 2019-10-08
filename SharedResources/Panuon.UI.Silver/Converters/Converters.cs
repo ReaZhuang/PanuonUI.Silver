@@ -140,4 +140,30 @@ namespace Panuon.UI.Silver.Converters
         }
     }
     #endregion
+
+    #region NotAlignmentCenter
+    internal class NotAlignmentCenterConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is HorizontalAlignment)
+            {
+                var alignment = (HorizontalAlignment)value;
+                return alignment != HorizontalAlignment.Center;
+            }
+            else if (value is VerticalAlignment)
+            {
+                var alignment = (VerticalAlignment)value;
+                return alignment != VerticalAlignment.Center;
+            }
+            else
+                return true;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return DependencyProperty.UnsetValue;
+        }
+    }
+    #endregion
 }

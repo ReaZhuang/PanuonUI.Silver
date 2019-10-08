@@ -56,4 +56,5 @@
     <converter:MsbCheckIconVisibilityConverter x:Key="MsbCheckIconVisibilityConverter" />
     <converter:MsbCheckIconWidthConverter x:Key="MsbCheckIconWidthConverter" />
     <converter:NullableColorToColoConverter x:Key="NullableColorToColoConverter" />
+    <converter:NotAlignmentCenterConverter x:Key="NotAlignmentCenterConverter" />
 </ResourceDictionary>

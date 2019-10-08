@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 
 namespace UIBrowser
@@ -15,6 +16,7 @@ namespace UIBrowser
     {
         public App()
         {
+            Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
             //System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         }
     }

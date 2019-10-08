@@ -21,17 +21,17 @@
         <Setter Property="MaxDropDownHeight"
                 Value="250" />
         <Setter Property="Foreground"
-                Value="#3E3E3E"></Setter>
+                Value="#3E3E3E" />
         <Setter Property="Background"
-                Value="White"></Setter>
+                Value="White" />
         <Setter Property="BorderBrush"
-                Value="LightGray"></Setter>
+                Value="LightGray" />
         <Setter Property="BorderThickness"
                 Value="1"></Setter>
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
         <Setter Property="Padding"
-                Value="5,0,25,0"></Setter>
+                Value="5,0,25,0" />
         <Setter Property="local:ComboBoxHelper.ShadowColor"
                 Value="#888888" />
         <Setter Property="local:ComboBoxHelper.ItemHeight"
@@ -51,11 +51,11 @@
         <Setter Property="MaxDropDownHeight"
                 Value="150" />
         <Setter Property="local:IconHelper.FontSize"
-                Value="{Binding FontSize, Converter={StaticResource Add3Converter}}" />
+                Value="{Binding FontSize, Converter={StaticResource Add3Converter},RelativeSource={RelativeSource Self},Mode=OneWay}" />
         <Setter Property="local:IconHelper.Foreground"
-                Value="{Binding Foreground}" />
+                Value="{Binding Foreground,RelativeSource={RelativeSource Self},Mode=OneWay}" />
         <Setter Property="local:IconHelper.FontFamily"
-                Value="/Panuon.UI.Silver;component/Resources/#fontawesome" />
+                Value="{StaticResource FontAwesome}" />
         <Setter Property="local:ScrollViewerHelper.ScrollBarThickness"
                 Value="6" />
         <Setter Property="local:ScrollViewerHelper.ScrollBarCornerRadius"
