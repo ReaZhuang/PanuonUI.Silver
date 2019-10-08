@@ -1985,6 +1985,8 @@
                                                              RelativeSource="{RelativeSource AncestorType=local:DropDown}" />
                                                     <Binding Path="CornerRadius"
                                                              RelativeSource="{RelativeSource AncestorType=local:DropDown}" />
+                                                    <Binding Path="IsAngleVisible"
+                                                             RelativeSource="{RelativeSource AncestorType=local:DropDown}" />
                                                 </MultiBinding>
                                             </Path.Data>
                                             <Path.Effect>

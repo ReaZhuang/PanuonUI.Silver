@@ -175,18 +175,6 @@ namespace Panuon.UI.Silver
             var picker = d as ColorPicker;
             picker.ColorSelector.Height = 340 - (picker.IsMeasuredValueVisible ? 0 : 50) - (picker.IsDefaultColorPanelVisible ? 0 : 70);
         }
-
-        /// <summary>
-        /// Gets or sets stays open.
-        /// </summary>
-        public bool StaysOpen
-        {
-            get { return (bool)GetValue(StaysOpenProperty); }
-            set { SetValue(StaysOpenProperty, value); }
-        }
-
-        public static readonly DependencyProperty StaysOpenProperty =
-            DependencyProperty.Register("StaysOpen", typeof(bool), typeof(MultiSelector));
         #endregion
 
         #region Function

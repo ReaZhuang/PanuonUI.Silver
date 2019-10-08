@@ -111,7 +111,7 @@
                                     Minimum="0"
                                     Maximum="100"
                                     IsSnapToTickEnabled="True"
-                                    TickFrequency="20"
+                                    TickFrequency="10"
                                     Value="60"
                                     Margin="5,0"
                                     ValueChanged="SliderProgress_ValueChanged" />
