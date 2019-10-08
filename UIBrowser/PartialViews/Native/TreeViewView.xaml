@@ -191,6 +191,7 @@
 
                         </Grid>
                     <Button x:Name="BtnViewCode"
+                            Grid.ColumnSpan="2"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
                             pu:ButtonHelper.ButtonStyle="Link"

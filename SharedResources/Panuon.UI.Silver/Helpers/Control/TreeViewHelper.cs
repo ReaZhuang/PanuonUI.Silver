@@ -181,19 +181,19 @@ namespace Panuon.UI.Silver
             DependencyProperty.RegisterAttached("ExpandedBrush", typeof(Brush), typeof(TreeViewHelper));
         #endregion
 
-        #region SelectedBrush
-        public static Brush GetSelectedBrush(DependencyObject obj)
+        #region SelectedBackground
+        public static Brush GetSelectedBackground(DependencyObject obj)
         {
-            return (Brush)obj.GetValue(SelectedBrushProperty);
+            return (Brush)obj.GetValue(SelectedBackgroundProperty);
         }
 
-        public static void SetSelectedBrush(DependencyObject obj, Brush value)
+        public static void SetSelectedBackground(DependencyObject obj, Brush value)
         {
-            obj.SetValue(SelectedBrushProperty, value);
+            obj.SetValue(SelectedBackgroundProperty, value);
         }
 
-        public static readonly DependencyProperty SelectedBrushProperty =
-            DependencyProperty.RegisterAttached("SelectedBrush", typeof(Brush), typeof(TreeViewHelper));
+        public static readonly DependencyProperty SelectedBackgroundProperty =
+            DependencyProperty.RegisterAttached("SelectedBackground", typeof(Brush), typeof(TreeViewHelper));
         #endregion
 
         #region SelectedForeground

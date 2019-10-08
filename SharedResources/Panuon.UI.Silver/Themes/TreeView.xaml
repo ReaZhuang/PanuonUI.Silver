@@ -23,7 +23,7 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="local:TreeViewHelper.ItemHeight"
                 Value="40" />
-        <Setter Property="local:TreeViewHelper.SelectedBrush"
+        <Setter Property="local:TreeViewHelper.SelectedBackground"
                 Value="#888888" />
         <Setter Property="BorderBrush"
                 Value="Transparent" />
@@ -75,7 +75,7 @@
                          Value="Classic">
                 <Setter Property="Padding"
                         Value="10,0,0,0" />
-                <Setter Property="local:TreeViewHelper.SelectedBrush"
+                <Setter Property="local:TreeViewHelper.SelectedBackground"
                         Value="#DDDDDD" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Path=(local:TreeViewHelper.TreeViewStyle),RelativeSource={RelativeSource Self}, Mode=OneWay}"
@@ -84,7 +84,7 @@
                         Value="#3E3E3E" />
                 <Setter Property="Padding"
                         Value="10,0,0,0" />
-                <Setter Property="local:TreeViewHelper.SelectedBrush"
+                <Setter Property="local:TreeViewHelper.SelectedBackground"
                         Value="#DDDDDD" />
             </DataTrigger>
             <Trigger Property="IsEnabled"
@@ -259,7 +259,7 @@
                                 <Trigger Property="IsSelected"
                                          Value="True">
                                     <Setter Property="Foreground"
-                                            Value="{Binding Path=(local:TreeViewHelper.SelectedBrush),RelativeSource={RelativeSource  AncestorType=TreeView},Mode=OneWay}" />
+                                            Value="{Binding Path=(local:TreeViewHelper.SelectedBackground),RelativeSource={RelativeSource  AncestorType=TreeView},Mode=OneWay}" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -281,7 +281,7 @@
                                         Opacity="0"
                                         BorderBrush="Transparent"
                                         BorderThickness="{TemplateBinding BorderThickness}"
-                                        Background="{Binding Path=(local:TreeViewHelper.SelectedBrush),RelativeSource={RelativeSource AncestorType=TreeView}, Mode=OneWay}">
+                                        Background="{Binding Path=(local:TreeViewHelper.SelectedBackground),RelativeSource={RelativeSource AncestorType=TreeView}, Mode=OneWay}">
                                 </Border>
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -292,7 +292,7 @@
                                             Visibility="Collapsed"
                                             BorderBrush="Transparent"
                                             BorderThickness="{TemplateBinding BorderThickness}"
-                                            Background="{Binding Path=(local:TreeViewHelper.SelectedBrush),RelativeSource={RelativeSource AncestorType=TreeView}, Mode=OneWay}">
+                                            Background="{Binding Path=(local:TreeViewHelper.SelectedBackground),RelativeSource={RelativeSource AncestorType=TreeView}, Mode=OneWay}">
                                     </Border>
                                     <Grid x:Name="GrdContent"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -472,7 +472,7 @@
                                             Visibility="Collapsed"
                                             BorderBrush="Transparent"
                                             BorderThickness="{TemplateBinding BorderThickness}"
-                                            Background="{Binding Path=(local:TreeViewHelper.SelectedBrush),RelativeSource={RelativeSource AncestorType=TreeView}, Mode=OneWay}"
+                                            Background="{Binding Path=(local:TreeViewHelper.SelectedBackground),RelativeSource={RelativeSource AncestorType=TreeView}, Mode=OneWay}"
                                             Grid.ColumnSpan="2">
                                     </Border>
                                     <Rectangle x:Name="Rect"
@@ -687,13 +687,12 @@
                                 <Trigger Property="IsSelected"
                                          Value="True">
                                     <Setter Property="Foreground"
-                                            Value="{Binding Path=(local:TreeViewHelper.SelectedBrush),RelativeSource={RelativeSource  AncestorType=TreeView},Mode=OneWay}" />
+                                            Value="{Binding Path=(local:TreeViewHelper.SelectedBackground),RelativeSource={RelativeSource  AncestorType=TreeView},Mode=OneWay}" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-
             </DataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>

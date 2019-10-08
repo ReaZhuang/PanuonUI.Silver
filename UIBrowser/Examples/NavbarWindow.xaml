@@ -149,7 +149,7 @@
                           Background="Transparent"
                           pu:TreeViewHelper.ItemHeight="40"
                           pu:TreeViewHelper.TreeViewStyle="Modern"
-                          pu:TreeViewHelper.SelectedBrush="#22FFFFFF"
+                          pu:TreeViewHelper.SelectedBackground="#22FFFFFF"
                           BorderBrush="White"
                           Foreground="#AAFFFFFF">
                     <TreeViewItem Header="Home"

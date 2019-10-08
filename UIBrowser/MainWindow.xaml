@@ -10,8 +10,6 @@
             Title="UIBrowser"
             Height="700"
             Width="1200"
-            MaxWidth="1300"
-            MaxHeight="900"
             WindowStartupLocation="CenterScreen"
             Closing="WindowX_Closing">
     <pu:WindowXCaption.ExtendControl>
@@ -46,7 +44,7 @@
                     Click="BtnClear_Click" />
             <TreeView x:Name="TvMenu"
                       Grid.Row="1"
-                      pu:TreeViewHelper.SelectedBrush="#49A9C0"
+                      pu:TreeViewHelper.SelectedBackground="#49A9C0"
                       pu:TreeViewHelper.ExpandMode="SingleClick"
                       pu:TreeViewHelper.SelectMode="ChildOnly"
                       SelectedValuePath="Value"
@@ -83,6 +81,5 @@
                 Click="Button_Click"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"/>
-       
     </Grid>
 </pu:WindowX>

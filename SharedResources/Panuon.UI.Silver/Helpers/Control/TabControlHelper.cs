@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Panuon.UI.Silver.Core;
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -102,21 +103,6 @@ namespace Panuon.UI.Silver
             DependencyProperty.RegisterAttached("CanRemove", typeof(bool), typeof(TabControlHelper));
         #endregion
 
-        #region DisableSideButton
-        public static bool GetDisableSideButton(DependencyObject obj)
-        {
-            return (bool)obj.GetValue(DisableSideButtonProperty);
-        }
-
-        public static void SetDisableSideButton(DependencyObject obj, bool value)
-        {
-            obj.SetValue(DisableSideButtonProperty, value);
-        }
-
-        public static readonly DependencyProperty DisableSideButtonProperty =
-            DependencyProperty.RegisterAttached("DisableSideButton", typeof(bool), typeof(TabControlHelper));
-        #endregion
-
         #region ItemIcon
         public static object GetItemIcon(DependencyObject obj)
         {
@@ -133,8 +119,8 @@ namespace Panuon.UI.Silver
         #endregion
 
         #region (Event) Removed
-        public static readonly RoutedEvent RemovedEvent = EventManager.RegisterRoutedEvent("Removed", RoutingStrategy.Bubble, typeof(RoutedPropertyChangedEventHandler<TabItem>), typeof(TabControlHelper));
-        public static void AddRemovedHandler(DependencyObject d, RoutedPropertyChangedEventHandler<TabItem> handler)
+        public static readonly RoutedEvent RemovedEvent = EventManager.RegisterRoutedEvent("Removed", RoutingStrategy.Bubble, typeof(TabItemRemovedEventHandler), typeof(TabControlHelper));
+        public static void AddRemovedHandler(DependencyObject d, TabItemRemovedEventHandler handler)
         {
             UIElement uie = d as UIElement;
             if (uie != null)
@@ -142,7 +128,7 @@ namespace Panuon.UI.Silver
                 uie.AddHandler(RemovedEvent, handler);
             }
         }
-        public static void RemoveRemovedHandler(DependencyObject d, RoutedPropertyChangedEventHandler<TabItem> handler)
+        public static void RemoveRemovedHandler(DependencyObject d, TabItemRemovedEventHandler handler)
         {
             UIElement uie = d as UIElement;
             if (uie != null)
@@ -151,9 +137,9 @@ namespace Panuon.UI.Silver
             }
         }
 
-        internal static void RaiseRemoved(UIElement uie, TabItem newValue)
+        internal static void RaiseRemoved(UIElement uie, TabItem newValue, bool removedFromSource)
         {
-            var arg = new RoutedPropertyChangedEventArgs<TabItem>(null, newValue, RemovedEvent);
+            var arg = new TabItemRemovedEventArgs(newValue, removedFromSource, RemovedEvent);
             uie.RaiseEvent(arg);
         }
         #endregion
@@ -377,7 +363,7 @@ namespace Panuon.UI.Silver
                     {
                         items.Remove(tabItem);
                     }
-                    TabControlHelper.RaiseRemoved(tabControl, tabItem);
+                    TabControlHelper.RaiseRemoved(tabControl, tabItem, items.CanRemove);
                 };
 
                 var anima2 = new DoubleAnimation()

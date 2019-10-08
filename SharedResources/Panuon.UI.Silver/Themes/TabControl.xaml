@@ -70,7 +70,6 @@
                                                  ElementName="HeaderPanel" />
                                         <Binding Path="ActualWidth"
                                                  ElementName="ScrollViewer" />
-                                       
                                     </MultiBinding>
                                 </RepeatButton.Visibility>
                             </RepeatButton>
@@ -507,6 +506,8 @@
                                                       HorizontalAlignment="Center" />
                                     <Button x:Name="BtnRemove"
                                             local:ButtonHelper.ButtonStyle="Link"
+                                            Foreground="{TemplateBinding Foreground}"
+                                            local:ButtonHelper.HoverBrush="#44FFFFFF"
                                             Visibility="Collapsed"
                                             Grid.Column="2"
                                             Content="×"
@@ -592,6 +593,9 @@
                                     <Setter TargetName="Presenter"
                                             Property="TextBlock.Foreground"
                                             Value="{Binding Path=(local:TabControlHelper.SelectedForeground),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}" />
+                                    <Setter TargetName="BtnRemove"
+                                            Property="Foreground"
+                                            Value="{Binding Path=(local:TabControlHelper.SelectedForeground),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}" />
                                 </Trigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
@@ -653,6 +657,8 @@
                                                       HorizontalAlignment="Center" />
                                     <Button x:Name="BtnRemove"
                                             local:ButtonHelper.ButtonStyle="Link"
+                                            Foreground="{TemplateBinding Foreground}"
+                                            local:ButtonHelper.HoverBrush="#44FFFFFF"
                                             Visibility="Collapsed"
                                             Grid.Column="2"
                                             Content="×"
@@ -728,6 +734,9 @@
                                     <Setter TargetName="Presenter"
                                             Property="TextBlock.Foreground"
                                             Value="{Binding Path=(local:TabControlHelper.SelectedForeground),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}" />
+                                    <Setter TargetName="BtnRemove"
+                                            Property="Foreground"
+                                            Value="{Binding Path=(local:TabControlHelper.SelectedForeground),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}" />
                                 </Trigger>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
@@ -790,6 +799,8 @@
                                                       HorizontalAlignment="Center" />
                                     <Button x:Name="BtnRemove"
                                             local:ButtonHelper.ButtonStyle="Link"
+                                            Foreground="{TemplateBinding Foreground}"
+                                            local:ButtonHelper.HoverBrush="#44FFFFFF"
                                             Visibility="Collapsed"
                                             Grid.Column="2"
                                             Content="×"
@@ -819,6 +830,9 @@
                                          Value="True">
                                     <Setter TargetName="Presenter"
                                             Property="TextBlock.Foreground"
+                                            Value="{Binding Path=(local:TabControlHelper.SelectedForeground),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}" />
+                                    <Setter TargetName="BtnRemove"
+                                            Property="Foreground"
                                             Value="{Binding Path=(local:TabControlHelper.SelectedForeground),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}" />
                                 </Trigger>
                                 <MultiDataTrigger>

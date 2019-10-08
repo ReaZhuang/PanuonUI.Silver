@@ -308,7 +308,7 @@
                                     BorderBrush="LightGray"
                                     BorderThickness="1">
                                 <TreeView pu:TreeViewHelper.ItemHeight="30"
-                                          pu:TreeViewHelper.SelectedBrush="{Binding LightBrush, Mode=OneWay}">
+                                          pu:TreeViewHelper.SelectedBackground="{Binding LightBrush, Mode=OneWay}">
                                     <TreeViewItem Header="Item1"
                                                   IsExpanded="True">
                                         <TreeViewItem Header="Item1-1"
@@ -328,7 +328,7 @@
                                     BorderThickness="1">
                                 <TreeView pu:TreeViewHelper.ItemHeight="30"
                                           pu:TreeViewHelper.TreeViewStyle="Classic"
-                                          pu:TreeViewHelper.SelectedBrush="{Binding BrushTran1, Mode=OneWay}">
+                                          pu:TreeViewHelper.SelectedBackground="{Binding BrushTran1, Mode=OneWay}">
                                     <TreeViewItem Header="Item1"
                                                   IsExpanded="True">
                                         <TreeViewItem Header="Item1-1"
@@ -348,7 +348,7 @@
                                     BorderThickness="1">
                                 <TreeView pu:TreeViewHelper.ItemHeight="30"
                                           pu:TreeViewHelper.TreeViewStyle="Modern"
-                                          pu:TreeViewHelper.SelectedBrush="{Binding BrushTran1, Mode=OneWay}"
+                                          pu:TreeViewHelper.SelectedBackground="{Binding BrushTran1, Mode=OneWay}"
                                           BorderBrush="{Binding Brush}">
                                     <TreeViewItem Header="Item1"
                                                   IsExpanded="True">
@@ -370,7 +370,7 @@
                                     BorderThickness="1">
                                 <TreeView pu:TreeViewHelper.ItemHeight="30"
                                           pu:TreeViewHelper.TreeViewStyle="Chain"
-                                          pu:TreeViewHelper.SelectedBrush="{Binding LightBrush, Mode=OneWay}">
+                                          pu:TreeViewHelper.SelectedBackground="{Binding LightBrush, Mode=OneWay}">
                                     <TreeViewItem Header="Item1"
                                                   IsExpanded="True">
                                         <TreeViewItem Header="Item1-1"

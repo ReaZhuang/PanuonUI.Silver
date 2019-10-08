@@ -222,8 +222,7 @@
                                                   IsCheckable="True"/>
                                         <Separator />
                                         <MenuItem Header="More Settings"
-                                                  Icon="&#xf013;"
-                                                  pu:IconHelper.Foreground="#5EBFD4">
+                                                  Icon="&#xf013;">
                                             <MenuItem Header="Nothing Here" />
                                             <MenuItem Header="Nothing Here" />
                                             <MenuItem Header="Nothing Here" />

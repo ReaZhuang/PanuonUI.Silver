@@ -10,7 +10,7 @@ namespace Panuon.UI.Silver
     public class WindowX : Window
     {
         #region Identifier
-        internal bool _closeHandler = true;
+        private bool _closeHandler = true;
         #endregion
 
         #region Constructor
@@ -99,7 +99,7 @@ namespace Panuon.UI.Silver
             DependencyProperty.Register("MaxCommand", typeof(ICommand), typeof(WindowX), new PropertyMetadata(new MaxCommand()));
         #endregion
 
-        #region Event
+        #region Event Handler
         private void WindowX_Loaded(object sender, RoutedEventArgs e)
         {
             var grdTitle = VisualTreeHelper.GetChild(((VisualTreeHelper.GetChild(this, 0) as Border).Child as Grid), 0) as Grid;
@@ -150,8 +150,7 @@ namespace Panuon.UI.Silver
         public void Execute(object parameter)
         {
             var window = (parameter as WindowX);
-            window._closeHandler = false;
-            window.Close();
+            window.ForceClose();
         }
     }
     internal class MaxCommand : ICommand

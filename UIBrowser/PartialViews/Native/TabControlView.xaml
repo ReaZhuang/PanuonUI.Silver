@@ -44,7 +44,6 @@
                     <StackPanel>
                         <Grid Height="100">
                             <TabControl x:Name="TabCustom"
-                                        pu:TabControlHelper.DisableSideButton="True"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
                                         Height="30"
