@@ -32,7 +32,7 @@ namespace UIBrowser.PartialViews.Custom
             var result = MessageBoxX.Show(_message, "Error", Application.Current.MainWindow, MessageBoxButton.YesNo, new MessageBoxXConfigurations()
             {
                 MessageBoxIcon = MessageBoxIcon.Error,
-                ThemeBrush = "#FF4C4C".ToColor().ToBrush(),
+                ButtonBrush = "#FF4C4C".ToColor().ToBrush(),
             });
         }
 
@@ -41,7 +41,7 @@ namespace UIBrowser.PartialViews.Custom
             var result = MessageBoxX.Show(_message, "Success", Application.Current.MainWindow, MessageBoxButton.YesNo, new MessageBoxXConfigurations()
             {
                 MessageBoxIcon = MessageBoxIcon.Success,
-                ThemeBrush = "#75CD43".ToColor().ToBrush(),
+                ButtonBrush = "#75CD43".ToColor().ToBrush(),
             });
         }
 
@@ -50,7 +50,7 @@ namespace UIBrowser.PartialViews.Custom
             var result = MessageBoxX.Show(_message, "Warning", Application.Current.MainWindow, MessageBoxButton.YesNo, new MessageBoxXConfigurations()
             {
                 MessageBoxIcon = MessageBoxIcon.Warning,
-                ThemeBrush = "#F1C825".ToColor().ToBrush(),
+                ButtonBrush = "#F1C825".ToColor().ToBrush(),
             });
         }
 
@@ -68,7 +68,7 @@ namespace UIBrowser.PartialViews.Custom
             {
                 MessageBoxStyle = MessageBoxStyle.Modern,
                 MessageBoxIcon = MessageBoxIcon.Success,
-                ThemeBrush = "#75CD43".ToColor().ToBrush(),
+                ButtonBrush = "#75CD43".ToColor().ToBrush(),
             });
         }
 
@@ -78,7 +78,7 @@ namespace UIBrowser.PartialViews.Custom
             {
                 MessageBoxStyle = MessageBoxStyle.Modern,
                 MessageBoxIcon = MessageBoxIcon.Error,
-                ThemeBrush = "#FF4C4C".ToColor().ToBrush(),
+                ButtonBrush = "#FF4C4C".ToColor().ToBrush(),
             });
         }
 
@@ -88,7 +88,7 @@ namespace UIBrowser.PartialViews.Custom
             {
                 MessageBoxStyle = MessageBoxStyle.Modern,
                 MessageBoxIcon = MessageBoxIcon.Warning,
-                ThemeBrush = "#F1C825".ToColor().ToBrush(),
+                ButtonBrush = "#F1C825".ToColor().ToBrush(),
             });
         }
 
@@ -106,7 +106,7 @@ namespace UIBrowser.PartialViews.Custom
             {
                 MessageBoxStyle = MessageBoxStyle.Classic,
                 MessageBoxIcon = MessageBoxIcon.Success,
-                ThemeBrush = "#75CD43".ToColor().ToBrush(),
+                ButtonBrush = "#75CD43".ToColor().ToBrush(),
             });
         }
 
@@ -116,7 +116,7 @@ namespace UIBrowser.PartialViews.Custom
             {
                 MessageBoxStyle = MessageBoxStyle.Classic,
                 MessageBoxIcon = MessageBoxIcon.Error,
-                ThemeBrush = "#FF4C4C".ToColor().ToBrush(),
+                ButtonBrush = "#FF4C4C".ToColor().ToBrush(),
             });
         }
 
@@ -126,7 +126,7 @@ namespace UIBrowser.PartialViews.Custom
             {
                 MessageBoxStyle = MessageBoxStyle.Classic,
                 MessageBoxIcon = MessageBoxIcon.Warning,
-                ThemeBrush = "#F1C825".ToColor().ToBrush(),
+                ButtonBrush = "#F1C825".ToColor().ToBrush(),
             });
         }
 

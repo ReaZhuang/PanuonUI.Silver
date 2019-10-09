@@ -159,12 +159,8 @@
                         Value="LightGray" />
                 <Setter Property="BorderThickness"
                         Value="1" />
-                <Setter Property="local:CheckBoxHelper.GlyphBrush"
-                        Value="#FFFFFF" />
                 <Setter Property="local:CheckBoxHelper.CheckedBackground"
                         Value="#888888" />
-                <Setter Property="local:CheckBoxHelper.CheckedGlyphBrush"
-                        Value="#FFFFFF" />
                 <Setter Property="local:CheckBoxHelper.BoxHeight"
                         Value="22" />
                 <Setter Property="local:CheckBoxHelper.BoxWidth"
@@ -336,12 +332,8 @@
                         Value="LightGray" />
                 <Setter Property="BorderThickness"
                         Value="1" />
-                <Setter Property="local:CheckBoxHelper.GlyphBrush"
-                        Value="#FFFFFF" />
                 <Setter Property="local:CheckBoxHelper.CheckedBackground"
                         Value="#888888" />
-                <Setter Property="local:CheckBoxHelper.CheckedGlyphBrush"
-                        Value="#FFFFFF" />
                 <Setter Property="local:CheckBoxHelper.BoxHeight"
                         Value="22" />
                 <Setter Property="local:CheckBoxHelper.BoxWidth"

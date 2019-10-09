@@ -77,8 +77,8 @@
     public enum LoadingStyle
     {
         Standard,
-        Ring,
         Wave,
+        Ring,
         Ring2,
         Classic
     }

@@ -27,7 +27,7 @@ namespace Panuon.UI.Silver.Controls.Internal
             NoButton = messageBoxXConfigurations.NoButton;
             OKButton = messageBoxXConfigurations.OKButton;
             CancelButton = messageBoxXConfigurations.CancelButton;
-            ThemeBrush = messageBoxXConfigurations.ThemeBrush;
+            ThemeBrush = messageBoxXConfigurations.ButtonBrush;
             MinWidth = messageBoxXConfigurations.MinWidth;
             MinHeight = messageBoxXConfigurations.MinHeight;
             DefaultButton = messageBoxXConfigurations.DefaultButton;
@@ -35,7 +35,10 @@ namespace Panuon.UI.Silver.Controls.Internal
             MaxContentWidth = messageBoxXConfigurations.MaxContentWidth;
             ReverseButtonSequence = messageBoxXConfigurations.ReverseButtonSequence;
             FontSize = messageBoxXConfigurations.FontSize;
+
         }
+
+        
 
         #region Property
         public CornerRadius CornerRadius
@@ -227,6 +230,11 @@ namespace Panuon.UI.Silver.Controls.Internal
         #endregion
 
         #region EventHandler
+        private void BdrMain_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
         private static void OnMessageBoxStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var msb = d as MsgBox;

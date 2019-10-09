@@ -7,15 +7,15 @@ namespace Panuon.UI.Silver
 {
     public static class PendingBox
     {
-        #region Identity
-        public static IDictionary<string, PendingBoxConfigurations> PendingBoxConfigurations { get; }
-        #endregion
-
         #region Constructor
         static PendingBox()
         {
             PendingBoxConfigurations = new Dictionary<string, PendingBoxConfigurations>();
         }
+        #endregion
+
+        #region Property
+        public static IDictionary<string, PendingBoxConfigurations> PendingBoxConfigurations { get; }
         #endregion
 
         #region Show API

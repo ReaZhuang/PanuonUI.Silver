@@ -126,15 +126,14 @@ namespace UIBrowser.PartialViews.Native
             UpdateCode();
         }
 
-        private void CmbCustom_SearchTextChanged(object sender, RoutedPropertyChangedEventArgs<string> e)
+        private void CmbCustom_SearchTextChanged(object sender, Panuon.UI.Silver.Core.SearchTextChangedEventArgs e)
         {
             if (!IsLoaded)
                 return;
 
-            var value = e.NewValue as string;
             foreach (ComboBoxItem item in CmbCustom.Items)
             {
-                item.Visibility = item.Content.ToString().Contains(value) ? Visibility.Visible : Visibility.Collapsed;
+                item.Visibility = item.Content.ToString().Contains(e.Text) ? Visibility.Visible : Visibility.Collapsed;
             }
 
             UpdateCode();
@@ -185,5 +184,6 @@ namespace UIBrowser.PartialViews.Native
         }
         #endregion
 
+       
     }
 }

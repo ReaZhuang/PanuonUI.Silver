@@ -1,6 +1,7 @@
 ﻿using Panuon.UI.Silver.Core;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Panuon.UI.Silver.Controls.Internal
@@ -195,6 +196,8 @@ namespace Panuon.UI.Silver.Controls.Internal
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
             Canceled?.Invoke(this, e);
+            var btnCancel = sender as Button;
+            btnCancel.IsEnabled = false;
         }
 
         private static void OnLoadingStyleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

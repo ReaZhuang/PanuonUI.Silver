@@ -35,9 +35,9 @@ namespace Panuon.UI.Silver.Core
         public DefaultButton DefaultButton { get; set; } = DefaultButton.YesOK;
 
         /// <summary>
-        /// Theme Brush
+        /// Button Brush
         /// </summary>
-        public Brush ThemeBrush { get; set; } = "#55CEF1".ToColor().ToBrush();
+        public Brush ButtonBrush { get; set; } = "#55CEF1".ToColor().ToBrush();
 
         /// <summary>
         /// Min height. Default : 250.

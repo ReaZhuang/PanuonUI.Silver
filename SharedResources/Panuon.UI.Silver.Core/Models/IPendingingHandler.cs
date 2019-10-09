@@ -4,12 +4,24 @@ namespace Panuon.UI.Silver.Core
 {
     public interface IPendingHandler
     {
+        /// <summary>
+        /// Pending box closed.
+        /// </summary>
         event EventHandler Closed;
 
-        event EventHandler Canceled;
+        /// <summary>
+        /// User canceled.
+        /// </summary>
+        event EventHandler Cancel;
 
+        /// <summary>
+        /// Close pending box.
+        /// </summary>
         void Close();
 
+        /// <summary>
+        /// Update message of pending box.
+        /// </summary>
         void UpdateMessage(string message);
     }
 
@@ -28,9 +40,9 @@ namespace Panuon.UI.Silver.Core
         }
         #endregion
 
-        #region 
+        #region Event
         public event EventHandler Closed;
-        public event EventHandler Canceled;
+        public event EventHandler Cancel;
 
         public void Close()
         {
@@ -46,7 +58,7 @@ namespace Panuon.UI.Silver.Core
 
         public void RaiseCanceledEvent(object sender, EventArgs e)
         {
-            Canceled?.Invoke(sender, e);
+            Cancel?.Invoke(sender, e);
         }
 
         public void UpdateMessage(string message)

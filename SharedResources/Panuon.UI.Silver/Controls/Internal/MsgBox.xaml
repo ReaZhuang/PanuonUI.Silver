@@ -22,7 +22,8 @@
     </Window.Resources>
     <Border Background="White"
             CornerRadius="3"
-            Margin="5">
+            Margin="5"
+MouseLeftButtonDown="BdrMain_MouseLeftButtonDown">
         <Border.Effect>
             <DropShadowEffect Color="LightGray"
                               BlurRadius="5"

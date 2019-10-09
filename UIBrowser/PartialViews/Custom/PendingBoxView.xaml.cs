@@ -42,7 +42,7 @@ namespace UIBrowser.PartialViews.Custom
                 LoadingForeground = "#5DBBEC".ToColor().ToBrush(),
                 ButtonBrush = "#5DBBEC".ToColor().ToBrush(),
             });
-            handler.Canceled += delegate
+            handler.Cancel += delegate
             {
                 handler.Close();
             };
@@ -79,7 +79,7 @@ namespace UIBrowser.PartialViews.Custom
                 PendingBoxStyle = PendingBoxStyle.Classic,
                 FontSize = 14,
             });
-            handler.Canceled += delegate
+            handler.Cancel += delegate
             {
                 handler.Close();
             };
