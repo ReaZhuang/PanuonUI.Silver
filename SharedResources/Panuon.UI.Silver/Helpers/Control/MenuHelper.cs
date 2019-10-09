@@ -6,6 +6,21 @@ namespace Panuon.UI.Silver
 {
     public class MenuHelper
     {
+        #region MenuStyle
+        public static MenuStyle GetMenuStyle(DependencyObject obj)
+        {
+            return (MenuStyle)obj.GetValue(MenuStyleProperty);
+        }
+
+        public static void SetMenuStyle(DependencyObject obj, MenuStyle value)
+        {
+            obj.SetValue(MenuStyleProperty, value);
+        }
+
+        public static readonly DependencyProperty MenuStyleProperty =
+            DependencyProperty.RegisterAttached("MenuStyle", typeof(MenuStyle), typeof(MenuHelper), new PropertyMetadata(MenuStyle.Standard));
+        #endregion
+
         #region Orientation
         public static Orientation GetOrientation(DependencyObject obj)
         {
@@ -79,21 +94,6 @@ namespace Panuon.UI.Silver
 
         public static readonly DependencyProperty ShadowColorProperty =
             DependencyProperty.RegisterAttached("ShadowColor", typeof(Color?), typeof(MenuHelper));
-        #endregion
-
-        #region MenuStyle
-        public static MenuStyle GetMenuStyle(DependencyObject obj)
-        {
-            return (MenuStyle)obj.GetValue(MenuStyleProperty);
-        }
-
-        public static void SetMenuStyle(DependencyObject obj, MenuStyle value)
-        {
-            obj.SetValue(MenuStyleProperty, value);
-        }
-
-        public static readonly DependencyProperty MenuStyleProperty =
-            DependencyProperty.RegisterAttached("MenuStyle", typeof(MenuStyle), typeof(MenuHelper), new PropertyMetadata(MenuStyle.Standard));
         #endregion
 
         #region SubmenuItemHeight
