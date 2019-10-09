@@ -15,8 +15,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="Width"
                 Value="200" />
         <Setter Property="Background"
@@ -98,8 +96,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="Padding"
                 Value="{Binding Path=(local:MenuHelper.ItemPadding),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}" />
         <Setter Property="local:MenuHelper.HoverBackground"
@@ -579,13 +575,11 @@
                     </Setter.Value>
                 </Setter>
             </MultiDataTrigger>
-            <!--Horizontal / Standard / SubmenuItem-->
+            <!--Horizontal / SubmenuItem-->
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding Path=(local:MenuHelper.Orientation),RelativeSource={RelativeSource AncestorType=Menu}}"
                                Value="Horizontal" />
-                    <Condition Binding="{Binding Path=(local:MenuHelper.MenuStyle),RelativeSource={RelativeSource AncestorType=Menu}}"
-                               Value="Standard" />
                     <Condition Binding="{Binding Role,RelativeSource={RelativeSource Self}}"
                                Value="SubmenuItem" />
                 </MultiDataTrigger.Conditions>
@@ -702,13 +696,11 @@
                     </Setter.Value>
                 </Setter>
             </MultiDataTrigger>
-            <!--Horizontal / Standard / SubmenuHeader-->
+            <!--Horizontal / SubmenuHeader-->
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding Path=(local:MenuHelper.Orientation),RelativeSource={RelativeSource AncestorType=Menu}}"
                                Value="Horizontal" />
-                    <Condition Binding="{Binding Path=(local:MenuHelper.MenuStyle),RelativeSource={RelativeSource AncestorType=Menu}}"
-                               Value="Standard" />
                     <Condition Binding="{Binding Role,RelativeSource={RelativeSource Self}}"
                                Value="SubmenuHeader" />
                 </MultiDataTrigger.Conditions>
@@ -1110,8 +1102,7 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
+
         <Setter Property="Padding"
                 Value="{Binding Path=(local:MenuHelper.ItemPadding),RelativeSource={RelativeSource AncestorType=Menu},Mode=OneWay}" />
         <Setter Property="Height"

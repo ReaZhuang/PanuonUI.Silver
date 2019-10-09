@@ -11,7 +11,7 @@
     <converter:TabControlSideButtonVisibilityConverter x:Key="TabControlSideButtonVisibilityConverter" />
     <converter:TabControlPathConverter x:Key="TabControlPathConverter" />
     <converter:TabControlRemoveButtonPaddingConverter x:Key="TabControlRemoveButtonPaddingConverter" />
-    
+
     <Style  TargetType="{x:Type TabControl}">
         <Setter Property="FontFamily"
                 Value="{StaticResource Default_FontFamily}" />
@@ -19,8 +19,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="Foreground"
                 Value="#3E3E3E" />
         <Setter Property="BorderBrush"
@@ -55,7 +53,7 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <ContentControl Content="{Binding Path=(local:TabControlHelper.ExtendControl),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}"/>
+                            <ContentControl Content="{Binding Path=(local:TabControlHelper.ExtendControl),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}" />
                             <RepeatButton Grid.Column="1"
                                           local:RepeatButtonHelper.RepeatButtonStyle="Link"
                                           local:RepeatButtonHelper.HoverBrush="{Binding Path=(local:TabControlHelper.SelectedForeground),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}"
@@ -131,7 +129,7 @@
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Path=(local:TabControlHelper.TabControlStyle),RelativeSource={RelativeSource Self}, Mode=OneWay}"
                                      Value="Card">
-                            <Setter TargetName="Path" 
+                            <Setter TargetName="Path"
                                     Property="Visibility"
                                     Value="Collapsed" />
                         </DataTrigger>
@@ -445,8 +443,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{Binding FontSize,RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="Height"
                 Value="{Binding Path=(local:TabControlHelper.ItemHeight),RelativeSource={RelativeSource AncestorType=TabControl},Mode=OneWay}" />
         <Setter Property="BorderBrush"
@@ -484,12 +480,12 @@
                                             <Binding Path="Padding"
                                                      RelativeSource="{RelativeSource AncestorType=TabItem}" />
                                             <Binding Path="Visibility"
-                                                     ElementName="BtnRemove"/>
+                                                     ElementName="BtnRemove" />
                                         </MultiBinding>
                                     </Grid.Margin>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="{Binding Path=(local:IconHelper.Width),RelativeSource={RelativeSource AncestorType=TabItem},Mode=OneWay,Converter={StaticResource GridLengthConverter}}" />
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Label x:Name="LblIcon"
@@ -687,8 +683,8 @@
                                 </DataTrigger>
                                 <MultiTrigger>
                                     <MultiTrigger.Conditions>
-                                        <Condition Property="IsSelected" 
-                                                   Value="True"/>
+                                        <Condition Property="IsSelected"
+                                                   Value="True" />
                                         <Condition Property="TabStripPlacement"
                                                    Value="Top" />
                                     </MultiTrigger.Conditions>

@@ -16,8 +16,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="MaxDropDownHeight"
                 Value="250" />
         <Setter Property="Foreground"
@@ -209,7 +207,7 @@
                                     <MultiBinding Converter="{StaticResource ComboBoxTextMarginConverter}">
                                         <Binding Path="ActualWidth"
                                                  ElementName="LblIcon" />
-                                        <Binding Path="Padding"/>
+                                        <Binding Path="Padding" />
                                     </MultiBinding>
                                 </TextBox.Margin>
                             </TextBox>
@@ -291,7 +289,7 @@
                                     TargetName="TxtWatermark"
                                     Value="Visible" />
                         </MultiDataTrigger>
-                       
+
                         <Trigger Property="IsEditable"
                                  Value="True">
                             <Setter TargetName="PART_EditableTextBox"
@@ -333,8 +331,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="Foreground"
                 Value="{Binding Foreground,RelativeSource={RelativeSource AncestorType=ComboBox}}" />
         <Setter Property="Height"
@@ -380,7 +376,7 @@
                             <Setter Property="Foreground"
                                     Value="{Binding Path=(local:ComboBoxHelper.SelectedForeground),RelativeSource={RelativeSource AncestorType=ComboBox}, Mode=OneWay}" />
                         </MultiDataTrigger>
-                        
+
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsSelected,RelativeSource={RelativeSource Self}}"
@@ -394,7 +390,7 @@
                                     Property="Background"
                                     Value="{Binding Path=(local:ComboBoxHelper.HoverBackground),RelativeSource={RelativeSource AncestorType=ComboBox}, Mode=OneWay}" />
                         </MultiDataTrigger>
-                        
+
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsSelected,RelativeSource={RelativeSource Self}}"

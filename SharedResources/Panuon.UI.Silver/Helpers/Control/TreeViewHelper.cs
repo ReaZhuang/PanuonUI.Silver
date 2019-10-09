@@ -166,7 +166,7 @@ namespace Panuon.UI.Silver
 
         #endregion
 
-        #region HoverBrush
+        #region ExpandedBrush
         public static Brush GetExpandedBrush(DependencyObject obj)
         {
             return (Brush)obj.GetValue(ExpandedBrushProperty);

@@ -1,4 +1,5 @@
 ﻿using Panuon.UI.Silver;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -26,7 +27,7 @@ namespace UIBrowser.PartialViews.Native
             _linearGradientBrush = FindResource("ColorSelectorBrush") as LinearGradientBrush;
         }
 
-        #region Event
+        #region Event Handler
 
         private void ButtonView_Loaded(object sender, RoutedEventArgs e)
         {
@@ -49,6 +50,15 @@ namespace UIBrowser.PartialViews.Native
             UpdateTemplate();
         }
 
+        private void RdbBaseStyle_CheckChanged(object sender, RoutedEventArgs e)
+        {
+            if (!IsLoaded)
+                return;
+            var rdb = sender as RadioButton;
+            MenuHelper.SetMenuStyle(MenuCustom, (MenuStyle)Enum.Parse(typeof(MenuStyle), rdb.Content.ToString()));
+
+            UpdateTemplate();
+        }
         #endregion
 
         #region Function
@@ -67,10 +77,22 @@ namespace UIBrowser.PartialViews.Native
         private void UpdateTemplate()
         {
             var color = Helper.GetColorByOffset(_linearGradientBrush.GradientStops, SldTheme.Value / 7);
-            MenuHelper.SetHoverBackground(MenuCustom, color.ToBrush());
+
+            switch (MenuHelper.GetMenuStyle(MenuCustom))
+            {
+                case MenuStyle.Standard:
+                    MenuHelper.SetHoverBackground(MenuCustom, new Color() { A = 34, R = color.R, G = color.G, B = color.B }.ToBrush());
+                    MenuHelper.SetHoverForeground(MenuCustom, null);
+                    break;
+                case MenuStyle.Modern:
+                    MenuHelper.SetHoverBackground(MenuCustom, null);
+                    MenuHelper.SetHoverForeground(MenuCustom, color.ToBrush());
+                    break;
+            }
         }
 
         #endregion
 
+        
     }
 }

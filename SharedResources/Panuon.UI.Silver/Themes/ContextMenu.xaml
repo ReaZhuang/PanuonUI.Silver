@@ -15,8 +15,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="Width"
                 Value="200" />
         <Setter Property="Background"
@@ -110,8 +108,6 @@
                         Value="{StaticResource Default_SnapsToDevicePixels}" />
                 <Setter Property="FontSize"
                         Value="{StaticResource Default_FontSize}" />
-                <Setter Property="FocusVisualStyle"
-                        Value="{x:Null}" />
                 <Setter Property="Height"
                         Value="{Binding Path=(local:ContextMenuHelper.ItemHeight),RelativeSource={RelativeSource AncestorType=ContextMenu},Mode=OneWay}" />
                 <Setter Property="Padding"

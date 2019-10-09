@@ -92,8 +92,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="Background"
                 Value="#888888" />
         <Setter Property="HoverBrush"
@@ -1352,8 +1350,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="Foreground"
                 Value="#3E3E3E"></Setter>
         <Setter Property="Background"
@@ -1599,8 +1595,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="Foreground"
                 Value="#3E3E3E"></Setter>
         <Setter Property="Background"
@@ -1816,8 +1810,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="Foreground"
                 Value="#3E3E3E"></Setter>
         <Setter Property="Background"
@@ -2140,8 +2132,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="ThemeBrush"
                 Value="Gray" />
         <Setter Property="Foreground"
@@ -2254,8 +2244,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="Second"
                 Value="5" />
         <Setter Property="BorderThickness"
@@ -2291,8 +2279,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="BorderBrush"
                 Value="LightGray" />
         <Setter Property="BorderThickness"
@@ -2354,7 +2340,6 @@
                                         Command="{Binding CloseCommand, RelativeSource={RelativeSource AncestorType=internal:NoticeCard}}"
                                         CommandParameter="{Binding Path=.,RelativeSource={RelativeSource AncestorType=internal:NoticeCard}}" />
                             </Grid>
-
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>

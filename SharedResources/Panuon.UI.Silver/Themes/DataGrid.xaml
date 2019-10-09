@@ -18,8 +18,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{StaticResource Default_FontSize}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="Background"
                 Value="Transparent" />
         <Setter Property="BorderBrush"
@@ -62,7 +60,7 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid  Background="#EB3941"
-                        ToolTip="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}}, Path=(Validation.Errors)[0].ErrorContent}">
+                           ToolTip="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}}, Path=(Validation.Errors)[0].ErrorContent}">
                         <TextBlock Text="!"
                                    FontSize="{TemplateBinding FontSize}"
                                    FontWeight="Bold"
@@ -117,8 +115,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{Binding FontSize,RelativeSource={RelativeSource AncestorType=DataGrid}}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="FontWeight"
                 Value="500" />
         <Setter Property="Background"
@@ -236,7 +232,7 @@
                                 <Condition Binding="{Binding Path=(local:DataGridHelper.ColumnHorizontalContentAlignment),RelativeSource={RelativeSource AncestorType=DataGrid},Mode=OneWay,Converter={StaticResource NotAlignmentCenterConverter}}"
                                            Value="False" />
                                 <Condition Binding="{Binding SortDirection,RelativeSource={RelativeSource Self}}"
-                                           Value="{x:Null}"/>
+                                           Value="{x:Null}" />
                             </MultiDataTrigger.Conditions>
                             <Setter TargetName="PathAsc"
                                     Property="Visibility"
@@ -334,8 +330,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{Binding FontSize,RelativeSource={RelativeSource AncestorType=DataGrid}}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="Background"
                 Value="White" />
         <Setter Property="local:DataGridHelper.CellPadding"
@@ -384,8 +378,6 @@
                 Value="{StaticResource Default_SnapsToDevicePixels}" />
         <Setter Property="FontSize"
                 Value="{Binding FontSize,RelativeSource={RelativeSource AncestorType=DataGrid}}" />
-        <Setter Property="FocusVisualStyle"
-                Value="{x:Null}" />
         <Setter Property="MinHeight"
                 Value="{Binding Path=(local:DataGridHelper.RowMinHeight),RelativeSource={RelativeSource AncestorType=DataGrid}}" />
         <Setter Property="Template">
